@@ -2,6 +2,7 @@ Feature: Edit contact information
 
   Background:
     Given I log in Salesforce with valid User credentials
+    
     @createContact @deleteContact
     Scenario: I Update the contact information
       When I navigate to contact page
