@@ -1,9 +1,9 @@
 Feature: Edit contact information
 
   Background:
-    Given I log in Sales Force with valid User credentials
+    Given I log in Salesforce with valid User credentials
     @createContact @deleteContact
-    Scenario: I edit the contact information
+    Scenario: I Update the contact information
       When I navigate to contact page
       And I search for the contact on the table
       And I edit the contact information with the following information
