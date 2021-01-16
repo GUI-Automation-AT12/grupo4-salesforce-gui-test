@@ -8,6 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * [RH] Json Reader
+ */
 public class JsonReader {
 
     private static String filePath;
