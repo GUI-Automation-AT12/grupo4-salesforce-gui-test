@@ -1,9 +1,9 @@
-package org.fundacionjala.salesforce.utils;
+package org.fundacionjala.salesforce.config;
 
-import org.fundacionjala.core.utils.PropertiesReader;
+import org.fundacionjala.core.config.PropertiesFileReader;
 
-public class APIEnvironment extends PropertiesReader {
-    private static final String PATH_FILE = "gradle.properties";
+public class APIEnvironment extends PropertiesFileReader {
+    private static final String PATH_FILE = "salesforce.properties";
     private static APIEnvironment apiEnvironment = new APIEnvironment();
 
     /**
@@ -29,7 +29,7 @@ public class APIEnvironment extends PropertiesReader {
      * @return baseLoginUrl from project's properties.
      */
     public String getBaseLoginUrl() {
-        return super.getEnvProperty("baseLoginUrl");
+        return super.getProperty("baseLoginUrl");
     }
 
     /**
@@ -37,7 +37,7 @@ public class APIEnvironment extends PropertiesReader {
      * @return clientId from project's properties.
      */
     public String getClientId() {
-        return super.getEnvProperty("clientId");
+        return super.getProperty("clientId");
     }
 
     /**
@@ -45,7 +45,7 @@ public class APIEnvironment extends PropertiesReader {
      * @return clientSecret from project's properties.
      */
     public String getClientSecret() {
-        return super.getEnvProperty("clientSecret");
+        return super.getProperty("clientSecret");
     }
 
     /**
@@ -53,7 +53,7 @@ public class APIEnvironment extends PropertiesReader {
      * @return grantType from project's properties.
      */
     public String getGrantType() {
-        return super.getEnvProperty("grantType");
+        return super.getProperty("grantType");
     }
 
     /**
@@ -61,7 +61,7 @@ public class APIEnvironment extends PropertiesReader {
      * @return username from project's properties.
      */
     public String getUsername() {
-        return super.getEnvProperty("username");
+        return super.getProperty("username");
     }
 
     /**
@@ -69,7 +69,7 @@ public class APIEnvironment extends PropertiesReader {
      * @return password from project's properties.
      */
     public String getPassword() {
-        return super.getEnvProperty("password");
+        return super.getProperty("password");
     }
 
     /**
@@ -77,6 +77,6 @@ public class APIEnvironment extends PropertiesReader {
      * @return base url.
      */
     public String getBaseUrl() {
-        return getEnvProperty("baseUrl");
+        return super.getProperty("baseUrl");
     }
 }

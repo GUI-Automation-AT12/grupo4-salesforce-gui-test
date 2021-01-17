@@ -2,9 +2,7 @@ package org.fundacionjala.core.client;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
 import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 
 public final class RequestManager {

@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.entity.ContentType;
+import org.fundacionjala.salesforce.config.APIEnvironment;
 
 public final class AuthenticationUtils {
     private static final String BASE_LOGIN_URL = APIEnvironment.getInstance().getBaseLoginUrl();
