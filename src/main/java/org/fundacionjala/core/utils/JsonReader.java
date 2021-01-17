@@ -1,4 +1,4 @@
-package org.fundacionjala.salesforce.salesforce.utils;
+package org.fundacionjala.core.utils;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -7,21 +7,25 @@ import org.json.simple.parser.ParseException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
 /**
- * [RH] Json Reader
+ * [RH] Json Reader.
  */
 public class JsonReader {
 
     private static String filePath;
-    public JsonReader(final String filePath) {
-        this.filePath = filePath;
+
+    /**
+     *
+     * @param filePathh
+     */
+    protected  JsonReader(final String filePathh) {
+        this.filePath = filePathh;
     }
 
     /**
      * Try to read a json file and return a JSONArray with the read info.
-     * @return JSONArray;
-     */
+     * @return JSONArray
+     * */
     public static JSONArray jsonArrayFromJsonFile() throws ParseException {
         try {
             JSONParser jsonParser = new JSONParser();
