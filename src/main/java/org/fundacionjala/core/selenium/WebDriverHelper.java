@@ -1,4 +1,4 @@
-package org.fundacionjala.salesforce.salesforce.utils;
+package org.fundacionjala.core.selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

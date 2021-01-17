@@ -1,4 +1,4 @@
-package org.fundacionjala.salesforce.salesforce.utils;
+package org.fundacionjala.core.utils;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class JsonReader {
 
-    private static String filePath;
+    private static String filePath ;
     public JsonReader(final String filePath) {
         this.filePath = filePath;
     }

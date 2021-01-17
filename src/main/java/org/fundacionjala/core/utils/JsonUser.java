@@ -1,4 +1,4 @@
-package org.fundacionjala.salesforce.salesforce.utils;
+package org.fundacionjala.core.utils;
 
 import org.json.simple.parser.ParseException;
 
