@@ -7,12 +7,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- *
- * [RH] Web driver helper class
+ * [RH] Web driver helper class.
  */
 public final class WebDriverHelper {
 
-    public WebDriverHelper() {
+    /**
+     *
+     */
+    private WebDriverHelper() {
     }
 
     /**
@@ -46,7 +48,7 @@ public final class WebDriverHelper {
     }
 
     /**
-     * returns  an by.
+     * @return  an WebElement.
      * @param by
      */
     public static WebElement searchElement(final By by) {
@@ -65,9 +67,8 @@ public final class WebDriverHelper {
     }
 
     /**
-     * get text from an element.
+     * @return get text from an element.
      * @param webElement
-     * @return
      */
     public static String getTextElement(final WebElement webElement) {
         return webElement.getText();

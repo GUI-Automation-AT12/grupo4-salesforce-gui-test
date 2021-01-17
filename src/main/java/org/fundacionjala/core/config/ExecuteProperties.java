@@ -1,6 +1,6 @@
 package org.fundacionjala.core.config;
 
-public class ExecuteProperties {
+public final class ExecuteProperties {
 
     private static final String PROPERTIES_FILE_PATH = "gradle.properties";
     private static ExecuteProperties singleInstance;

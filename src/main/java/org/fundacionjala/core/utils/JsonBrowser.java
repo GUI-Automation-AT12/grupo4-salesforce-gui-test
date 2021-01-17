@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JsonBrowser {
+public final class JsonBrowser {
 
     private static Map<String, Browser> browserMap;
     private static final String JSON_FILE_PATH =

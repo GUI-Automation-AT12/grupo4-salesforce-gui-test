@@ -29,6 +29,10 @@ public class WebDriverManager {
         return webDriverManager;
     }
 
+    /**
+     * defect constructor.
+     * @throws IOException
+     */
     public WebDriverManager() throws IOException {
         Browser browser = BrowserFactory.getDriverProps(browserName);
         webDriver = BrowserFactory.getWebDriver(browserName);
@@ -71,8 +75,4 @@ public class WebDriverManager {
         webDriverManager = null;
     }
 
-
-    public void navigate(String url){
-        webDriver.get(url);
-    }
 }

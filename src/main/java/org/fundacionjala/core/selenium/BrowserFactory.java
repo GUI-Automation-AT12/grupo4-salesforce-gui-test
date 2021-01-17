@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BrowserFactory {
+public final class BrowserFactory {
 
     /**
      * Constructor for the BrowserFactory class.

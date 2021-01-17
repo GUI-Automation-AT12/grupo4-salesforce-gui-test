@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class PropertiesFileReader {
 
-   // private static final Logger LOGGER = LogManager.getLogger(EnvironmentProperties.class);
+    private static final Logger LOGGER = LogManager.getLogger(PropertiesFileReader.class);
     private final Properties property;
     private final FileReader reader;
 
@@ -24,12 +24,12 @@ public class PropertiesFileReader {
             property = new Properties();
             property.load(reader);
         } catch (FileNotFoundException e) {
-//            /LOGGER.error("Error when reading file");
-//            LOGGER.error(e.getMessage());
+            LOGGER.error("Error when reading file");
+            LOGGER.error(e.getMessage());
             throw new RuntimeException("Error when reading properties file");
         } catch (IOException e) {
-       //     LOGGER.error("Error getting properties");
-         //   LOGGER.error(e.getMessage());
+            LOGGER.error("Error getting properties");
+            LOGGER.error(e.getMessage());
             throw new RuntimeException("Error getting properties");
         } finally {
             closeReader();
@@ -57,7 +57,7 @@ public class PropertiesFileReader {
         try {
             reader.close();
         } catch (IOException e) {
-          //  LOGGER.error("Cannot close file Reader.");
+            LOGGER.error("Cannot close file Reader.");
             throw new RuntimeException("Cannot close File Reader.");
         }
     }
