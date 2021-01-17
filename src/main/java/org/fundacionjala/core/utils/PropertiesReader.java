@@ -9,9 +9,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ReaderPropertiesFile {
+public class PropertiesReader {
 
-    private static final Logger LOGGER = LogManager.getLogger(ReaderPropertiesFile.class);
+    private static final Logger LOGGER = LogManager.getLogger(PropertiesReader.class);
     private Properties property;
     private FileReader reader;
 
@@ -19,7 +19,7 @@ public class ReaderPropertiesFile {
      * Constructor.
      * @param pathFile
      */
-    public ReaderPropertiesFile(final String pathFile) {
+    public PropertiesReader(final String pathFile) {
         try {
             reader = new FileReader(pathFile);
             property = new Properties();

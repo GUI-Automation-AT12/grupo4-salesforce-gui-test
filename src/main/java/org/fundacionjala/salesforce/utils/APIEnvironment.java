@@ -1,15 +1,15 @@
 package org.fundacionjala.salesforce.utils;
 
-import org.fundacionjala.core.utils.ReaderPropertiesFile;
+import org.fundacionjala.core.utils.PropertiesReader;
 
-public class APIPropertiesEnvironment extends ReaderPropertiesFile {
+public class APIEnvironment extends PropertiesReader {
     private static final String PATH_FILE = "gradle.properties";
-    private static APIPropertiesEnvironment apiPropertiesEnvironment = new APIPropertiesEnvironment();
+    private static APIEnvironment apiEnvironment = new APIEnvironment();
 
     /**
      * Constructor.
      */
-    public APIPropertiesEnvironment() {
+    public APIEnvironment() {
         super(PATH_FILE);
     }
 
@@ -17,11 +17,11 @@ public class APIPropertiesEnvironment extends ReaderPropertiesFile {
      * Initiate a single instance of PropertiesHandler, if it's possible.
      * @return the instance of PropertiesHandler object created.
      */
-    public static APIPropertiesEnvironment getInstance() {
-        if (apiPropertiesEnvironment == null) {
-            apiPropertiesEnvironment = new APIPropertiesEnvironment();
+    public static APIEnvironment getInstance() {
+        if (apiEnvironment == null) {
+            apiEnvironment = new APIEnvironment();
         }
-        return apiPropertiesEnvironment;
+        return apiEnvironment;
     }
 
     /**

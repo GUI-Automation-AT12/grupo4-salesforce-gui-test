@@ -6,19 +6,19 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.http.entity.ContentType;
 
 public final class AuthenticationUtils {
-    private static final String BASE_LOGIN_URL = APIPropertiesEnvironment.getInstance().getBaseLoginUrl();
-    private static final String BASE_URL = APIPropertiesEnvironment.getInstance().getBaseUrl();
+    private static final String BASE_LOGIN_URL = APIEnvironment.getInstance().getBaseLoginUrl();
+    private static final String BASE_URL = APIEnvironment.getInstance().getBaseUrl();
     private static final String PATH = "services/oauth2/token";
     private static final String GRANT_TYPE_KEY = "grant_type";
-    private static final String GRANT_TYPE_VAL = APIPropertiesEnvironment.getInstance().getGrantType();
+    private static final String GRANT_TYPE_VAL = APIEnvironment.getInstance().getGrantType();
     private static final String CLIENT_ID_KEY = "client_id";
-    private static final String CLIENT_ID_VAL = APIPropertiesEnvironment.getInstance().getClientId();
+    private static final String CLIENT_ID_VAL = APIEnvironment.getInstance().getClientId();
     private static final String CLIENT_SECRET_KEY = "client_secret";
-    private static final String CLIENT_SECRET_VAL = APIPropertiesEnvironment.getInstance().getClientSecret();
+    private static final String CLIENT_SECRET_VAL = APIEnvironment.getInstance().getClientSecret();
     private static final String USERNAME_KEY = "username";
-    private static final String USERNAME_VAL = APIPropertiesEnvironment.getInstance().getUsername();
+    private static final String USERNAME_VAL = APIEnvironment.getInstance().getUsername();
     private static final String PASSWORD_KEY = "password";
-    private static final String PASSWORD_VAL = APIPropertiesEnvironment.getInstance().getPassword();
+    private static final String PASSWORD_VAL = APIEnvironment.getInstance().getPassword();
 
     /**
      * Private secure Constructor.
