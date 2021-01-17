@@ -1,0 +1,20 @@
+[
+    {
+      "name": "firefox",
+      "implicitWaitingSeconds": "30",
+      "explicitWaitingSeconds": "40",
+      "sleepingTimeMills": "500"
+    },
+    {
+      "name": "edge",
+      "implicitWaitingSeconds": "40",
+      "explicitWaitingSeconds": "50",
+      "sleepingTimeMills": "500"
+    },
+    {
+      "name": "chrome",
+      "implicitWaitingSeconds": "30",
+      "explicitWaitingSeconds": "40",
+      "sleepingTimeMills": "500"
+    }
+]
