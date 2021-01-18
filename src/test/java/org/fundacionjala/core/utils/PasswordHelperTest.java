@@ -7,8 +7,8 @@ public class PasswordHelperTest {
 
     @Test
     public void testPasswordEncrypt() {
-        String encrypted = PasswordHelper.encrypt("password");
-        Assert.assertEquals(encrypted, "cGFzc3dvcmQ=");
+        String encrypted = PasswordHelper.encrypt("control123");
+        Assert.assertEquals(encrypted, "Y29udHJvbDEyMw==");
     }
 
     @Test

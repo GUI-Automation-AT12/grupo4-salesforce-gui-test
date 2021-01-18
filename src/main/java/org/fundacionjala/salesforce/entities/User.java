@@ -1,5 +1,7 @@
 package org.fundacionjala.salesforce.entities;
 
+import org.fundacionjala.core.utils.PasswordHelper;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -241,7 +243,7 @@ public class User {
      * @param pwd
      */
     public void setPassword(final String pwd) {
-        this.password = pwd;
+        this.password = PasswordHelper.decrypt(pwd);
     }
 
     /**
