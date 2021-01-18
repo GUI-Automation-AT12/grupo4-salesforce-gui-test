@@ -3,7 +3,6 @@ package org.fundacionjala.core.utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fundacionjala.core.selenium.Browser;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
