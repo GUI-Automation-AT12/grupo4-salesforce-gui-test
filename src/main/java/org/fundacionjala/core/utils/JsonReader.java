@@ -16,10 +16,10 @@ public class JsonReader {
 
     /**
      *
-     * @param filePathh
+     * @param filePath
      */
-    protected  JsonReader(final String filePathh) {
-        this.filePath = filePathh;
+    protected  JsonReader(final String filePath) {
+        this.filePath = filePath;
     }
 
     /**
