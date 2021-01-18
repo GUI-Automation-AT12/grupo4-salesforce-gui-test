@@ -2,8 +2,6 @@ package org.fundacionjala.core.utils;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.io.UnsupportedEncodingException;
-
 
 public class PasswordHelperTest {
 

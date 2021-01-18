@@ -1,7 +1,5 @@
 package org.fundacionjala.salesforce.entities;
 
-import org.fundacionjala.core.utils.PasswordHelper;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +22,7 @@ public class User {
 
     /**
      *
-     * @return
+     * @return name.
      */
     public String getName() {
         return name;
@@ -32,15 +30,15 @@ public class User {
 
     /**
      *
-     * @param name
+     * @param nameParam
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(final String nameParam) {
+        this.name = nameParam;
     }
 
     /**
      *
-     * @return
+     * @return lastName.
      */
     public String getLastName() {
         return lastName;
@@ -48,15 +46,15 @@ public class User {
 
     /**
      *
-     * @param lastName
+     * @param lastNameParam
      */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(final String lastNameParam) {
+        this.lastName = lastNameParam;
     }
 
     /**
      *
-     * @return
+     * @return alias.
      */
     public String getAlias() {
         return alias;
@@ -64,15 +62,15 @@ public class User {
 
     /**
      *
-     * @param alias
+     * @param aliasParam
      */
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setAlias(final String aliasParam) {
+        this.alias = aliasParam;
     }
 
     /**
      *
-     * @return
+     * @return email.
      */
     public String getEmail() {
         return email;
@@ -80,15 +78,15 @@ public class User {
 
     /**
      *
-     * @param email
+     * @param emailParam
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(final String emailParam) {
+        this.email = emailParam;
     }
 
     /**
      *
-     * @return
+     * @return username.
      */
     public String getUsername() {
         return username;
@@ -96,15 +94,15 @@ public class User {
 
     /**
      *
-     * @param username
+     * @param usernameParam
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(final String usernameParam) {
+        this.username = usernameParam;
     }
 
     /**
      *
-     * @return
+     * @return nickname.
      */
     public String getNickname() {
         return nickname;
@@ -112,15 +110,15 @@ public class User {
 
     /**
      *
-     * @param nickname
+     * @param nicknameParam
      */
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNickname(final String nicknameParam) {
+        this.nickname = nicknameParam;
     }
 
     /**
      *
-     * @return
+     * @return position.
      */
     public String getPosition() {
         return position;
@@ -128,15 +126,15 @@ public class User {
 
     /**
      *
-     * @param position
+     * @param positionParam
      */
-    public void setPosition(String position) {
-        this.position = position;
+    public void setPosition(final String positionParam) {
+        this.position = positionParam;
     }
 
     /**
      *
-     * @return
+     * @return enterprise.
      */
     public String getEnterprise() {
         return enterprise;
@@ -144,15 +142,15 @@ public class User {
 
     /**
      *
-     * @param enterprise
+     * @param enterpriseParam
      */
-    public void setEnterprise(String enterprise) {
-        this.enterprise = enterprise;
+    public void setEnterprise(final String enterpriseParam) {
+        this.enterprise = enterpriseParam;
     }
 
     /**
      *
-     * @return
+     * @return department.
      */
     public String getDepartment() {
         return department;
@@ -160,15 +158,15 @@ public class User {
 
     /**
      *
-     * @param department
+     * @param departmentParam
      */
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDepartment(final String departmentParam) {
+        this.department = departmentParam;
     }
 
     /**
      *
-     * @return
+     * @return division.
      */
     public String getDivision() {
         return division;
@@ -176,15 +174,15 @@ public class User {
 
     /**
      *
-     * @param division
+     * @param divisionParam
      */
-    public void setDivision(String division) {
-        this.division = division;
+    public void setDivision(final String divisionParam) {
+        this.division = divisionParam;
     }
 
     /**
      *
-     * @return
+     * @return function.
      */
     public String getFunction() {
         return function;
@@ -192,15 +190,15 @@ public class User {
 
     /**
      *
-     * @param function
+     * @param functionParam
      */
-    public void setFunction(String function) {
-        this.function = function;
+    public void setFunction(final String functionParam) {
+        this.function = functionParam;
     }
 
     /**
      *
-     * @return
+     * @return user licence.
      */
     public String getUserLicence() {
         return userLicence;
@@ -208,15 +206,15 @@ public class User {
 
     /**
      *
-     * @param userLicence
+     * @param userLicenceParam
      */
-    public void setUserLicence(String userLicence) {
-        this.userLicence = userLicence;
+    public void setUserLicence(final String userLicenceParam) {
+        this.userLicence = userLicenceParam;
     }
 
     /**
      *
-     * @return
+     * @return profile
      */
     public String getProfile() {
         return profile;
@@ -224,15 +222,15 @@ public class User {
 
     /**
      *
-     * @param profile
+     * @param profileParam
      */
-    public void setProfile(String profile) {
-        this.profile = profile;
+    public void setProfile(final String profileParam) {
+        this.profile = profileParam;
     }
 
     /**
      *
-     * @return
+     * @return password.
      */
     public String getPassword() {
         return password;
@@ -240,41 +238,42 @@ public class User {
 
     /**
      *
-     * @param password
+     * @param pwd
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(final String pwd) {
+        this.password = pwd;
     }
 
     /**
      * Process user's information as a map.
-     * @param UserInformation
+     * @param userInformation
      */
-    public void processInformation(final Map<String, String> UserInformation) {
-        HashMap<String, Runnable> strategyMap = composeStrategySetter(UserInformation);
-        UserInformation.keySet().forEach(key -> strategyMap.get(key).run());
+    public void processInformation(final Map<String, String> userInformation) {
+        HashMap<String, Runnable> strategyMap = composeStrategySetter(userInformation);
+        userInformation.keySet().forEach(key -> strategyMap.get(key).run());
     }
 
     /**
      * Compose a strategy map.
-     * @param UserInformation
+     * @param userInformation
      * @return a map of strategyMap
      */
-    private HashMap<String, Runnable> composeStrategySetter(final Map<String, String> UserInformation) {
+    private HashMap<String, Runnable> composeStrategySetter(final Map<String, String> userInformation) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
-        strategyMap.put("Name", () -> setName(UserInformation.get("Name")));
-        strategyMap.put("LastName", () -> setLastName(UserInformation.get("LastName")));
-        strategyMap.put("Alias", () -> setAlias(UserInformation.get("Alias")));
-        strategyMap.put("Email", () -> setEmail(UserInformation.get("Email")));
-        strategyMap.put("Username", () -> setUsername(UserInformation.get("Username")));
-        strategyMap.put("Nickname", () -> setNickname(UserInformation.get("Nickname")));
-        strategyMap.put("Position", () -> setPosition(UserInformation.get("Position")));
-        strategyMap.put("Enterprise", () -> setEnterprise(UserInformation.get("Enterprise")));
-        strategyMap.put("Department", () -> setDepartment(UserInformation.get("Department")));
-        strategyMap.put("Division", () -> setDivision(UserInformation.get("Division")));
-        strategyMap.put("Function", () -> setFunction(UserInformation.get("Function")));
-        strategyMap.put("UserLicence", () -> setUserLicence(UserInformation.get("UserLicence")));
-        strategyMap.put("Profile", () -> setProfile(UserInformation.get("Profile")));
+        strategyMap.put("Name", () -> setName(userInformation.get("Name")));
+        strategyMap.put("LastName", () -> setLastName(userInformation.get("LastName")));
+        strategyMap.put("Alias", () -> setAlias(userInformation.get("Alias")));
+        strategyMap.put("Email", () -> setEmail(userInformation.get("Email")));
+        strategyMap.put("Username", () -> setUsername(userInformation.get("Username")));
+        strategyMap.put("Nickname", () -> setNickname(userInformation.get("Nickname")));
+        strategyMap.put("Position", () -> setPosition(userInformation.get("Position")));
+        strategyMap.put("Enterprise", () -> setEnterprise(userInformation.get("Enterprise")));
+        strategyMap.put("Department", () -> setDepartment(userInformation.get("Department")));
+        strategyMap.put("Division", () -> setDivision(userInformation.get("Division")));
+        strategyMap.put("Function", () -> setFunction(userInformation.get("Function")));
+        strategyMap.put("UserLicence", () -> setUserLicence(userInformation.get("UserLicence")));
+        strategyMap.put("Profile", () -> setProfile(userInformation.get("Profile")));
+        strategyMap.put("Password", () -> setPassword(userInformation.get("Password")));
         return strategyMap;
     }
 

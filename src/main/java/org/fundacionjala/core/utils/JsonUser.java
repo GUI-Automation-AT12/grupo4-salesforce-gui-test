@@ -2,14 +2,12 @@ package org.fundacionjala.core.utils;
 
 import org.fundacionjala.salesforce.entities.User;
 import org.json.simple.parser.ParseException;
-
 import java.util.Map;
 
 public final class JsonUser extends JsonReader {
 
     private static String jsonPath = "src/main/java/org/fundacionjala/salesforce/config/json/User.json";
     private static JsonUser environment;
-    private Map<String, String> jsonUser;
     private User user;
     private Map<String, User> userList;
 
@@ -18,12 +16,12 @@ public final class JsonUser extends JsonReader {
      */
     private JsonUser() {
         super(jsonPath);
-        jsonUser = convertToMap();
-        user.processInformation(jsonUser);
+        user.processInformation(convertToMap());
     }
 
     /**
      * This method returns the only one instance of JsonUser.
+     *
      * @return a JsonUser.
      */
     public static JsonUser getInstance() {
@@ -35,6 +33,7 @@ public final class JsonUser extends JsonReader {
 
     /**
      * This method converts the Json to a map.
+     *
      * @return Map of the Json
      */
     private Map<String, String> convertToMap() {
@@ -46,58 +45,10 @@ public final class JsonUser extends JsonReader {
     }
 
     /**
-     * This method returns the name.
-     * @return a Stirng with the name.
+     * This method returns the user.
+     * @return User
      */
-    public String getName() {
-       return jsonUser.get("name");
-    }
-
-    /**
-     * This method returns the email.
-     * @return a string with the email.
-     */
-    public String getEmail() {
-        return jsonUser.get("email");
-    }
-
-    /**
-     * This method returns the password.
-     * @return a string with the password.
-     */
-    public String getPassword() {
-        return jsonUser.get("password");
-    }
-
-    /**
-     * This method returns the username.
-     * @return a string with the userName.
-     */
-    public String getUserName() {
-        return jsonUser.get("userName");
-    }
-
-    /**
-     * This method returns the bibliography.
-     * @return a string with the Bibliography.
-     */
-    public String getBibliography() {
-        return jsonUser.get("bibliography");
-    }
-
-    /**
-     * This method returns the token.
-     * @return a string with the token.
-     */
-    public String getToken() {
-        return jsonUser.get("token");
-    }
-
-    /**
-     * This method returns the key.
-     * @return a string with the key.
-     */
-    public String getKey() {
-        return jsonUser.get("key");
+    public User getUser() {
+        return user;
     }
 }

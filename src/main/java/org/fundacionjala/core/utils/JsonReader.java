@@ -3,7 +3,6 @@ package org.fundacionjala.core.utils;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,11 +14,11 @@ public class JsonReader {
     private static String filePath;
 
     /**
-     *
-     * @param filePath
+     *This method returns the file's path.
+     * @param path
      */
-    protected  JsonReader(final String filePath) {
-        this.filePath = filePath;
+    protected JsonReader(final String path) {
+        filePath = path;
     }
 
     /**
