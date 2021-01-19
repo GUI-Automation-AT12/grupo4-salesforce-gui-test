@@ -44,7 +44,10 @@ public class LoginPage extends BasePage {
         return new HomePage();
     }
 
-    public void waitUntilPageIsLoaded(){
+    /**
+     * Waits until a element is loaded.
+     */
+    public void waitUntilPageIsLoaded() {
         WebDriverWait webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(usernameOrEmailTextBox));
     }
