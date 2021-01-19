@@ -1,5 +1,6 @@
 package org.fundacionjala.core.selenium;
 
+import org.fundacionjala.core.config.ExecuteProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -8,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
     private static WebDriverManager webDriverManager;
-    private static String browserName;
+    private static String browserName = ExecuteProperties.getInstance().getTestBrowser();
     private final WebDriver webDriver;
     private final WebDriverWait webDriverWait;
 
