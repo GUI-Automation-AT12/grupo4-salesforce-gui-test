@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         plugin = {"pretty"},
         features = {"src/test/resources/features"},
-        glue = {"org.fundacionjala.stepsdefs"}
+        glue = {""}
 )
 public final class Runner extends AbstractTestNGCucumberTests {
     @Override
@@ -20,11 +20,11 @@ public final class Runner extends AbstractTestNGCucumberTests {
         return super.scenarios();
     }
 
-    /**
-     * Executes code before all scenarios.
-     */
-    @BeforeTest
-    public void beforeAllScenarios() {
-        System.setProperty("dataproviderthreadcount", ExecuteProperties.getInstance().getCucumberThreadCount());
-    }
+//    /**
+//     * Executes code before all scenarios.
+//     */
+//    @BeforeTest
+//    public void beforeAllScenarios() {
+//        System.setProperty("dataproviderthreadcount", ExecuteProperties.getInstance().getCucumberThreadCount());
+//    }
 }

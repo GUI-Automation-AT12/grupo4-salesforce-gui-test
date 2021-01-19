@@ -1,10 +1,9 @@
 Feature: recycle bin
 
-  Background:
-    Given I log in Salesforce with valid User credentials
 
   @createContact @cleanRecycleBin
   Scenario: Verify that the information of the deleted Contact matches the history of items deleted in the recycle bin page
+    Given I log in Salesforce with valid User credentials
     When I navigate to Contacts page
     And I search the Test Contact on Contacts page
     And I delete the Test Contact on Contacts page

@@ -20,6 +20,7 @@ public final class AuthenticationUtils {
     private static final String USERNAME_VAL = APIEnvironment.getInstance().getUsername();
     private static final String PASSWORD_KEY = "password";
     private static final String PASSWORD_VAL = APIEnvironment.getInstance().getPassword();
+    private static String instanceUrl;
 
     /**
      * Private secure Constructor.
@@ -52,7 +53,7 @@ public final class AuthenticationUtils {
     public static RequestSpecification getLoggedReqSpec() {
         RequestSpecification request = RestAssured.given();
         Response response = sendAuthenticationRequest();
-        String instanceUrl = response.jsonPath().getString("instance_url");
+        instanceUrl = response.jsonPath().getString("instance_url");
         String baseUrl = instanceUrl + BASE_URL;
         String accessToken = response.jsonPath().getString("access_token");
         request.baseUri(baseUrl);
@@ -78,8 +79,6 @@ public final class AuthenticationUtils {
      * @return the request built.
      */
     public static String getInstanceUrl() {
-        Response response = sendAuthenticationRequest();
-        String instanceUrl = response.jsonPath().getString("instance_url");
         return instanceUrl;
     }
 }
