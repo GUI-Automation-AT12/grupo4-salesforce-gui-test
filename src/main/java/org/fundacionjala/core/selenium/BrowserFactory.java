@@ -1,5 +1,6 @@
 package org.fundacionjala.core.selenium;
 
+import org.fundacionjala.core.config.ExecuteProperties;
 import org.fundacionjala.core.selenium.browsers.Chrome;
 import org.fundacionjala.core.selenium.browsers.Edge;
 import org.fundacionjala.core.selenium.browsers.Firefox;
