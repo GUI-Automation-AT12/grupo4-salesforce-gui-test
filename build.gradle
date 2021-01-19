@@ -18,14 +18,15 @@ dependencies {
     compile group: 'org.json', name: 'json', version: '20180813'
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
-    compile group: 'io.cucumber', name: 'cucumber-testng', version: '6.0.0'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
     implementation 'com.google.guava:guava:29.0-jre'
     implementation group: 'io.rest-assured', name: 'rest-assured', version: '4.3.2'
     implementation group: 'io.rest-assured', name: 'json-schema-validator', version: '4.3.2'
-    testImplementation group: 'io.cucumber', name: 'cucumber-java', version: '6.0.0'
-    testImplementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '6.0.0'
+    testImplementation group: 'io.cucumber', name: 'cucumber-java', version: '6.9.0'
+    testImplementation group: 'io.cucumber', name: 'cucumber-testng', version: '6.9.0'
+    testImplementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '6.9.0'
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.6.0'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.3.0'
     testImplementation group: 'io.qameta.allure', name: 'allure-cucumber6-jvm', version: '2.13.6'
 }
 
@@ -57,7 +58,7 @@ check.dependsOn jacocoTestReport
 
 test {
     useTestNG()
-    exclude 'org/fundacionjala/salesforce/runner/**'
+    exclude 'org/fundacionjala/runner/**'
     include 'org/fundacionjala/salesforce/unit/tests/**'
     testLogging {
         events 'PASSED', 'STARTED', 'FAILED', 'SKIPPED'
