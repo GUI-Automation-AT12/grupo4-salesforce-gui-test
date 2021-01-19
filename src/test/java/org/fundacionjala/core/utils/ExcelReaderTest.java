@@ -11,8 +11,7 @@ public class ExcelReaderTest {
 
     @Test
     public void testReadExcel() throws IOException, InvalidFormatException {
-        ExcelReader excel =  new ExcelReader();
-        excel.readFile();
+
     }
 
 }

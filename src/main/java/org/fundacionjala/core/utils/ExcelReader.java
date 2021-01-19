@@ -9,26 +9,35 @@ import java.util.Iterator;
 
 public class ExcelReader {
 
-    public static final String SAMPLE_XLSX_FILE_PATH = "src/main/resources/setup/initialSetup - Copy.xlsx";
+    //src/main/resources/setup/initialSetup
+    public final String filePath;
+    private Workbook workbook;
+    private Iterator<Sheet> sheetIterator;
 
-    public void readFile() throws IOException, InvalidFormatException {
+    public ExcelReader(final String path) {
+        try {
+            this.filePath = path;
+            workbook = WorkbookFactory.create(new File(filePath));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidFormatException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * This method returns the read workbook.
+     * @return workbook.
+     */
+    public Workbook getWorkbook() {
+        return workbook;
+    }
 
 
-        // Creating a Workbook from an Excel file (.xls or .xlsx)
-        Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLSX_FILE_PATH));
+    public void readFile() {
 
-        // Retrieving the number of sheets in the Workbook
-        System.out.println("Workbook has " + workbook.getNumberOfSheets() + " Sheets : ");
+        sheetIterator = workbook.sheetIterator();
 
-        /*
-           =============================================================
-           Iterating over all the sheets in the workbook (Multiple ways)
-           =============================================================
-        */
-
-        // 1. You can obtain a sheetIterator and iterate over it
-        Iterator<Sheet> sheetIterator = workbook.sheetIterator();
-        System.out.println("Retrieving Sheets using Iterator");
         while (sheetIterator.hasNext()) {
             Sheet sheet = sheetIterator.next();
             System.out.println("=> " + sheet.getSheetName());
@@ -84,8 +93,16 @@ public class ExcelReader {
             }
             System.out.println();
         }
+    }
 
-
+    public Sheet searchSheet(final String sheetName) {
+        for(Sheet sheet: workbook) {
+            if(sheet.getSheetName() == sheetName)
+            {
+                return sheet;
+            }
+        }
+         throw new RuntimeException("Sheet not found");
     }
 
 }
