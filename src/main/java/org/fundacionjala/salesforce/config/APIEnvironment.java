@@ -79,4 +79,39 @@ public class APIEnvironment extends PropertiesFileReader {
     public String getBaseUrl() {
         return super.getProperty("baseUrl");
     }
+
+    /**
+     * Gets the BaseUrl from the file.properties.
+     * @return base url.
+     */
+    public String getBaseUrlClassic() {
+        return super.getProperty("baseUrlClassic");
+    }
+
+    /**
+     * Gets the BaseUrl from the salesforce.properties.
+     * @return base url.
+     */
+    public String getBaseTypeLayout() {
+        if (getTypeLayout().equals("lighting")) {
+            return getBaseUrlLighting();
+        }
+        return getBaseUrlClassic();
+    }
+
+    /**
+     * Gets the BaseUrl from the file.properties.
+     * @return base url.
+     */
+    public String getBaseUrlLighting() {
+        return super.getProperty("baseUrlLighting");
+    }
+
+    /**
+     * Gets the typeLayout from the file.properties.
+     * @return base url.
+     */
+    public String getTypeLayout() {
+        return super.getProperty("typeLayout");
+    }
 }
