@@ -2,22 +2,24 @@ package org.fundacionjala.core.utils;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
+import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
-
+/**
+ * [RH] Excel reader class.
+ */
 public class ExcelReader {
 
-    //src/main/resources/setup/initialSetup
-    public final String filePath;
+    private final String filePath;
     private Workbook workbook;
-    private Iterator<Sheet> sheetIterator;
 
-    public ExcelReader(final String path) {
+    protected ExcelReader(final String path) {
         try {
-            this.filePath = path;
-            workbook = WorkbookFactory.create(new File(filePath));
+            filePath = path;
+            workbook = WorkbookFactory.create(new File(path));
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InvalidFormatException e) {
@@ -26,83 +28,46 @@ public class ExcelReader {
     }
 
     /**
-     * This method returns the read workbook.
+     * [RH] This method returns the read workbook.
      * @return workbook.
      */
     public Workbook getWorkbook() {
         return workbook;
     }
 
-
-    public void readFile() {
-
-        sheetIterator = workbook.sheetIterator();
-
-        while (sheetIterator.hasNext()) {
-            Sheet sheet = sheetIterator.next();
-            System.out.println("=> " + sheet.getSheetName());
-        }
-
-        // 2. Or you can use a for-each loop
-        System.out.println("Retrieving Sheets using for-each loop");
+    /**
+     * [RH] This method search a sheet.
+     * @param sheetName
+     * @return sheet
+     */
+    protected Sheet searchSheet(final String sheetName) {
+        Sheet searchedSheet = null;
         for(Sheet sheet: workbook) {
-            System.out.println("=> " + sheet.getSheetName());
+            if(sheet.getSheetName().equals(sheetName)) {
+                searchedSheet = sheet;
+            }
         }
+       return searchedSheet;
+    }
 
-        // 3. Or you can use a Java 8 forEach with lambda
-        System.out.println("Retrieving Sheets using Java 8 forEach with lambda");
-        workbook.forEach(sheet -> {
-            System.out.println("=> " + sheet.getSheetName());
-        });
-
-        /*
-           ==================================================================
-           Iterating over all the rows and columns in a Sheet (Multiple ways)
-           ==================================================================
-        */
-
-        // Getting the Sheet at index zero
-        Sheet sheet = workbook.getSheetAt(0);
-
-        // Create a DataFormatter to format and get each cell's value as String
+    /**
+     * [RH] This method converts a sheet to json list.
+     * @param sheet
+     * @return list
+     */
+    protected List<JSONObject> convertToJson(final Sheet sheet) {
         DataFormatter dataFormatter = new DataFormatter();
-
-        // 1. You can obtain a rowIterator and columnIterator and iterate over them
-        System.out.println("\n\nIterating over Rows and Columns using Iterator\n");
-        Iterator<Row> rowIterator = sheet.rowIterator();
-        while (rowIterator.hasNext()) {
-            Row row = rowIterator.next();
-
-            // Now let's iterate over the columns of the current row
-            Iterator<Cell> cellIterator = row.cellIterator();
-
-            while (cellIterator.hasNext()) {
-                Cell cell = cellIterator.next();
-                String cellValue = dataFormatter.formatCellValue(cell);
-                System.out.print(cellValue + "\t");
+        List<JSONObject> data = new ArrayList<>();
+        for (Row row : sheet) {
+            if (row.getRowNum() != 0) {
+                JSONObject jsonObject = new JSONObject();
+                for (Cell cell : row) {
+                    jsonObject.put(dataFormatter.formatCellValue(sheet.getRow(sheet.getFirstRowNum())
+                            .getCell(cell.getColumnIndex())), dataFormatter.formatCellValue(cell));
+                }
+                data.add(jsonObject);
             }
-            System.out.println();
         }
-
-        // 2. Or you can use a for-each loop to iterate over the rows and columns
-        System.out.println("\n\nIterating over Rows and Columns using for-each loop\n");
-        for (Row row: sheet) {
-            for(Cell cell: row) {
-                String cellValue = dataFormatter.formatCellValue(cell);
-                System.out.print(cellValue + "\t");
-            }
-            System.out.println();
-        }
+        return data;
     }
-
-    public Sheet searchSheet(final String sheetName) {
-        for(Sheet sheet: workbook) {
-            if(sheet.getSheetName() == sheetName)
-            {
-                return sheet;
-            }
-        }
-         throw new RuntimeException("Sheet not found");
-    }
-
 }
