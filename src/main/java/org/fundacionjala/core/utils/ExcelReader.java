@@ -2,7 +2,6 @@ package org.fundacionjala.core.utils;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -10,7 +9,7 @@ import java.util.Iterator;
 
 public class ExcelReader {
 
-    public static final String SAMPLE_XLSX_FILE_PATH = "./sample-xlsx-file.xlsx";
+    public static final String SAMPLE_XLSX_FILE_PATH = "src/main/resources/setup/initialSetup - Copy.xlsx";
 
     public void readFile() throws IOException, InvalidFormatException {
 
@@ -86,22 +85,7 @@ public class ExcelReader {
             System.out.println();
         }
 
-        // 3. Or you can use Java 8 forEach loop with lambda
-        System.out.println("\n\nIterating over Rows and Columns using Java 8 forEach with lambda\n");
-        sheet.forEach(row -> {
-            row.forEach(cell -> {
-                String cellValue = dataFormatter.formatCellValue(cell);
-                System.out.print(cellValue + "\t");
-            });
-            System.out.println();
-        });
 
-        // Closing the workbook
-        try {
-            workbook.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }
