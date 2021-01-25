@@ -28,6 +28,8 @@ dependencies {
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.6.0'
     testImplementation group: 'org.testng', name: 'testng', version: '7.3.0'
     testImplementation group: 'io.qameta.allure', name: 'allure-cucumber6-jvm', version: '2.13.6'
+    compile "org.apache.poi:poi:3.17"
+    compile "org.apache.poi:poi-ooxml:3.17"
 }
 
 checkstyle {

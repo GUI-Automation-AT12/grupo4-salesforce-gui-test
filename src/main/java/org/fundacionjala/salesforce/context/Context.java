@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fundacionjala.core.client.RequestManager;
 import org.fundacionjala.salesforce.entities.Contact;
+import org.fundacionjala.salesforce.entities.Task;
 import org.fundacionjala.salesforce.utils.AuthenticationUtils;
 
 import java.io.IOException;
@@ -16,11 +17,13 @@ public class Context {
     private Map<String, Map<String, String>> mapData;
     private ObjectMapper map;
     private List<Map> dataAsListMap;
+    private Task task;
     /**
      * Constructor for the Context.
      */
     public Context() {
         this.contact = new Contact();
+        this.task = new Task();
         this.data = new HashMap<>();
         this.mapData = new HashMap<>();
         this.map = new ObjectMapper();
@@ -103,5 +106,21 @@ public class Context {
      */
     public void setData(final Map<String, String> dataToSet) {
         this.data = dataToSet;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Task getTask() {
+        return this.task;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public void setTask(Task task) {
+        this.task = task;
     }
 }
