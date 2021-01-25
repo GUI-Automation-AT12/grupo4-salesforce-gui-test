@@ -1,12 +1,11 @@
 package org.fundacionjala.salesforce.ui.pages.contacts.details;
 
 import org.fundacionjala.salesforce.config.APIEnvironment;
-import org.openqa.selenium.WebDriver;
-
+import org.fundacionjala.salesforce.ui.pages.BasePage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ContactDetailsPageFactory {
+public class ContactDetailsPageFactory extends BasePage {
 
     public ContactDetailsPageFactory() {
 
@@ -23,6 +22,6 @@ public class ContactDetailsPageFactory {
      * @return a ContactDetailsPage.
      */
     public static ContactDetailsPage getContactDetailsPage() {
-        return contactDetailsMap.get(APIEnvironment.getInstance().getSkin());
+        return contactDetailsMap.get(APIEnvironment.getInstance().getTypeLayout());
     }
 }

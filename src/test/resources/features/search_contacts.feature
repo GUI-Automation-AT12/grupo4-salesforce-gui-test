@@ -10,10 +10,10 @@ Feature: Validate dates of a created task
       When I navigate to Contacts page
       And I search for the created contact
       And I create a task with the following data
-      |   Subject                |    Call            |
-      |   Expiration date        |    TOMORROW        |
-      |   Related with           |    Activos         |
-      |   Campaign               |    Campaña prueba  |
-      |   Status                 |    In Progress     |
+      |   Subject                     |    Call            |
+      |   Expiration date             |    TOMORROW        |
+      |   Related with                |    Activos         |
+      |   Related value               |    Campaña prueba  |
+      |   Status                      |    In Progress     |
       Then The task should be displayed on Tasks page
       And The task's information should match

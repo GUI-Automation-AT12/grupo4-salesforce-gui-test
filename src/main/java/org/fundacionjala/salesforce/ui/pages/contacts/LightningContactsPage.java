@@ -1,7 +1,6 @@
 package org.fundacionjala.salesforce.ui.pages.contacts;
 
 import org.fundacionjala.core.selenium.WebDriverHelper;
-import org.fundacionjala.core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -19,7 +18,6 @@ public class LightningContactsPage extends ContactsPage{
     private String contactListed = "//tbody//a[contains(@href,'%s')]";
 
     public LightningContactsPage() {
-
     }
 
     public void setSearch(final String contact) {
@@ -33,13 +31,14 @@ public class LightningContactsPage extends ContactsPage{
     }
 
     public void findContact(String contact) {
-        WebElement element = WebDriverManager.getInstance().getWebDriver()
-                .findElement(By.xpath(String.format(xpathbtn,contact)));
+        WebElement element = driver.findElement(By.xpath(String.format(xpathbtn, contact)));
+        WebDriverHelper.waitUntil(element);
         WebDriverHelper.clickElement(element);
     }
 
     public void selectContact(final String id) {
         WebElement contact = driver.findElement(By.xpath(String.format(contactListed, id)));
+        WebDriverHelper.waitUntil(contact);
         WebDriverHelper.clickElement(contact);
     }
 }

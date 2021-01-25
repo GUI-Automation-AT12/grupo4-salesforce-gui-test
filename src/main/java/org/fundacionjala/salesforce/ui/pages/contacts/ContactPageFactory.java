@@ -19,6 +19,6 @@ public class ContactPageFactory extends BasePage {
      * @return a ContactDetailsPage.
      */
     public static ContactsPage getContactPage() {
-        return contactMap.get(APIEnvironment.getInstance().getSkin());
+        return contactMap.get(APIEnvironment.getInstance().getTypeLayout());
     }
 }
