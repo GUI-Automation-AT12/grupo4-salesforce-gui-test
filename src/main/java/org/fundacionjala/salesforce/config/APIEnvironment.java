@@ -81,6 +81,7 @@ public class APIEnvironment extends PropertiesFileReader {
     }
 
     /**
+<<<<<<< HEAD
      * Gets the BaseUrl from the file.properties.
      * @return base url.
      */
@@ -121,5 +122,12 @@ public class APIEnvironment extends PropertiesFileReader {
      */
     public String getTypeLayout() {
         return super.getProperty("typeLayout");
+=======
+     * Gets the Skin from the file.properties.
+     * @return skin.
+     */
+    public String getSkin() {
+        return super.getProperty("skin");
+>>>>>>> 3122fb0... excel reader and setup class
     }
 }

@@ -39,6 +39,10 @@ public class ContactHook {
         context.saveData(response.asString());
     }
 
+    @Before(value = "@setup")
+    public void setup() throws IOException {
+    }
+
     /**
      * AfterHook that deletes a created contact.
      */
