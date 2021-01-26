@@ -18,7 +18,9 @@ public class ContactsPage extends BasePage {
 
     private String xpathbtn = "//table//tbody/tr//a[contains(text(),'%s')]//ancestor::tr//div[@data-aura-class='forceVirtualAction']/a";
 
-
+    /**
+     * Constructor.
+     */
     public ContactsPage() {
 
     }

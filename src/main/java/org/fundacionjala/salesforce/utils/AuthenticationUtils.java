@@ -8,7 +8,7 @@ import org.fundacionjala.salesforce.config.APIEnvironment;
 
 public final class AuthenticationUtils {
     private static final String BASE_LOGIN_URL = APIEnvironment.getInstance().getBaseLoginUrl();
-    private static final String BASE_URL = APIEnvironment.getInstance().getBaseUrl();
+    private static final String BASE_URL = APIEnvironment.getInstance().getAPIBaseUrl();
     private static final String PATH = "services/oauth2/token";
     private static final String GRANT_TYPE_KEY = "grant_type";
     private static final String GRANT_TYPE_VAL = APIEnvironment.getInstance().getGrantType();
@@ -68,7 +68,7 @@ public final class AuthenticationUtils {
      */
     public static RequestSpecification getNotLoggedReqSpec() {
         RequestSpecification request = RestAssured.given();
-        String instanceUrl = sendAuthenticationRequest().jsonPath().getString("instance_url");
+        instanceUrl = sendAuthenticationRequest().jsonPath().getString("instance_url");
         String baseUrl = instanceUrl + BASE_URL;
         request.baseUri(baseUrl);
         return request;

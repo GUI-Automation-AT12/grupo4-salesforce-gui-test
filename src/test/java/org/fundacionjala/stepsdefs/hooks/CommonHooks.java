@@ -9,4 +9,9 @@ public class CommonHooks {
     public void close() {
         WebDriverManager.getInstance().getWebDriver().quit();
     }
+
+    @After(value = "@clearRecycleBin")
+    public void clearRecycleBin() {
+        WebDriverManager.getInstance().getWebDriver().quit();
+    }
 }

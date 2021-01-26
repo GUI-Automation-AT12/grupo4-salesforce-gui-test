@@ -1,4 +1,6 @@
 package org.fundacionjala.salesforce.ui.pages.home;
 
-public class HomePage {
+import org.fundacionjala.salesforce.ui.pages.BasePage;
+
+public class HomePage extends BasePage {
 }

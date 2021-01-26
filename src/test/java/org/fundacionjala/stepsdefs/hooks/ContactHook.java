@@ -4,9 +4,11 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.restassured.response.Response;
 import org.fundacionjala.core.client.RequestManager;
+import org.fundacionjala.core.utils.JsonContact;
 import org.fundacionjala.salesforce.context.Context;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class ContactHook {
     private Context context;
@@ -16,18 +18,23 @@ public class ContactHook {
     }
 
     /**
-     *
+     * BeforeHook that Creates a contact.
      */
     @Before(value = "@createContact")
     public void createContact() throws IOException {
-        Response response = RequestManager.post("Contact", "{\"firstName\" : \"Contacto\", \"lastName\" : \"Example Account\"}");
-        this.context.saveData(response.asString());
+        Map<String, String> data = JsonContact.getInstance().getDataAsAMap("ContactTest");
+        data.put("AccountId",context.getAccount().getIdAccount());
+        Response response = RequestManager.post("Contact", data.toString());
+        context.getContact().processInformation(data);
+        context.getContact().setIdContact(response.jsonPath().get("id").toString());
+        context.saveData(response.asString());
     }
 
     /**
-     * AfterHook that deletes a created Account.
+     * AfterHook that deletes a created contact.
      */
     @After(value = "@deleteContact")
-    public void deleteAccount() {
+    public void deleteContact() {
+        RequestManager.delete("Contact/" + context.getContact().getIdContact());
     }
 }

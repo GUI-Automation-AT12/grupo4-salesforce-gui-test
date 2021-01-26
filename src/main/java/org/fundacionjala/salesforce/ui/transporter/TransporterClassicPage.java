@@ -8,6 +8,8 @@ public class TransporterClassicPage extends Transporter {
      */
     public TransporterClassicPage() {
         setUrl("Reports", "o/00O/o");
+        setUrl("Contacts", "003/o");
+        setUrl("Recycle Bin", "search/UndeletePage");
     }
 
     /**
