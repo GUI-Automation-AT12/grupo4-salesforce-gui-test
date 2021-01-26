@@ -93,7 +93,7 @@ public class APIEnvironment extends PropertiesFileReader {
      * @return base url.
      */
     public String getBaseTypeLayout() {
-        if (getTypeLayout().equals("lighting")) {
+        if (getTypeLayout().equals("lightning")) {
             return getBaseUrlLighting();
         }
         return getBaseUrlClassic();
@@ -104,7 +104,7 @@ public class APIEnvironment extends PropertiesFileReader {
      * @return base url.
      */
     public String getBaseUrlLighting() {
-        return super.getProperty("baseUrlLighting");
+        return super.getProperty("baseUrlLightning");
     }
 
     /**

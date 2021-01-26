@@ -17,6 +17,8 @@ public class LightningContactsPage extends ContactsPage{
 
     private String contactListed = "//tbody//a[contains(@href,'%s')]";
 
+    private String contactTitle = "//span[contains(text(),'%s')]";
+
     public LightningContactsPage() {
     }
 
@@ -37,8 +39,21 @@ public class LightningContactsPage extends ContactsPage{
     }
 
     public void selectContact(final String id) {
+        try {
         WebElement contact = driver.findElement(By.xpath(String.format(contactListed, id)));
         WebDriverHelper.waitUntil(contact);
         WebDriverHelper.clickElement(contact);
+        }
+        catch (Exception ex){
+            WebDriverHelper.clickElement(By.xpath(String.format(contactListed, id)));
+        }
+    }
+
+    @Override
+    public String getContactName(String name) {
+        WebElement contact = driver.findElement(By.xpath(String.format(contactTitle, name)));
+        WebDriverHelper.waitUntil(contact);
+        System.out.println(WebDriverHelper.getTextElement(contact));
+        return WebDriverHelper.getTextElement(contact);
     }
 }

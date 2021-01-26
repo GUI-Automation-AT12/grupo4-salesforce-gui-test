@@ -12,4 +12,6 @@ public abstract class ContactsPage extends BasePage {
 
     public abstract void selectContact(final String id);
 
+    public abstract String getContactName(final String id);
+
 }

@@ -14,6 +14,7 @@ import org.fundacionjala.salesforce.ui.pages.contacts.ContactPageFactory;
 import org.fundacionjala.salesforce.ui.pages.contacts.ContactsPage;
 import org.fundacionjala.salesforce.ui.pages.home.HomePage;
 import org.fundacionjala.salesforce.ui.pages.login.LoginPage;
+import org.fundacionjala.salesforce.ui.transporter.TransporterPage;
 import org.fundacionjala.salesforce.utils.AuthenticationUtils;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class RecycleBinStepdefs {
     private LoginPage loginPage;
     private HomePage homePage;
     private Context context;
+    private ContactsPage contactsPage;
 
     public RecycleBinStepdefs(final Context context) {
         this.context = context;
@@ -40,19 +42,16 @@ public class RecycleBinStepdefs {
     }
 
     @When("I navigate to Contacts page")
-    public void iNavigateToContactsPage() {
-        WebDriverManager.getInstance().getWebDriver()
-                .get(AuthenticationUtils.getInstanceUrl()
-                        .replace("my.salesforce.com","lightning.force.com")
-                        .concat("/lightning/o/Contact/list?filterName=Recent"));
+    public void iNavigateToContactsPage() throws Exception {
+        TransporterPage.navigateToPage("Contacts");
     }
 
     @And("I search the Test Contact on Contacts page")
     public void searchTheTestContactOnContactsPage() throws IOException {
-        ContactsPage contactsPage = ContactPageFactory.getContactPage();
-        Response response= RequestManager.get("contact/"+context.getValueData("id"));
+        contactsPage = ContactPageFactory.getContactPage();
+        Response response = RequestManager.get("contact/" + context.getValueData("id"));
         context.saveData(response.asString());
-        //contactsPage.searchContact(context.getValueData("FirstName"));
+        contactsPage.searchContact(context.getValueData("FirstName"));
         //contactsPage.findContact(context.getValueData("FirstName") + " " + context.getValueData("LastName"));
     }
 
@@ -75,7 +74,7 @@ public class RecycleBinStepdefs {
 
     @And("I delete the created Contact on Contacts page")
     public void iDeleteTheCreatedContactOnContactsPage() {
-        
+
     }
 
     @And("the contact deleted date should match with the time of the deleted element")
