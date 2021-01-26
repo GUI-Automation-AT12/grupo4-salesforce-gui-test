@@ -4,10 +4,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.fundacionjala.core.utils.JsonAccount;
 import org.fundacionjala.salesforce.context.Context;
-import org.fundacionjala.salesforce.ui.PageFactory.AppPageFactory;
+import org.fundacionjala.salesforce.ui.pages.contacts.ContactPageFactory;
 import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.ContactDetailsPage;
 import org.fundacionjala.salesforce.ui.pages.contacts.ContactsPage;
 import org.fundacionjala.salesforce.ui.pages.recycle.RecycleBinPage;
+import org.fundacionjala.salesforce.ui.pages.recycle.RecycleBinPageFactory;
 import org.fundacionjala.salesforce.ui.transporter.TransporterPage;
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,8 +17,8 @@ import static org.testng.Assert.assertTrue;
 public class RecycleBinStepdefs {
 
     private ContactDetailsPage contactDetailsPage;
-    private RecycleBinPage recycleBinPage = AppPageFactory.getRecycleBinPage();
-    private ContactsPage contactsPage = AppPageFactory.getContactsPage();
+    private RecycleBinPage recycleBinPage = RecycleBinPageFactory.getRecycleBinPage();
+    private ContactsPage contactsPage = ContactPageFactory.getContactPage();
     private Context context;
 
     public RecycleBinStepdefs(final Context context) {

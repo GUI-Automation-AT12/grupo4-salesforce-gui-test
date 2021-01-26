@@ -53,8 +53,7 @@ public class JsonReader {
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
             JSONObject jsonData = (JSONObject) jsonObject.get(alias);
-            return (Map<String, String>)jsonData;
-
+            return (Map<String, String>) jsonData;
         } catch (FileNotFoundException fe) {
             throw new RuntimeException("Error when reading JSON file");
         } catch (IOException ioe) {

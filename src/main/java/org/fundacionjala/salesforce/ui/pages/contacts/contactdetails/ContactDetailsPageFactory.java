@@ -7,7 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ContactDetailsPageFactory extends BasePage {
-
+    /**
+     * Constructor.
+     */
     public ContactDetailsPageFactory() {
 
     }

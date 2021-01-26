@@ -78,7 +78,7 @@ public final class WebDriverHelper {
      * Waits until an element is displayed.
      * @param element
      */
-    public static void waitUntilIsVisible(WebElement element) {
+    public static void waitUntilIsVisible(final WebElement element) {
         WebDriverWait webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
     }

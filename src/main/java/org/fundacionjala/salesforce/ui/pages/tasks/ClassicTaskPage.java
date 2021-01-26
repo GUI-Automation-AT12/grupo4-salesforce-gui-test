@@ -5,7 +5,7 @@ import org.fundacionjala.salesforce.entities.Task;
 public class ClassicTaskPage extends TaskPage {
 
     @Override
-    public void verifyTask(Task task) {
+    public void verifyTask(final Task task) {
 
     }
 }

@@ -14,7 +14,8 @@ public class LightningContactDetailPage extends ContactDetailsPage {
     @FindBy(css = ".slds-button--brand")
     private WebElement addTask;
 
-    @FindBy(xpath = "//button[contains(@class,'slds-button--brand testid__dummy-button-submit-action')]/preceding-sibling::button")
+    @FindBy(xpath = "//button[contains(@class,'slds-button--brand testid__dummy-button-submit-action')]"
+            + "/preceding-sibling::button")
     private WebElement addTask2;
 
     @FindBy(xpath = "//button[contains(@class,'slds-button--brand testid__dummy-button-submit-action')]")
@@ -58,17 +59,18 @@ public class LightningContactDetailPage extends ContactDetailsPage {
      * @param taskInformation
      */
     @Override
-    public void createTask(Map<String, String> taskInformation) {
-        //WebElement contact = driver.findElement(By.xpath("//button[contains(@class,'slds-button--brand testid__dummy-button-submit-action')]"));
+    public void createTask(final Map<String, String> taskInformation) {
+        //WebElement contact = driver.findElement(By.xpath("
+        // button[contains(@class,'slds-button--brand testid__dummy-button-submit-action')]"));
         //WebDriverHelper.waitUntil(contact);
         //WebDriverHelper.clickElement(contact);
-        WebDriverHelper.clickElement(driver.findElement(By.cssSelector(".slds-button--brand > .label")));
-        task.processInformation(taskInformation);
-        WebDriverHelper.setElement( asset, task.getSubject());
-        WebDriverHelper.setElement( expirationDate, task.getDueDate());
-        WebDriverHelper.setElement( relatedWith, task.getRelatedWith());
-        WebDriverHelper.setElement( relatedElement, task.getRelatedValue());
-        WebDriverHelper.setElement( state, task.getState());
+        WebDriverHelper.clickElement(getDriver().findElement(By.cssSelector(".slds-button--brand > .label")));
+        getTask().processInformation(taskInformation);
+        WebDriverHelper.setElement(asset, getTask().getSubject());
+        WebDriverHelper.setElement(expirationDate, getTask().getDueDate());
+        WebDriverHelper.setElement(relatedWith, getTask().getRelatedWith());
+        WebDriverHelper.setElement(relatedElement, getTask().getRelatedValue());
+        WebDriverHelper.setElement(state, getTask().getState());
 
     }
 

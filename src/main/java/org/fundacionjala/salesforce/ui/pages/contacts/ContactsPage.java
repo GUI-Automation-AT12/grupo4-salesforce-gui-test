@@ -13,40 +13,42 @@ public abstract class ContactsPage extends BasePage {
      *
      * @param contact
      */
-    public abstract void searchContact(final String contact);
+    public abstract void searchContact(String contact);
 
     /**
      *
      * @param idContact
-     * @return
+     * @return element
      */
-    public abstract WebElement findContactInTable(final String idContact);
+    public abstract WebElement findContactInTable(String idContact);
 
     /**
      *
      * @param contact
      */
-    public abstract void deleteContact(final String contact);
+    public abstract void deleteContact(String contact);
 
     /**
      * Verify if Information is displayed in the table.
      * @param contactInfo
+     * @return isDisplayed
      */
     public boolean isContactInformationDisplayed(final HashMap<String, String> contactInfo) {
-        return driver.findElement(By.xpath(createLocator(contactInfo))).isDisplayed();
+        return getDriver().findElement(By.xpath(createLocator(contactInfo))).isDisplayed();
     }
 
     /**
      * Creates Locator.
      * @param contactInfo
-     * @return
+     * @return locator
      */
-    public abstract String createLocator(final HashMap<String, String> contactInfo);
+    public abstract String createLocator(HashMap<String, String> contactInfo);
 
     /**
      * Gets ContactDetailsAbstractPage.
+     * @param idContact
      * @return ContactDetailsAbstractPage
      */
-    public abstract ContactDetailsPage navigateToContactsDetailsPage(final String idContact);
+    public abstract ContactDetailsPage navigateToContactsDetailsPage(String idContact);
 
 }

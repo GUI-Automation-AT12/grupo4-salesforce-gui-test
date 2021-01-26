@@ -28,10 +28,10 @@ public class Account {
 
     /**
      *
-     * @param name
+     * @param newName
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(final String newName) {
+        this.name = newName;
     }
 
     /**
@@ -44,10 +44,10 @@ public class Account {
 
     /**
      *
-     * @param phone
+     * @param newPhone
      */
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(final String newPhone) {
+        this.phone = newPhone;
     }
 
     /**
@@ -58,8 +58,12 @@ public class Account {
         return website;
     }
 
-    public void setWebsite(String website) {
-        this.website = website;
+    /**
+     *
+     * @param newWeb
+     */
+    public void setWebsite(final String newWeb) {
+        this.website = newWeb;
     }
 
     /**
@@ -72,10 +76,10 @@ public class Account {
 
     /**
      *
-     * @param numberOfEmployees
+     * @param employees
      */
-    public void setNumberOfEmployees(String numberOfEmployees) {
-        this.numberOfEmployees = numberOfEmployees;
+    public void setNumberOfEmployees(final String employees) {
+        this.numberOfEmployees = employees;
     }
 
     /**
@@ -88,10 +92,10 @@ public class Account {
 
     /**
      *
-     * @param industry
+     * @param newIndustry
      */
-    public void setIndustry(String industry) {
-        this.industry = industry;
+    public void setIndustry(final String newIndustry) {
+        this.industry = newIndustry;
     }
 
     /**
@@ -104,10 +108,10 @@ public class Account {
 
     /**
      *
-     * @param site
+     * @param newSite
      */
-    public void setSite(String site) {
-        this.site = site;
+    public void setSite(final String newSite) {
+        this.site = newSite;
     }
 
     /**
@@ -120,10 +124,10 @@ public class Account {
 
     /**
      *
-     * @param idAccount
+     * @param id
      */
-    public void setIdAccount(String idAccount) {
-        this.idAccount = idAccount;
+    public void setIdAccount(final String id) {
+        this.idAccount = id;
     }
 
     /**

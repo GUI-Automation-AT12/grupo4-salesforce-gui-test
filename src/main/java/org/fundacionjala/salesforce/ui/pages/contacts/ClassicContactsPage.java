@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class ClassicContactsPage extends ContactsPage {
 
+    private static final int NUMBER = 3;
     @FindBy(css = "table.list tbody")
     private WebElement table;
 
@@ -36,9 +37,9 @@ public class ClassicContactsPage extends ContactsPage {
     /**
      * Searches a contact by id contact.
      * @param idContact
-     * @return
+     * @return ClassicContactDetailsPage
      */
-    private ClassicContactDetailsPage getContactDetailsPage (final String idContact){
+    private ClassicContactDetailsPage getContactDetailsPage(final String idContact) {
         WebElement element = findContactInTable(idContact);
         WebDriverHelper.waitUntil(element);
         WebDriverHelper.clickElement(element);
@@ -49,7 +50,7 @@ public class ClassicContactsPage extends ContactsPage {
      * @param contact
      */
     @Override
-    public void searchContact(String contact) {
+    public void searchContact(final String contact) {
 
     }
 
@@ -60,9 +61,9 @@ public class ClassicContactsPage extends ContactsPage {
      */
     @Override
     public WebElement findContactInTable(final String idContact) {
-        String id = idContact.substring(0, idContact.length()-3);
+        String id = idContact.substring(0, idContact.length() - NUMBER);
         WebElement element = WebDriverManager.getInstance().getWebDriver()
-                .findElement(By.cssSelector(String.format(LINK_CONTACT,id)));
+                .findElement(By.cssSelector(String.format(LINK_CONTACT, id)));
         return element;
     }
 
@@ -90,7 +91,7 @@ public class ClassicContactsPage extends ContactsPage {
     /**
      * Creates Locator.
      * @param contactInfo
-     * @return
+     * @return rowXpathLocator
      */
     @Override
     public String createLocator(final HashMap<String, String> contactInfo) {
@@ -107,11 +108,11 @@ public class ClassicContactsPage extends ContactsPage {
     /**
      * Gets header position.
      * @param key
-     * @return
+     * @return HeaderPosition
      */
     private String getHeaderPosition(final String key) {
         ArrayList<String> headerText = new ArrayList<>();
-        for (WebElement header : driver.findElements(HEADERS_BY)) {
+        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
             headerText.add(header.getText());
         }
         return String.valueOf(headerText.indexOf(key) + 1);
@@ -119,12 +120,13 @@ public class ClassicContactsPage extends ContactsPage {
 
     /**
      * Compare Maps.
+     * @param contactInfo
      * @return map
      */
     private Map<String, String> compareMap(final HashMap<String, String> contactInfo) {
         Map<String, String> map = new HashMap<>();
-        System.out.println(driver.findElement(HEADERS_BY));
-        for (WebElement header : driver.findElements(HEADERS_BY)) {
+        System.out.println(getDriver().findElement(HEADERS_BY));
+        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
             if (contactInfo.containsKey(header.getText())) {
                 map.put(header.getText(), contactInfo.get(header.getText()));
             }

@@ -20,7 +20,7 @@ public class ClassicContactDetailsPage extends ContactDetailsPage {
      * @param taskInformation
      */
     @Override
-    public void createTask(Map<String, String> taskInformation) {
+    public void createTask(final Map<String, String> taskInformation) {
 
     }
 
@@ -45,7 +45,7 @@ public class ClassicContactDetailsPage extends ContactDetailsPage {
      */
     @Override
     public void clickBtnConfirmDelete() {
-        driver.switchTo().alert().accept();
+        getDriver().switchTo().alert().accept();
     }
 
     /**

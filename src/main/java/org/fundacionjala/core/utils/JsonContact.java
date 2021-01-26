@@ -54,6 +54,7 @@ public final class JsonContact extends JsonReader {
 
     /**
      * This method converts the Json to a map.
+     * @param alias
      * @return Map of the Json
      */
     public Map<String, String> getDataAsAMap(final String alias) {

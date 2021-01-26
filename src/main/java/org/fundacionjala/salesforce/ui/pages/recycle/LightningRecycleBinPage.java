@@ -32,7 +32,7 @@ public class LightningRecycleBinPage extends RecycleBinPage {
      * @param contact
      */
     @Override
-    public void setSearch(String contact) {
+    public void setSearch(final String contact) {
 
     }
 
@@ -42,7 +42,7 @@ public class LightningRecycleBinPage extends RecycleBinPage {
      * @param contact
      */
     @Override
-    public void searchContact(String contact) {
+    public void searchContact(final String contact) {
 
     }
 
@@ -53,7 +53,7 @@ public class LightningRecycleBinPage extends RecycleBinPage {
      * @return element
      */
     @Override
-    public WebElement findContactInTable(String contact) {
+    public WebElement findContactInTable(final String contact) {
         WebElement element = WebDriverManager.getInstance().getWebDriver()
                 .findElement(By.xpath(String.format(xpathDeletedItem, contact)));
         return element;
@@ -66,9 +66,9 @@ public class LightningRecycleBinPage extends RecycleBinPage {
      * @return text.
      */
     @Override
-    public String getTextFromTable(String contact) {
+    public String getTextFromTable(final String contact) {
         WebElement element = WebDriverManager.getInstance().getWebDriver()
-                .findElement(By.xpath(String.format(xpathDeletedItem,contact)));
+                .findElement(By.xpath(String.format(xpathDeletedItem, contact)));
         return WebDriverHelper.getTextElement(element);
     }
 
@@ -80,7 +80,7 @@ public class LightningRecycleBinPage extends RecycleBinPage {
     @Override
     public boolean findRecord(final Map<String, String> record) {
         String recordName = record.get("Firstname") + " " + record.get("Lastname");
-        WebElement element = getWebDriver().findElement(By.xpath(String.format(spanRecord, recordName)));
+        WebElement element = getDriver().findElement(By.xpath(String.format(spanRecord, recordName)));
         return element.isDisplayed();
     }
 
@@ -109,11 +109,11 @@ public class LightningRecycleBinPage extends RecycleBinPage {
     /**
      * Gets header position.
      * @param key
-     * @return
+     * @return HeaderPosition
      */
-    private String getHeaderPosition(String key) {
+    private String getHeaderPosition(final String key) {
         ArrayList<String> headerText = new ArrayList<>();
-        for (WebElement header : getWebDriver().findElements(HEADERS_BY)) {
+        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
             headerText.add(header.getAttribute("aria-label"));
         }
         return String.valueOf(headerText.indexOf(key) + 1);
@@ -121,11 +121,12 @@ public class LightningRecycleBinPage extends RecycleBinPage {
 
     /**
      * Compare Maps.
+     * @param contactInfo
      * @return map
      */
     private Map<String, String> compareMap(final HashMap<String, String> contactInfo) {
         Map<String, String> map = new HashMap<>();
-        for (WebElement header : getWebDriver().findElements(HEADERS_BY)) {
+        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
             if (contactInfo.containsKey(header.getAttribute("aria-label"))) {
                 map.put(header.getAttribute("aria-label"), contactInfo.get(header.getAttribute("aria-label")));
             }

@@ -7,7 +7,7 @@ import java.util.Map;
 
 public abstract class ContactDetailsPage extends BasePage {
 
-    protected Task task;
+    private Task task;
 
     /**
      *

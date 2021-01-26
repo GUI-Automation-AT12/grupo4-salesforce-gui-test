@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
 
-    protected WebDriver driver;
+    private WebDriver driver;
 
     /**
      * Constructor.
@@ -14,5 +14,14 @@ public class BasePage {
     protected BasePage() {
         driver = WebDriverManager.getInstance().getWebDriver();
         PageFactory.initElements(driver, this);
+    }
+
+    /**
+     *
+     *
+     * @return driver
+     */
+    public WebDriver getDriver() {
+        return driver;
     }
 }

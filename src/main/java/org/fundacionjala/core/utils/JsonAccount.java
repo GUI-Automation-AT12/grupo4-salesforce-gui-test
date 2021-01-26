@@ -1,7 +1,6 @@
 package org.fundacionjala.core.utils;
 
 import org.fundacionjala.salesforce.entities.Account;
-import org.fundacionjala.salesforce.entities.User;
 import org.json.simple.parser.ParseException;
 
 import java.util.Map;
@@ -56,6 +55,7 @@ public final class JsonAccount extends JsonReader {
 
     /**
      * This method converts the Json to a map.
+     * @param alias
      * @return Map of the Json
      */
     public Map<String, String> getDataAsAMap(final String alias) {

@@ -53,7 +53,7 @@ public class LightningContactsPage extends ContactsPage {
      * Searches contact by the contact search.
      * @param contact
      */
-    public void searchContact(String contact) {
+    public void searchContact(final String contact) {
         setSearch(contact);
         search.sendKeys(Keys.ENTER);
     }
@@ -66,7 +66,7 @@ public class LightningContactsPage extends ContactsPage {
     @Override
     public WebElement findContactInTable(final String idContact) {
         WebElement element = WebDriverManager.getInstance().getWebDriver()
-                .findElement(By.xpath(String.format(LINK_CONTACT,idContact)));
+                .findElement(By.xpath(String.format(LINK_CONTACT, idContact)));
         return element;
     }
 
@@ -75,7 +75,7 @@ public class LightningContactsPage extends ContactsPage {
      * @param contact
      */
     @Override
-    public void deleteContact(String contact) {
+    public void deleteContact(final String contact) {
         WebDriverHelper.waitUntil(deleteOption);
         WebDriverHelper.clickElement(deleteOption);
         WebDriverHelper.clickElement(btnDeleteMessage);
@@ -97,7 +97,7 @@ public class LightningContactsPage extends ContactsPage {
     /**
      * Creates Locator.
      * @param contactInfo
-     * @return
+     * @return rowXpathLocator
      */
     @Override
     public String createLocator(final HashMap<String, String> contactInfo) {
@@ -113,11 +113,11 @@ public class LightningContactsPage extends ContactsPage {
     /**
      * Gets header position.
      * @param key
-     * @return
+     * @return HeaderPosition
      */
-    private String getHeaderPosition(String key) {
+    private String getHeaderPosition(final String key) {
         ArrayList<String> headerText = new ArrayList<>();
-        for (WebElement header : driver.findElements(HEADERS_BY)) {
+        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
             headerText.add(header.getAttribute("aria-label"));
         }
         return String.valueOf(headerText.indexOf(key) + 1);
@@ -125,12 +125,13 @@ public class LightningContactsPage extends ContactsPage {
 
     /**
      * Compare Maps.
+     * @param contactInfo
      * @return map
      */
     private Map<String, String> compareMap(final HashMap<String, String> contactInfo) {
         Map<String, String> map = new HashMap<>();
-        System.out.println(driver.findElements(HEADERS_BY));
-        for (WebElement header : driver.findElements(HEADERS_BY)) {
+        System.out.println(getDriver().findElements(HEADERS_BY));
+        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
             if (contactInfo.containsKey(header.getAttribute("aria-label"))) {
                 map.put(header.getAttribute("aria-label"), contactInfo.get(header.getAttribute("aria-label")));
             }

@@ -60,10 +60,10 @@ public class Contact {
 
     /**
      *
-     * @param title
+     * @param newTitle
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(final String newTitle) {
+        this.title = newTitle;
     }
 
     /**
@@ -76,10 +76,10 @@ public class Contact {
 
     /**
      *
-     * @param email
+     * @param newEmail
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(final String newEmail) {
+        this.email = newEmail;
     }
 
     /**
@@ -92,10 +92,10 @@ public class Contact {
 
     /**
      *
-     * @param phone
+     * @param newPhone
      */
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(final String newPhone) {
+        this.phone = newPhone;
     }
 
     /**
@@ -108,10 +108,10 @@ public class Contact {
 
     /**
      *
-     * @param accountId
+     * @param id
      */
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setAccountId(final String id) {
+        this.accountId = id;
     }
 
     /**
@@ -124,10 +124,10 @@ public class Contact {
 
     /**
      *
-     * @param idContact
+     * @param id
      */
-    public void setIdContact(String idContact) {
-        this.idContact = idContact;
+    public void setIdContact(final String id) {
+        this.idContact = id;
     }
 
     /**

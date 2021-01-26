@@ -14,44 +14,84 @@ public class Task {
     private String state;
     private String dueDate;
 
+    /**
+     *
+     * @return subject
+     */
     public String getSubject() {
         return subject;
     }
 
-    public void setSubject(String name) {
+    /**
+     *
+     * @param name
+     */
+    public void setSubject(final String name) {
         this.subject = name;
     }
 
+    /**
+     *
+     * @return relatedWith
+     */
     public String getRelatedWith() {
         return relatedWith;
     }
 
-    public void setRelatedWith(String relatedWith) {
-        this.relatedWith = relatedWith;
+    /**
+     *
+     * @param related
+     */
+    public void setRelatedWith(final String related) {
+        this.relatedWith = related;
     }
 
+    /**
+     *
+     * @return relatedValue
+     */
     public String getRelatedValue() {
         return this.relatedValue;
     }
 
-    public void setRelatedValue(String valueName) {
-        this.relatedValue = valueName;
+    /**
+     *
+     * @param valName
+     */
+    public void setRelatedValue(final String valName) {
+        this.relatedValue = valName;
     }
 
+    /**
+     *
+     * @return state
+     */
     public String getState() {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    /**
+     *
+     * @param newState
+     */
+    public void setState(final String newState) {
+        this.state = newState;
     }
 
+    /**
+     *
+     * @return dueDate
+     */
     public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
+    /**
+     *
+     * @param newDueDate
+     */
+    public void setDueDate(final String newDueDate) {
+        this.dueDate = newDueDate;
     }
 
     /**

@@ -42,7 +42,7 @@ public class ClassicRecycleBinPage extends RecycleBinPage {
      *
      * @param contact
      */
-    public void searchContact (final String contact){
+    public void searchContact(final String contact) {
         setSearch(contact);
         search.sendKeys(Keys.ENTER);
         WebDriverHelper.waitUntil(table);
@@ -55,7 +55,7 @@ public class ClassicRecycleBinPage extends RecycleBinPage {
      */
     public WebElement findContactInTable(final String contact) {
         WebElement element = WebDriverManager.getInstance().getWebDriver()
-                .findElement(By.xpath(String.format(xpathDeletedItem,contact)));
+                .findElement(By.xpath(String.format(xpathDeletedItem, contact)));
         return element;
     }
 
@@ -66,7 +66,7 @@ public class ClassicRecycleBinPage extends RecycleBinPage {
      */
     public String getTextFromTable(final String contact) {
         WebElement element = WebDriverManager.getInstance().getWebDriver()
-                .findElement(By.xpath(String.format(xpathDeletedItem,contact)));
+                .findElement(By.xpath(String.format(xpathDeletedItem, contact)));
         return WebDriverHelper.getTextElement(element);
     }
 
@@ -79,7 +79,7 @@ public class ClassicRecycleBinPage extends RecycleBinPage {
     @Override
     public boolean findRecord(final Map<String, String> record) {
         String recordName = record.get("Firstname") + " " + record.get("Lastname");
-        WebElement element = getWebDriver().findElement(By.xpath(String.format(spanRecord, recordName)));
+        WebElement element = getDriver().findElement(By.xpath(String.format(spanRecord, recordName)));
         return element.isDisplayed();
     }
 
@@ -109,11 +109,11 @@ public class ClassicRecycleBinPage extends RecycleBinPage {
     /**
      * Gets header position.
      * @param key
-     * @return
+     * @return HeaderPosition
      */
     private String getHeaderPosition(final String key) {
         ArrayList<String> headerText = new ArrayList<>();
-        for (WebElement header : getWebDriver().findElements(HEADERS_BY)) {
+        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
             headerText.add(header.getText());
         }
         return String.valueOf(headerText.indexOf(key) + 1);
@@ -121,12 +121,13 @@ public class ClassicRecycleBinPage extends RecycleBinPage {
 
     /**
      * Compare Maps.
+     * @param contactInfo
      * @return map
      */
     private Map<String, String> compareMap(final HashMap<String, String> contactInfo) {
         Map<String, String> map = new HashMap<>();
-        System.out.println(getWebDriver().findElement(HEADERS_BY));
-        for (WebElement header : getWebDriver().findElements(HEADERS_BY)) {
+        System.out.println(getDriver().findElement(HEADERS_BY));
+        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
             if (contactInfo.containsKey(header.getText())) {
                 map.put(header.getText(), contactInfo.get(header.getText()));
             }

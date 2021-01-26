@@ -126,10 +126,10 @@ public class Context {
 
     /**
      *
-     * @param  task
+     * @param  newTask
      */
-    public void setTask(Task task) {
-        this.task = task;
+    public void setTask(final Task newTask) {
+        this.task = newTask;
     }
 
     /**
@@ -142,18 +142,18 @@ public class Context {
 
     /**
      *
-     * @param contact
+     * @param newContact
      */
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setContact(final Contact newContact) {
+        this.contact = newContact;
     }
 
     /**
      *
-     * @param account
+     * @param newAccount
      */
-    public void setAccount(Account account){
-        this.account = account;
+    public void setAccount(final Account newAccount) {
+        this.account = newAccount;
     }
 
     /**

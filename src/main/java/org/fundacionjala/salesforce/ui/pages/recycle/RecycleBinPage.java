@@ -13,34 +13,34 @@ public abstract class RecycleBinPage extends BasePage {
      * Sets search.
      * @param contact
      */
-    public abstract void setSearch(final String contact);
+    public abstract void setSearch(String contact);
 
     /**
      * Searches contact.
      * @param contact
      */
-    public abstract void searchContact (final String contact);
+    public abstract void searchContact(String contact);
 
     /**
      * Finds contact in table.
      * @param contact
      * @return element
      */
-    public abstract WebElement findContactInTable(final String contact);
+    public abstract WebElement findContactInTable(String contact);
 
     /**
      * Gets text from table.
      * @param contact
      * @return text.
      */
-    public abstract String getTextFromTable(final String contact);
+    public abstract String getTextFromTable(String contact);
 
     /**
      * Gets text from table.
      * @return text.
      * @param record
      */
-    public abstract boolean findRecord(final Map<String, String> record);
+    public abstract boolean findRecord(Map<String, String> record);
 
     /**
      *Waits until page is loaded.
@@ -50,15 +50,16 @@ public abstract class RecycleBinPage extends BasePage {
     /**
      * Verify if Information is displayed in the table.
      * @param contactInfo
+     * @return if element
      */
     public boolean isContactInformationDisplayed(final HashMap<String, String> contactInfo) {
-        return getWebDriver().findElement(By.xpath(createLocator(contactInfo))).isDisplayed();
+        return getDriver().findElement(By.xpath(createLocator(contactInfo))).isDisplayed();
     }
 
     /**
      * Creates Locator.
      * @param contactInfo
-     * @return
+     * @return locator
      */
-    public abstract String createLocator(final HashMap<String, String> contactInfo);
+    public abstract String createLocator(HashMap<String, String> contactInfo);
 }

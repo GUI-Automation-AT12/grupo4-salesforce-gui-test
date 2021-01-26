@@ -7,13 +7,17 @@ import java.util.List;
 /**
  * [RH] setup reader class.
  */
-public class SetupReader extends ExcelReader{
+public class SetupReader extends ExcelReader {
 
     private static String path = "src/main/resources/setup/initialSetup.xlsx";
     private Sheet contactSheet;
     private Sheet campaignSheet;
     private Sheet opportunitySheet;
     private Sheet caseSheet;
+
+    /**
+     * Constructor.
+     */
     public SetupReader() {
         super(path);
     }
