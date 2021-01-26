@@ -11,7 +11,7 @@ public final class TransporterFactory {
      */
     private TransporterFactory() { }
     static {
-        transporters.put("lighting", new TransporterLightingPage());
+        transporters.put("lightning", new TransporterLightingPage());
         transporters.put("classic", new TransporterClassicPage());
     }
 

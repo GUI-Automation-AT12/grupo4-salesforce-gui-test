@@ -4,7 +4,7 @@ Feature: Validate dates of a created task
   Background:
     Given I log in Salesforce with valid User credentials
 
-    @createContact @deleteContact @setup
+    @Functional @createContact @deleteContact @setup
     Scenario: I validate the task information
       Given I created a valid campaign
       When I navigate to Contacts page

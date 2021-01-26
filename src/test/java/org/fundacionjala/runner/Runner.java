@@ -10,7 +10,7 @@ import org.testng.annotations.DataProvider;
  * Cucumber TestNG runner class.
  */
 @CucumberOptions(
-        plugin = {"pretty"},
+        plugin = {"pretty", "json:build/jsonTarget/cucumber.json", "html:build/jsonTarget/site/cucumber.html"},
         features = {"src/test/resources/features"},
         glue = {""}
 )
@@ -26,9 +26,9 @@ public final class Runner extends AbstractTestNGCucumberTests {
      */
     @BeforeTest
     public void beforeAllScenarios() {
-        SetupHelper setupHelper = new SetupHelper();
-        setupHelper.setupContacts();
-        setupHelper.setupCampaigns();
-        setupHelper.setupOpportunities();
+//        SetupHelper setupHelper = new SetupHelper();
+//        setupHelper.setupContacts();
+//        setupHelper.setupCampaigns();
+//        setupHelper.setupOpportunities();
     }
 }
