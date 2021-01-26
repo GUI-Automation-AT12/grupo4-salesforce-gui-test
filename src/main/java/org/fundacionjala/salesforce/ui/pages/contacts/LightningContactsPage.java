@@ -2,8 +2,8 @@ package org.fundacionjala.salesforce.ui.pages.contacts;
 
 import org.fundacionjala.core.selenium.WebDriverHelper;
 import org.fundacionjala.core.selenium.WebDriverManager;
-import org.fundacionjala.salesforce.ui.pages.contactDetailsPage.ContactDetailsAbstractPage;
-import org.fundacionjala.salesforce.ui.pages.contactDetailsPage.ContactDetailsLightningPage;
+import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.ContactDetailsPage;
+import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.LightningContactDetailPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ContactsLightningPage extends ContactsAbstractPage {
+public class LightningContactsPage extends ContactsPage {
 
     @FindBy(xpath = "//input[contains(@id, 'input')] [@name='Contact-search-input']")
     private WebElement search;
@@ -36,7 +36,7 @@ public class ContactsLightningPage extends ContactsAbstractPage {
     /**
      * Constructor.
      */
-    public ContactsLightningPage() {
+    public LightningContactsPage() {
 
     }
 
@@ -56,7 +56,6 @@ public class ContactsLightningPage extends ContactsAbstractPage {
     public void searchContact(String contact) {
         setSearch(contact);
         search.sendKeys(Keys.ENTER);
-        //WebDriverHelper.waitUntil(table);
     }
 
     /**
@@ -88,11 +87,11 @@ public class ContactsLightningPage extends ContactsAbstractPage {
      * @return ContactDetailsAbstractPage
      */
     @Override
-    public ContactDetailsAbstractPage navigateToContactsDetailsPage(final String idContact) {
+    public ContactDetailsPage navigateToContactsDetailsPage(final String idContact) {
         WebElement element = findContactInTable(idContact);
         WebDriverHelper.waitUntil(element);
         WebDriverHelper.clickElement(element);
-        return new ContactDetailsLightningPage();
+        return new LightningContactDetailPage();
     }
 
     /**
@@ -118,7 +117,7 @@ public class ContactsLightningPage extends ContactsAbstractPage {
      */
     private String getHeaderPosition(String key) {
         ArrayList<String> headerText = new ArrayList<>();
-        for (WebElement header : getWebDriver().findElements(HEADERS_BY)) {
+        for (WebElement header : driver.findElements(HEADERS_BY)) {
             headerText.add(header.getAttribute("aria-label"));
         }
         return String.valueOf(headerText.indexOf(key) + 1);
@@ -130,8 +129,8 @@ public class ContactsLightningPage extends ContactsAbstractPage {
      */
     private Map<String, String> compareMap(final HashMap<String, String> contactInfo) {
         Map<String, String> map = new HashMap<>();
-        System.out.println(getWebDriver().findElements(HEADERS_BY));
-        for (WebElement header : getWebDriver().findElements(HEADERS_BY)) {
+        System.out.println(driver.findElements(HEADERS_BY));
+        for (WebElement header : driver.findElements(HEADERS_BY)) {
             if (contactInfo.containsKey(header.getAttribute("aria-label"))) {
                 map.put(header.getAttribute("aria-label"), contactInfo.get(header.getAttribute("aria-label")));
             }

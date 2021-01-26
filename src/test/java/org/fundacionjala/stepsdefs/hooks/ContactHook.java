@@ -6,7 +6,6 @@ import io.restassured.response.Response;
 import org.fundacionjala.core.client.RequestManager;
 import org.fundacionjala.core.utils.JsonContact;
 import org.fundacionjala.salesforce.context.Context;
-
 import java.io.IOException;
 import java.util.Map;
 

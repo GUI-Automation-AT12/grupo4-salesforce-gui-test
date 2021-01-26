@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fundacionjala.core.client.RequestManager;
 import org.fundacionjala.salesforce.entities.Account;
 import org.fundacionjala.salesforce.entities.Contact;
+import org.fundacionjala.salesforce.entities.Task;
 import org.fundacionjala.salesforce.utils.AuthenticationUtils;
 import java.io.IOException;
 import java.util.HashMap;
@@ -22,12 +23,14 @@ public class Context {
     private Map<String, Map<String, String>> mapData;
     private ObjectMapper map;
     private List<Map> dataAsListMap;
+    private Task task;
     /**
      * Constructor for the Context.
      */
     public Context() {
         this.contact = new Contact();
         this.account = new Account();
+        this.task = new Task();
         this.data = new HashMap<>();
         this.mapData = new HashMap<>();
         this.map = new ObjectMapper();
@@ -115,10 +118,18 @@ public class Context {
 
     /**
      *
-     * @return contact
+     * @return task
      */
-    public Contact getContact() {
-        return contact;
+    public Task getTask() {
+        return this.task;
+    }
+
+    /**
+     *
+     * @param  task
+     */
+    public void setTask(Task task) {
+        this.task = task;
     }
 
     /**
@@ -141,7 +152,15 @@ public class Context {
      *
      * @param account
      */
-    public void setAccount(Account account) {
+    public void setAccount(Account account){
         this.account = account;
+    }
+
+    /**
+    *
+     * @return contact
+     */
+    public Contact getContact() {
+        return contact;
     }
 }

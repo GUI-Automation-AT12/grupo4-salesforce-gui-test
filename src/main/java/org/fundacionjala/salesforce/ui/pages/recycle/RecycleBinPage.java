@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class RecycleBinAbstractPage extends BasePage {
+public abstract class RecycleBinPage extends BasePage {
 
     /**
      * Sets search.

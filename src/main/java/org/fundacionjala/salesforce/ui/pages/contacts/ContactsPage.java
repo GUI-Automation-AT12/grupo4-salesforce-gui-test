@@ -1,43 +1,52 @@
 package org.fundacionjala.salesforce.ui.pages.contacts;
 
-import org.fundacionjala.core.selenium.WebDriverHelper;
-import org.fundacionjala.core.selenium.WebDriverManager;
 import org.fundacionjala.salesforce.ui.pages.BasePage;
+import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.ContactDetailsPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-public class ContactsPage extends BasePage {
+import java.util.HashMap;
 
-    @FindBy(xpath = "//input[@id='input-69']")
-    private WebElement search;
-
-    @FindBy(xpath = "//table//tbody/tr//a[contains(text(),'Test Contact2 Example Account')]//ancestor::tr//div[@data-aura-class='forceVirtualAction']/a")
-    private WebElement btnMenu;
-
-    private String xpathbtn = "//table//tbody/tr//a[contains(text(),'%s')]//ancestor::tr//div[@data-aura-class='forceVirtualAction']/a";
+public abstract class ContactsPage extends BasePage {
 
     /**
-     * Constructor.
+     *
+     * @param contact
      */
-    public ContactsPage() {
+    public abstract void searchContact(final String contact);
 
+    /**
+     *
+     * @param idContact
+     * @return
+     */
+    public abstract WebElement findContactInTable(final String idContact);
+
+    /**
+     *
+     * @param contact
+     */
+    public abstract void deleteContact(final String contact);
+
+    /**
+     * Verify if Information is displayed in the table.
+     * @param contactInfo
+     */
+    public boolean isContactInformationDisplayed(final HashMap<String, String> contactInfo) {
+        return driver.findElement(By.xpath(createLocator(contactInfo))).isDisplayed();
     }
 
-    private void setSearch(final String contact) {
-        WebDriverHelper.waitUntil(search);
-        WebDriverHelper.setElement(search, contact);
-    }
+    /**
+     * Creates Locator.
+     * @param contactInfo
+     * @return
+     */
+    public abstract String createLocator(final HashMap<String, String> contactInfo);
 
-    public void searchContact (final String contact){
-        setSearch(contact);
-        search.sendKeys(Keys.ENTER);
-    }
+    /**
+     * Gets ContactDetailsAbstractPage.
+     * @return ContactDetailsAbstractPage
+     */
+    public abstract ContactDetailsPage navigateToContactsDetailsPage(final String idContact);
 
-    public void findContact(String contact) {
-        WebElement element = WebDriverManager.getInstance().getWebDriver()
-                .findElement(By.xpath(String.format(xpathbtn,contact)));
-        WebDriverHelper.clickElement(element);
-    }
 }

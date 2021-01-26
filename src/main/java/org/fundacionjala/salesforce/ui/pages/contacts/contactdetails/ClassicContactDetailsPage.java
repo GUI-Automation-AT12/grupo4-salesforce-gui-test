@@ -1,10 +1,13 @@
-package org.fundacionjala.salesforce.ui.pages.contactDetailsPage;
+package org.fundacionjala.salesforce.ui.pages.contacts.contactdetails;
 
 import org.fundacionjala.core.selenium.WebDriverHelper;
+import org.fundacionjala.salesforce.entities.Task;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ContactDetailsClassicPage extends ContactDetailsAbstractPage {
+import java.util.Map;
+
+public class ClassicContactDetailsPage extends ContactDetailsPage {
 
     @FindBy(css = "input[name='del']")
     private WebElement btnDelete;
@@ -12,6 +15,22 @@ public class ContactDetailsClassicPage extends ContactDetailsAbstractPage {
 
     @FindBy(css = "button[title='Delete']")
     private WebElement btnConfirmDelete;
+
+    /**
+     * @param taskInformation
+     */
+    @Override
+    public void createTask(Map<String, String> taskInformation) {
+
+    }
+
+    /**
+     * @return task
+     */
+    @Override
+    public Task getTask() {
+        return null;
+    }
 
     /**
      * Deletes the contact.
@@ -26,7 +45,7 @@ public class ContactDetailsClassicPage extends ContactDetailsAbstractPage {
      */
     @Override
     public void clickBtnConfirmDelete() {
-        getWebDriver().switchTo().alert().accept();
+        driver.switchTo().alert().accept();
     }
 
     /**
@@ -38,8 +57,12 @@ public class ContactDetailsClassicPage extends ContactDetailsAbstractPage {
         clickBtnConfirmDelete();
     }
 
+    /**
+     * Waits until page is loaded.
+     */
     @Override
     public void waitUntilPageIsLoaded() {
         WebDriverHelper.waitUntil(btnDelete);
     }
+
 }

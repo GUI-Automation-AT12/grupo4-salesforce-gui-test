@@ -1,10 +1,25 @@
-package org.fundacionjala.salesforce.ui.pages.contactDetailsPage;
+package org.fundacionjala.salesforce.ui.pages.contacts.contactdetails;
 
-import org.fundacionjala.core.selenium.WebDriverHelper;
+import org.fundacionjala.salesforce.entities.Task;
 import org.fundacionjala.salesforce.ui.pages.BasePage;
 
-public abstract class ContactDetailsAbstractPage extends BasePage {
+import java.util.Map;
 
+public abstract class ContactDetailsPage extends BasePage {
+
+    protected Task task;
+
+    /**
+     *
+     * @param taskInformation
+     */
+    public abstract void createTask(Map<String, String> taskInformation);
+
+    /**
+     *
+     * @return task
+     */
+    public abstract Task getTask();
     /**
      * Clicks in button delete.
      */
