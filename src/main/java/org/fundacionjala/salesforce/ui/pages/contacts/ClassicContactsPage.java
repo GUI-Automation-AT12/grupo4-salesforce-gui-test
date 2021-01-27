@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ClassicContactsPage extends ContactsPage {
 
@@ -25,14 +24,14 @@ public class ClassicContactsPage extends ContactsPage {
     @FindBy(xpath = "//div/h2[@class='topName']")
     private WebElement nameTitle;
 
-    private String xpathLink  = "//tr//a[contains(text(),'%s')]";
-    private ClassicContactDetailsPage contactDetailsPage;
-    private static final String TD_XPATH = "//*[%1$s]//*[text()='%2$s']";
+    private static final String TD_XPATH = "*[%1$s]//*[text()='%2$s']";
+    private static final String TD_XPATH2 = "*[%1$s][text()='%2$s']";
     private static final String INI = "//table[@class='list']/tbody/tr[contains(@class,'dataRow')][";
     private static final String LAST = "]";
     private static final String LINK_CONTACT = "table.list tbody .dataCell a[href*='%s']";
     private static final By HEADERS_BY = By.xpath("//table[@class='list']/tbody/tr[@class='headerRow']/th");
-    private String linkContact = "//table/tbody//tr//td//th//a[text()=' %S']";
+    private static final String LINK = "//table/tbody//tr//td//th//a[text()=' %S']";
+    private ClassicContactDetailsPage contactDetailsPage;
     private String nameContact;
 
     /**
@@ -113,7 +112,7 @@ public class ClassicContactsPage extends ContactsPage {
      * @param contact
      */
     public void findContact(final String contact) {
-        String text = changeInitials(String.format(linkContact, contact).toLowerCase());
+        String text = changeInitials(String.format(LINK, contact).toLowerCase());
         WebElement element = getDriver().findElement(By.xpath(changeInitials(text.replaceAll("=' ", "='"))));
         WebDriverHelper.waitUntil(element);
         WebDriverHelper.clickElement(element);
@@ -127,13 +126,20 @@ public class ClassicContactsPage extends ContactsPage {
     @Override
     public String createLocator(final HashMap<String, String> contactInfo) {
         contactInfo.put("Name", contactInfo.get("Firstname") + " " + contactInfo.get("Lastname"));
-        System.out.println(contactInfo);
         Map<String, String> map = compareMap(contactInfo);
-        String rowXpathLocator = map.entrySet().stream().map(entry ->
-            String.format(TD_XPATH, getHeaderPosition(entry.getKey().toString()), entry.getValue()))
-            .collect(Collectors.joining(" and ", INI, LAST));
-        System.out.println(rowXpathLocator);
-        return rowXpathLocator;
+
+        String rowXpathLocator = INI;
+        for(Map.Entry entry : map.entrySet()) {
+            if(!INI.equals(rowXpathLocator)) {
+                rowXpathLocator += " and ";
+            }
+            if (entry.getKey().toString().equals("Account Site") || entry.getKey().toString().equals("Phone") ) {
+                rowXpathLocator += String.format(TD_XPATH2, getHeaderPosition(entry.getKey().toString()),entry.getValue());
+            } else {
+                rowXpathLocator += String.format(TD_XPATH, getHeaderPosition(entry.getKey().toString()),entry.getValue());
+            }
+        }
+        return rowXpathLocator + LAST;
     }
 
     /**
@@ -156,7 +162,6 @@ public class ClassicContactsPage extends ContactsPage {
      */
     private Map<String, String> compareMap(final HashMap<String, String> contactInfo) {
         Map<String, String> map = new HashMap<>();
-        System.out.println(getDriver().findElement(HEADERS_BY));
         for (WebElement header : getDriver().findElements(HEADERS_BY)) {
             if (contactInfo.containsKey(header.getText())) {
                 map.put(header.getText(), contactInfo.get(header.getText()));

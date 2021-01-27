@@ -52,7 +52,12 @@ public class LightningContactDetailPage extends ContactDetailsPage {
      * Click in button Menu.
      */
     public void clickButtonMenu() {
-        WebDriverHelper.clickElement(btnMenu);
+        try {
+            WebDriverHelper.waitUntil(btnMenu);
+            WebDriverHelper.clickElement(btnMenu);
+        } catch (Exception ex) {
+            WebDriverHelper.clickElement(btnMenu);
+        }
     }
 
     /**
