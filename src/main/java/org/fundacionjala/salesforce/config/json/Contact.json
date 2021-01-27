@@ -4,7 +4,14 @@
     "Lastname": "Smith",
     "Title": "President",
     "Email": "sample@salesforce.com",
-    "Phone":"4444444",
+    "Phone":"44444444",
     "AccountId":""
+  },
+  "Contact": {
+    "Firstname":"Jhon",
+    "Lastname": "Smith",
+    "Title": "President",
+    "Email": "example@salesforce.com",
+    "Phone":"55555555"
   }
 }

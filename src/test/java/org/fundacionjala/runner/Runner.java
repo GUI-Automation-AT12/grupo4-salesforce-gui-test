@@ -1,7 +1,6 @@
 package org.fundacionjala.runner;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import org.fundacionjala.core.config.ExecuteProperties;
 import org.fundacionjala.salesforce.utils.setup.SetupHelper;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -26,9 +25,9 @@ public final class Runner extends AbstractTestNGCucumberTests {
      */
     @BeforeTest
     public void beforeAllScenarios() {
-//        SetupHelper setupHelper = new SetupHelper();
-//        setupHelper.setupContacts();
-//        setupHelper.setupCampaigns();
-//        setupHelper.setupOpportunities();
+        SetupHelper setupHelper = new SetupHelper();
+        setupHelper.setupContacts();
+        setupHelper.setupCampaigns();
+        setupHelper.setupOpportunities();
     }
 }

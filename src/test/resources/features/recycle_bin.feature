@@ -4,7 +4,7 @@ Feature: recycle bin
   Background:
     Given I log in Salesforce with valid User credentials
 
-  @Functional @createAccount @createContact @deleteAccount @cleanRecycleBin
+  @createAccount @createContactRelatedToAccount @deleteAccount @cleanRecycleBin
   Scenario: Verify that the information of the created Contact matches the history of items deleted in the recycle bin page
     When I navigate to Contacts page
     And I search the Contact on Contacts page

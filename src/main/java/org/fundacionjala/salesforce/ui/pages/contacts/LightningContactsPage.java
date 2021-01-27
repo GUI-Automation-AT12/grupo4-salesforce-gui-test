@@ -32,10 +32,13 @@ public class LightningContactsPage extends ContactsPage {
     private static final String LAST = "]";
     private static final String LINK_CONTACT = "//tbody//a[contains(@data-aura-class, 'Output')][@data-recordid='%s']";
     private static final By HEADERS_BY = By.cssSelector("table[data-aura-class='uiVirtualDataTable'] thead tr th");
+    private String contactTitle = "//span[contains(text(),'%s')]";
+    private String contactListed = "//tbody//a[contains(@href,'%s')]";
 
     /**
      * Constructor.
      */
+
     public LightningContactsPage() {
 
     }
@@ -44,7 +47,7 @@ public class LightningContactsPage extends ContactsPage {
      * Sets the search textBox.
      * @param contact
      */
-    private void setSearch(final String contact) {
+    public void setSearch(final String contact) {
         WebDriverHelper.waitUntil(search);
         WebDriverHelper.setElement(search, contact);
     }
@@ -137,5 +140,32 @@ public class LightningContactsPage extends ContactsPage {
             }
         }
         return map;
+    }
+
+    /**
+     *
+     * @param id
+     */
+    public void selectContact(final String id) {
+        try {
+        WebElement contact = getDriver().findElement(By.xpath(String.format(contactListed, id)));
+        WebDriverHelper.waitUntil(contact);
+        WebDriverHelper.clickElement(contact);
+        } catch (Exception ex) {
+            WebDriverHelper.clickElement(By.xpath(String.format(contactListed, id)));
+        }
+    }
+
+    /**
+     *
+     * @param name
+     * @return name contact
+     */
+    @Override
+    public String getContactName(final String name) {
+        WebElement contact = getDriver().findElement(By.xpath(String.format(contactTitle, name)));
+        WebDriverHelper.waitUntil(contact);
+        System.out.println(WebDriverHelper.getTextElement(contact));
+        return WebDriverHelper.getTextElement(contact);
     }
 }

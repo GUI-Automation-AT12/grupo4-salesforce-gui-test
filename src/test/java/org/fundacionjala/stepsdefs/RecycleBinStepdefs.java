@@ -69,5 +69,4 @@ public class RecycleBinStepdefs {
         assertTrue(recycleBinPage.isContactInformationDisplayed(
                 (HashMap<String, String>) JsonAccount.getInstance().getDataAsAMap("ContactTest")));
     }
-
 }

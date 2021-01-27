@@ -5,6 +5,7 @@ import org.fundacionjala.core.selenium.WebDriverManager;
 import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.ClassicContactDetailsPage;
 import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.ContactDetailsPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
@@ -18,15 +19,22 @@ public class ClassicContactsPage extends ContactsPage {
     @FindBy(css = "table.list tbody")
     private WebElement table;
 
+    @FindBy(id = "phSearchInput")
+    private WebElement txtSearch;
+
+    @FindBy(xpath = "//div/h2[@class='topName']")
+    private WebElement nameTitle;
+
     private String xpathLink  = "//tr//a[contains(text(),'%s')]";
-
     private ClassicContactDetailsPage contactDetailsPage;
-
-    private static final String TD_XPATH = "//*[%1$s][text()='%2$s']";
+    private static final String TD_XPATH = "//*[%1$s]//*[text()='%2$s']";
     private static final String INI = "//table[@class='list']/tbody/tr[contains(@class,'dataRow')][";
     private static final String LAST = "]";
     private static final String LINK_CONTACT = "table.list tbody .dataCell a[href*='%s']";
     private static final By HEADERS_BY = By.xpath("//table[@class='list']/tbody/tr[@class='headerRow']/th");
+    private String linkContact = "//table/tbody//tr//td//th//a[text()=' %S']";
+    private String nameContact;
+
     /**
      * Constructor.
      */
@@ -47,17 +55,29 @@ public class ClassicContactsPage extends ContactsPage {
     }
 
     /**
+     *
+     * @param contact
+     */
+    @Override
+    public void setSearch(final String contact) {
+        WebDriverHelper.waitUntil(txtSearch);
+        WebDriverHelper.setElement(txtSearch, contact);
+        nameContact = contact;
+    }
+
+    /**
      * @param contact
      */
     @Override
     public void searchContact(final String contact) {
-
+        setSearch(contact);
+        txtSearch.sendKeys(Keys.ENTER);
     }
 
     /**
-     * Deletes a contact.
+     * Finds a contact.
      * @param idContact
-     * @return
+     * @return element
      */
     @Override
     public WebElement findContactInTable(final String idContact) {
@@ -89,13 +109,24 @@ public class ClassicContactsPage extends ContactsPage {
     }
 
     /**
+     *
+     * @param contact
+     */
+    public void findContact(final String contact) {
+        String text = changeInitials(String.format(linkContact, contact).toLowerCase());
+        WebElement element = getDriver().findElement(By.xpath(changeInitials(text.replaceAll("=' ", "='"))));
+        WebDriverHelper.waitUntil(element);
+        WebDriverHelper.clickElement(element);
+    }
+
+    /**
      * Creates Locator.
      * @param contactInfo
      * @return rowXpathLocator
      */
     @Override
     public String createLocator(final HashMap<String, String> contactInfo) {
-        contactInfo.put("Name", contactInfo.get("Lastname") + ", " + contactInfo.get("Firstname"));
+        contactInfo.put("Name", contactInfo.get("Firstname") + " " + contactInfo.get("Lastname"));
         System.out.println(contactInfo);
         Map<String, String> map = compareMap(contactInfo);
         String rowXpathLocator = map.entrySet().stream().map(entry ->
@@ -132,5 +163,38 @@ public class ClassicContactsPage extends ContactsPage {
             }
         }
         return map;
+    }
+
+    /**
+     *
+     * @param id
+     */
+    public void selectContact(final String id) {
+        findContact(nameContact);
+    }
+
+    /**
+     *
+     * @param id
+     * @return name
+     */
+    @Override
+    public String getContactName(final String id) {
+        return WebDriverHelper.getTextElement(nameTitle);
+    }
+
+    /**
+     *
+     * @param text
+     * @return text
+     */
+    public String changeInitials(final String text) {
+        String[] split = text.split("");
+        for (int i = 0; i < split.length; i++) {
+            if (i == 0 || split[i - 1].equals(" ")) {
+                split[i] = split[i].toUpperCase();
+            }
+        }
+        return String.join("", split);
     }
 }

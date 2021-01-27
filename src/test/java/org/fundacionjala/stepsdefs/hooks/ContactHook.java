@@ -19,13 +19,23 @@ public class ContactHook {
     /**
      * BeforeHook that Creates a contact.
      */
-    @Before(value = "@createContact")
-    public void createContact() throws IOException {
+    @Before(value = "@createContactRelatedToAccount")
+    public void createContactRelatedAccount() throws IOException {
         Map<String, String> data = JsonContact.getInstance().getDataAsAMap("ContactTest");
         data.put("AccountId",context.getAccount().getIdAccount());
         Response response = RequestManager.post("Contact", data.toString());
         context.getContact().processInformation(data);
         context.getContact().setIdContact(response.jsonPath().get("id").toString());
+        context.saveData(response.asString());
+    }
+
+    @Before(value = "@createContact")
+    public void createContact() throws IOException {
+        Map<String, String> data = JsonContact.getInstance().getDataAsAMap("Contact");
+        Response response = RequestManager.post("Contact", data.toString());
+        context.getContact().setIdContact(response.jsonPath().get("id").toString());
+        this.context.saveData(response.asString());
+        response = RequestManager.get("contact/"+context.getValueData("id"));
         context.saveData(response.asString());
     }
 

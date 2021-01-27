@@ -8,21 +8,11 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class CommonHooks {
 
-//    @After
-//    public void close() {
-//        WebDriverManager.getInstance().getWebDriver().quit();
-//    }
-//
-//    @After(value = "@clearRecycleBin")
-//    public void clearRecycleBin() {
-//        WebDriverManager.getInstance().getWebDriver().quit();
-//    }
-
     /**
      * Take screenShoot after each failed scenario.
      * @param scenario
      */
-    @After(value = "@Functional")
+    @After
     public void takeScreenshot(final Scenario scenario) {
         String screensHostName = scenario.getName().replaceAll(" ", "_");
         if (scenario.isFailed()) {

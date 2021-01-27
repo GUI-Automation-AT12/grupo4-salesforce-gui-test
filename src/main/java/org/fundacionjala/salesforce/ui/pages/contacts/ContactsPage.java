@@ -51,4 +51,22 @@ public abstract class ContactsPage extends BasePage {
      */
     public abstract ContactDetailsPage navigateToContactsDetailsPage(String idContact);
 
+    /**
+     *
+     * @param id
+     * @return name
+     */
+    public abstract String getContactName(String id);
+
+    /**
+     *
+     * @param contact
+     */
+    public abstract void setSearch(String contact);
+
+    /**
+     *
+     * @param id
+     */
+    public abstract void selectContact(String id);
 }

@@ -16,9 +16,9 @@ public class ContactStepdefs {
     }
 
     @And("I search for the created contact")
-    public void iSearchForTheCreatedContact() throws IOException {
+    public void searchForTheCreatedContact() throws IOException {
         ContactsPage contactsPage = ContactPageFactory.getContactPage();
-        contactsPage.searchContact(context.getValueData("FirstName"));
-        contactsPage.findContactInTable(context.getValueData("Id"));
+        contactsPage.searchContact(context.getValueData("FirstName") + " " + context.getValueData("LastName"));
+       // contactsPage.selectContact(context.getValueData("Id"));
     }
 }
