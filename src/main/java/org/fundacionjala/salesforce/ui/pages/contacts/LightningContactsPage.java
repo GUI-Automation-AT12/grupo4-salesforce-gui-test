@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.concurrent.TimeUnit;
 
 public class LightningContactsPage extends ContactsPage {
 
@@ -40,7 +43,7 @@ public class LightningContactsPage extends ContactsPage {
      */
 
     public LightningContactsPage() {
-
+        WebDriverHelper.waitUntil(search);
     }
 
     /**
