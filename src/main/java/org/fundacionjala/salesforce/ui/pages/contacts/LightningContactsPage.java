@@ -151,9 +151,10 @@ public class LightningContactsPage extends ContactsPage {
      */
     public void selectContact(final String id) {
         try {
-        WebElement contact = getDriver().findElement(By.xpath(String.format(contactListed, id)));
-        WebDriverHelper.waitUntil(contact);
-        WebDriverHelper.clickElement(contact);
+            WebElement contact = getDriver().findElement(By.xpath(String.format(contactListed, id)));
+            WebDriverHelper.waitUntil(contact);
+            Thread.sleep(2000);
+            WebDriverHelper.clickElement(contact);
         } catch (Exception ex) {
             WebDriverHelper.clickElement(By.xpath(String.format(contactListed, id)));
         }

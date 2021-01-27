@@ -1,5 +1,7 @@
 package org.fundacionjala.salesforce.entities;
 
+import org.fundacionjala.core.utils.DateHelper;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -86,35 +88,32 @@ public class Task {
         return dueDate;
     }
 
-    /**
-     *
-     * @param newDueDate
-     */
-    public void setDueDate(final String newDueDate) {
-        this.dueDate = newDueDate;
+    public void setDueDate(String dueDate) {
+        DateHelper date = new DateHelper();
+        this.dueDate = date.getDate(dueDate);
     }
 
     /**
-     * Process user's information as a map.
-     * @param userInformation
+     * Process task's information as a map.
+     * @param taskInformation
      */
-    public void processInformation(final Map<String, String> userInformation) {
-        HashMap<String, Runnable> strategyMap = composeStrategySetter(userInformation);
-        userInformation.keySet().forEach(key -> strategyMap.get(key).run());
+    public void processInformation(final Map<String, String> taskInformation) {
+        HashMap<String, Runnable> strategyMap = composeStrategySetter(taskInformation);
+        taskInformation.keySet().forEach(key -> strategyMap.get(key).run());
     }
 
     /**
      * Compose a strategy map.
-     * @param userInformation
+     * @param taskInformation
      * @return a map of strategyMap
      */
-    private HashMap<String, Runnable> composeStrategySetter(final Map<String, String> userInformation) {
+    private HashMap<String, Runnable> composeStrategySetter(final Map<String, String> taskInformation) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
-        strategyMap.put("Subject", () -> setSubject(userInformation.get("Subject")));
-        strategyMap.put("Related with", () -> setRelatedWith(userInformation.get("Related with")));
-        strategyMap.put("Related value ", () -> setRelatedValue(userInformation.get("Related value ")));
-        strategyMap.put("State", () -> setState(userInformation.get("State")));
-        strategyMap.put("Expiration date", () -> setDueDate(userInformation.get("Expiration date")));
+        strategyMap.put("Subject", () -> setSubject(taskInformation.get("Subject")));
+        strategyMap.put("Related with", () -> setRelatedWith(taskInformation.get("Related with")));
+        strategyMap.put("Related value", () -> setRelatedValue(taskInformation.get("Related value")));
+        strategyMap.put("Status", () -> setState(taskInformation.get("Status")));
+        strategyMap.put("Expiration date", () -> setDueDate(taskInformation.get("Expiration date")));
         return strategyMap;
     }
 }

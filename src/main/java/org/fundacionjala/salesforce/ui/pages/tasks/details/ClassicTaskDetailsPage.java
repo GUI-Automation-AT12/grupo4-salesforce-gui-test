@@ -4,12 +4,33 @@ import org.fundacionjala.salesforce.entities.Task;
 
 public class ClassicTaskDetailsPage extends TaskDetailsPage {
 
-    /**
-     *
-     * @param task
-     */
+
+    public ClassicTaskDetailsPage() {
+        task = new Task();
+    }
+    
     @Override
     public void validateTaskInformation(final Task task) {
 
+    }
+
+    @Override
+    public boolean getTextSubject() {
+        return false;
+    }
+
+    @Override
+    public boolean getTextDueDate() {
+        return false;
+    }
+
+    @Override
+    public boolean getTextStatus() {
+        return false;
+    }
+
+    @Override
+    public boolean getTextRelatedTo() {
+        return false;
     }
 }

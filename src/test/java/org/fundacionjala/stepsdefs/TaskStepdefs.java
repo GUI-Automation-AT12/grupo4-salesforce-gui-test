@@ -10,6 +10,8 @@ import org.fundacionjala.salesforce.ui.pages.tasks.TaskPageFactory;
 import org.fundacionjala.salesforce.ui.pages.tasks.details.TaskDetailsFactory;
 import org.fundacionjala.salesforce.ui.pages.tasks.details.TaskDetailsPage;
 import org.fundacionjala.salesforce.ui.transporter.TransporterPage;
+import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.util.Map;
 
@@ -30,14 +32,20 @@ public class TaskStepdefs {
 
     @Then("The task should be displayed on Tasks page")
     public void theTaskShouldBeDisplayedOnTasksPage() throws Exception {
-        TransporterPage.navigateToPage("Task");
-        TaskPage tsk = TaskPageFactory.getContactDetailsPage();
-        tsk.verifyTask(context.getTask());
+        ContactDetailsPage contactDetailsPage = ContactDetailsPageFactory.getContactDetailsPage();
+        contactDetailsPage.selectCreatedTask(context.getTask());
     }
 
     @And("The task's information should match")
     public void theTaskSInformationShouldMatch() {
         TaskDetailsPage taskDetailsPage = TaskDetailsFactory.getTaskDetailsPage();
         taskDetailsPage.validateTaskInformation(context.getTask());
+        SoftAssert softAssertion= new SoftAssert();
+        Boolean flag = taskDetailsPage.getTextDueDate();
+        softAssertion.assertTrue(taskDetailsPage.getTextDueDate());
+        softAssertion.assertTrue(taskDetailsPage.getTextRelatedTo());
+        softAssertion.assertTrue(taskDetailsPage.getTextStatus());
+        softAssertion.assertTrue(taskDetailsPage.getTextSubject());
+        softAssertion.assertAll();
     }
 }
