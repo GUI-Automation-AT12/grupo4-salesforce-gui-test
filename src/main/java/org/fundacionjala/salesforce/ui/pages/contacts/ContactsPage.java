@@ -1,17 +1,72 @@
 package org.fundacionjala.salesforce.ui.pages.contacts;
 
 import org.fundacionjala.salesforce.ui.pages.BasePage;
+import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.ContactDetailsPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.HashMap;
 
 public abstract class ContactsPage extends BasePage {
 
-    public abstract void setSearch(final String contact);
+    /**
+     *
+     * @param contact
+     */
+    public abstract void searchContact(String contact);
 
-    public abstract void searchContact(final String contact);
+    /**
+     *
+     * @param idContact
+     * @return element
+     */
+    public abstract WebElement findContactInTable(String idContact);
 
-    public abstract void findContact(String contact);
+    /**
+     *
+     * @param contact
+     */
+    public abstract void deleteContact(String contact);
 
-    public abstract void selectContact(final String id);
+    /**
+     * Verify if Information is displayed in the table.
+     * @param contactInfo
+     * @return isDisplayed
+     */
+    public boolean isContactInformationDisplayed(final HashMap<String, String> contactInfo) {
+        return getDriver().findElement(By.xpath(createLocator(contactInfo))).isDisplayed();
+    }
 
-    public abstract String getContactName(final String id);
+    /**
+     * Creates Locator.
+     * @param contactInfo
+     * @return locator
+     */
+    public abstract String createLocator(HashMap<String, String> contactInfo);
 
+    /**
+     * Gets ContactDetailsAbstractPage.
+     * @param idContact
+     * @return ContactDetailsAbstractPage
+     */
+    public abstract ContactDetailsPage navigateToContactsDetailsPage(String idContact);
+
+    /**
+     *
+     * @param id
+     * @return name
+     */
+    public abstract String getContactName(String id);
+
+    /**
+     *
+     * @param contact
+     */
+    public abstract void setSearch(String contact);
+
+    /**
+     *
+     * @param id
+     */
+    public abstract void selectContact(String id);
 }

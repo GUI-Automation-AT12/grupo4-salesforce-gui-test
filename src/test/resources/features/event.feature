@@ -3,7 +3,7 @@ Feature: Create an event
   Background:
     Given I log in to Salesforce with valid user credentials
 
-  @createContact @createCampaign @deleteContact @DeleteCampaign @deleteEvent
+  @createAccount @createContact @createCampaign @deleteContact @DeleteCampaign @deleteEvent
   Scenario: Create a event with a contact related to a Campaign in Calendar Page
     When I navigate to Calendar page
     And I create the event with the following information

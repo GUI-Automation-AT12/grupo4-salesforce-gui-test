@@ -84,6 +84,14 @@ public class APIEnvironment extends PropertiesFileReader {
      * Gets the BaseUrl from the file.properties.
      * @return base url.
      */
+    public String getAPIBaseUrl() {
+        return super.getProperty("baseUrlAPI");
+    }
+
+    /**
+     * Gets the BaseUrl from the file.properties.
+     * @return base url.
+     */
     public String getBaseUrlClassic() {
         return super.getProperty("baseUrlClassic");
     }

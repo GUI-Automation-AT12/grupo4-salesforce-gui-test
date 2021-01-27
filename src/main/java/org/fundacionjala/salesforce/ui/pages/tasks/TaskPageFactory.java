@@ -4,8 +4,15 @@ import org.fundacionjala.salesforce.config.APIEnvironment;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TaskPageFactory {
+public final class TaskPageFactory {
     private static Map<String, TaskPage> contactDetailsMap = new HashMap<>();
+
+    /**
+     * Constructor.
+     */
+    private TaskPageFactory() {
+    }
+
     static {
         contactDetailsMap.put("lightning", new LightningTaskPage());
         contactDetailsMap.put("classic", new ClassicTaskPage());

@@ -5,9 +5,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
-    protected WebDriver driver;
+
+    private WebDriver driver;
+
+    /**
+     * Constructor.
+     */
     protected BasePage() {
         driver = WebDriverManager.getInstance().getWebDriver();
         PageFactory.initElements(driver, this);
+    }
+
+    /**
+     *
+     *
+     * @return driver
+     */
+    public WebDriver getDriver() {
+        return driver;
     }
 }

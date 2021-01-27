@@ -4,8 +4,10 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.restassured.response.Response;
 import org.fundacionjala.core.client.RequestManager;
+import org.fundacionjala.core.utils.JsonContact;
 import org.fundacionjala.salesforce.context.Context;
 import java.io.IOException;
+import java.util.Map;
 
 public class ContactHook {
     private Context context;
@@ -15,11 +17,23 @@ public class ContactHook {
     }
 
     /**
-     * Create a contact
+     * BeforeHook that Creates a contact.
      */
+    @Before(value = "@createContactRelatedToAccount")
+    public void createContactRelatedAccount() throws IOException {
+        Map<String, String> data = JsonContact.getInstance().getDataAsAMap("ContactTest");
+        data.put("AccountId",context.getAccount().getIdAccount());
+        Response response = RequestManager.post("Contact", data.toString());
+        context.getContact().processInformation(data);
+        context.getContact().setIdContact(response.jsonPath().get("id").toString());
+        context.saveData(response.asString());
+    }
+
     @Before(value = "@createContact")
     public void createContact() throws IOException {
-        Response response = RequestManager.post("Contact", "{\"firstName\" : \"Contacto\", \"lastName\" : \"Example Account\"}");
+        Map<String, String> data = JsonContact.getInstance().getDataAsAMap("Contact");
+        Response response = RequestManager.post("Contact", data.toString());
+        context.getContact().setIdContact(response.jsonPath().get("id").toString());
         this.context.saveData(response.asString());
         response = RequestManager.get("contact/"+context.getValueData("id"));
         context.saveData(response.asString());
@@ -29,7 +43,7 @@ public class ContactHook {
      * AfterHook that deletes a created contact.
      */
     @After(value = "@deleteContact")
-    public void deleteAccount() {
-        Response response = RequestManager.delete("Contact/".concat(context.getValueData("Id")));
+    public void deleteContact() {
+        RequestManager.delete("Contact/" + context.getContact().getIdContact());
     }
 }

@@ -4,15 +4,21 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fundacionjala.core.client.RequestManager;
+import org.fundacionjala.salesforce.entities.Account;
 import org.fundacionjala.salesforce.entities.Contact;
 import org.fundacionjala.salesforce.entities.Task;
 import org.fundacionjala.salesforce.utils.AuthenticationUtils;
-
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Iterator;
+import java.util.Collection;
 
 public class Context {
     private Contact contact;
+    private Account account;
     private Map<String, String> data;
     private Map<String, Map<String, String>> mapData;
     private ObjectMapper map;
@@ -23,12 +29,13 @@ public class Context {
      */
     public Context() {
         this.contact = new Contact();
+        this.account = new Account();
         this.task = new Task();
         this.data = new HashMap<>();
         this.mapData = new HashMap<>();
         this.map = new ObjectMapper();
         RequestManager.setRequestSpec(AuthenticationUtils.getLoggedReqSpec());
-        data.put("instanceUrl",AuthenticationUtils.getInstanceUrl());
+        data.put("instanceUrl", AuthenticationUtils.getInstanceUrl());
     }
 
     /**
@@ -99,6 +106,7 @@ public class Context {
     public Map<String, String> getData() {
         return data;
     }
+
     /**
      * Sets data map.
      *
@@ -110,7 +118,7 @@ public class Context {
 
     /**
      *
-     * @return
+     * @return task
      */
     public Task getTask() {
         return this.task;
@@ -118,9 +126,41 @@ public class Context {
 
     /**
      *
-     * @return
+     * @param  newTask
      */
-    public void setTask(Task task) {
-        this.task = task;
+    public void setTask(final Task newTask) {
+        this.task = newTask;
+    }
+
+    /**
+     *
+     * @return account
+     */
+    public Account getAccount() {
+        return account;
+    }
+
+    /**
+     *
+     * @param newContact
+     */
+    public void setContact(final Contact newContact) {
+        this.contact = newContact;
+    }
+
+    /**
+     *
+     * @param newAccount
+     */
+    public void setAccount(final Account newAccount) {
+        this.account = newAccount;
+    }
+
+    /**
+    *
+     * @return contact
+     */
+    public Contact getContact() {
+        return contact;
     }
 }

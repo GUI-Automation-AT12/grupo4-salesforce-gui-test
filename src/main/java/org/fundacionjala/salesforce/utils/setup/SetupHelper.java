@@ -24,10 +24,14 @@ public class SetupHelper {
     private SetupReader setupReader;
     private static Map<String, String> elementName = new HashMap<>();
     static {
-        elementName.put(CONTACT_ENDPOINT,"LastName,firstName");
-        elementName.put(CAMPAIGN_ENDPOINT,"Name");
-        elementName.put(OPPORTUNITY_ENDPOINT,"Name");
+        elementName.put(CONTACT_ENDPOINT, "LastName, firstName");
+        elementName.put(CAMPAIGN_ENDPOINT, "Name");
+        elementName.put(OPPORTUNITY_ENDPOINT, "Name");
     }
+
+    /**
+     * Constructor.
+     */
     public SetupHelper() {
         RequestManager.setRequestSpec(AuthenticationUtils.getLoggedReqSpec());
         setupReader = new SetupReader();
@@ -66,28 +70,24 @@ public class SetupHelper {
      * @param endpoint
      * @param jsonList
      */
-    private static void sendRequests(final String endpoint, List<JSONObject> jsonList) {
+    private static void sendRequests(final String endpoint, final List<JSONObject> jsonList) {
         try {
             Response resp = RequestManager.get(endpoint);
             Context context  = new Context();
             context.saveData(resp.asString());
             Map<String, String> data = context.getData();
             List<JSONObject> list = jsonList;
-            for(JSONObject json : jsonList)
-            {
-                String [] array = elementName.get(endpoint).split(",");
+            for (JSONObject json : jsonList) {
+                String[] array = elementName.get(endpoint).split(",");
                 String name = "";
-                for (int i = 0; i < array.length; i++)
-                {
+                for (int i = 0; i < array.length; i++) {
                     name += json.getString(array[i]);
-                    if(i < array.length-1)
-                    {
+                    if (i < array.length - 1) {
                         name += ", ";
                     }
                 }
-                if (!existsElement(name, resp))
-                {
-                    Response response = RequestManager.post(endpoint,json.toString());
+                if (!existsElement(name, resp)) {
+                    Response response = RequestManager.post(endpoint, json.toString());
                 }
             }
         } catch (IOException e) {
@@ -95,16 +95,14 @@ public class SetupHelper {
         }
     }
 
-    private static Boolean existsElement(String elementName, Response response) {
+    private static Boolean existsElement(final String newElementName, final Response response) {
         boolean exists = false;
         JSONObject responseAsJson = new JSONObject(response.asString());
         JSONArray listOfElements = new JSONArray(responseAsJson.getJSONArray("recentItems").toString());
-        for(int i = 0; i < listOfElements.length(); i++)
-        {
+        for (int i = 0; i < listOfElements.length(); i++) {
             JSONObject elementInList = listOfElements.getJSONObject(i);
             String name = elementInList.getString("Name");
-            if(name.equals(elementName))
-            {
+            if (name.equals(newElementName)) {
                 exists = true;
             }
         }

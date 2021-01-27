@@ -4,9 +4,16 @@ import org.fundacionjala.salesforce.config.APIEnvironment;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TaskDetailsFactory {
+public final class TaskDetailsFactory {
 
     private static Map<String, TaskDetailsPage> taskDetailsMap = new HashMap<>();
+
+    /**
+     * Constructor.
+     */
+    private TaskDetailsFactory() {
+    }
+
     static {
         taskDetailsMap.put("lightning", new LightningTaskDetailsPage());
         taskDetailsMap.put("classic", new ClassicTaskDetailsPage());

@@ -1,17 +1,21 @@
-package org.fundacionjala.salesforce.ui.pages.contacts.details;
+package org.fundacionjala.salesforce.ui.pages.contacts.contactdetails;
 
 import org.fundacionjala.salesforce.config.APIEnvironment;
 import org.fundacionjala.salesforce.ui.pages.BasePage;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ContactDetailsPageFactory extends BasePage {
-
+    /**
+     * Constructor.
+     */
     public ContactDetailsPageFactory() {
 
     }
 
     private static Map<String, ContactDetailsPage> contactDetailsMap = new HashMap<>();
+
     static {
         contactDetailsMap.put("lightning", new LightningContactDetailPage());
         contactDetailsMap.put("classic", new ClassicContactDetailsPage());

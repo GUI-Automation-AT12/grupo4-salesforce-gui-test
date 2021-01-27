@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * [RH] Date helper
+ * [RH] Date helper.
  */
 public class DateHelper {
 
@@ -15,7 +15,11 @@ public class DateHelper {
     private Map<String, String> dates;
     private static DateFormat calendarDay;
     private Calendar calendar;
+    private static final int DOS = -2;
 
+    /**
+     * Constructor.
+     */
     public DateHelper() {
         actualDate = new Date();
         calendar =  Calendar.getInstance();
@@ -35,11 +39,11 @@ public class DateHelper {
     /**
      * set days in the map.
      */
-    private void setMapDates(){
+    private void setMapDates() {
         setCalendar("TODAY", 0);
         setCalendar("YESTERDAY", -1);
         setCalendar("TOMORROW", 1);
-        setCalendar("2 DAYS AGO", -2);
+        setCalendar("2 DAYS AGO", DOS);
         setCalendar("2 DAYS FROM NOW", 2);
     }
 
@@ -50,7 +54,7 @@ public class DateHelper {
      */
     private void setCalendar(final String date, final int days) {
         calendar.setTime(actualDate);
-        calendar.add(Calendar.DAY_OF_YEAR,days);
+        calendar.add(Calendar.DAY_OF_YEAR, days);
         dates.put(date, calendarDay.format(calendar.getTime()));
     }
 }

@@ -1,84 +1,72 @@
 package org.fundacionjala.stepsdefs;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.response.Response;
-import org.fundacionjala.core.client.RequestManager;
-import org.fundacionjala.core.selenium.WebDriverManager;
-import org.fundacionjala.salesforce.config.APIEnvironment;
+import org.fundacionjala.core.utils.JsonAccount;
 import org.fundacionjala.salesforce.context.Context;
-import org.fundacionjala.salesforce.ui.pages.Init.InitialPage;
 import org.fundacionjala.salesforce.ui.pages.contacts.ContactPageFactory;
+import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.ContactDetailsPage;
 import org.fundacionjala.salesforce.ui.pages.contacts.ContactsPage;
-import org.fundacionjala.salesforce.ui.pages.home.HomePage;
-import org.fundacionjala.salesforce.ui.pages.login.LoginPage;
+import org.fundacionjala.salesforce.ui.pages.recycle.RecycleBinPage;
+import org.fundacionjala.salesforce.ui.pages.recycle.RecycleBinPageFactory;
 import org.fundacionjala.salesforce.ui.transporter.TransporterPage;
-import org.fundacionjala.salesforce.utils.AuthenticationUtils;
-
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.util.HashMap;
+import static org.testng.Assert.assertTrue;
 
 public class RecycleBinStepdefs {
-    private InitialPage initialPage;
-    private LoginPage loginPage;
-    private HomePage homePage;
+
+    private ContactDetailsPage contactDetailsPage;
+    private RecycleBinPage recycleBinPage = RecycleBinPageFactory.getRecycleBinPage();
+    private ContactsPage contactsPage = ContactPageFactory.getContactPage();
     private Context context;
-    private ContactsPage contactsPage;
 
     public RecycleBinStepdefs(final Context context) {
         this.context = context;
     }
 
-    @Given("^I log in Salesforce with (.*?) User credentials$")
-    public void logInTrelloWithValidCredentials(final String typeUser) throws MalformedURLException {
-        WebDriverManager.getInstance().getWebDriver().get("https://www.salesforce.com/");
-        initialPage = new InitialPage();
-        loginPage = initialPage.goToLogin();
-        loginPage.waitUntilPageIsLoaded();
-        homePage = loginPage.login(APIEnvironment.getInstance().getUsername(),
-                APIEnvironment.getInstance().getPassword());
+    @When("^I navigate to (.*?) page$")
+    public void navigateToContactsPage(final String page) throws Exception {
+        TransporterPage.navigateToPage(page);
     }
 
-    @When("I navigate to Contacts page")
-    public void iNavigateToContactsPage() throws Exception {
-        TransporterPage.navigateToPage("Contacts");
-    }
-
-    @And("I search the Test Contact on Contacts page")
+    @When("I search the Contact on Contacts page")
     public void searchTheTestContactOnContactsPage() throws IOException {
-        contactsPage = ContactPageFactory.getContactPage();
-        Response response = RequestManager.get("contact/" + context.getValueData("id"));
-        context.saveData(response.asString());
-        contactsPage.searchContact(context.getValueData("FirstName"));
-        //contactsPage.findContact(context.getValueData("FirstName") + " " + context.getValueData("LastName"));
+        contactsPage.searchContact(context.getContact().getFirstname());
     }
 
-    @And("I delete the Test Contact on Contacts page")
+    @Then("the contact information should match with the contact information on table of Contacts page")
+    public void verifyContactInformationShouldMatchWithTheContactInformationOnTable() {
+        HashMap<String, String> data = new HashMap<>();
+        data.put("Firstname", context.getContact().getFirstname());
+        data.put("Lastname" , context.getContact().getLastName());
+        data.put("Account Name", context.getAccount().getName());
+        data.put("Account Site", context.getAccount().getSite());
+        data.put("Phone", context.getContact().getPhone());
+        data.put("Email", context.getContact().getEmail());
+        assertTrue(contactsPage.isContactInformationDisplayed((data)));
+    }
+
+    @When("I select the contact")
+    public void selectTheContact() {
+        contactDetailsPage = contactsPage
+                .navigateToContactsDetailsPage(context.getContact().getIdContact());
+    }
+
+    @When("I delete the contact on ContactDetails page")
     public void iDeleteTheTestContactOnContactsPage() {
+        contactDetailsPage.deleteContact();
 
-    }
-
-    @And("I navigate to Recycle Bin page")
-    public void iNavigateToRecycleBinPage() {
     }
 
     @Then("the deleted Contact should be displayed on Recycle bin page")
     public void theDeletedContactShouldBeDisplayedOnRecycleBinPage() {
+        assertTrue(recycleBinPage.findRecord(JsonAccount.getInstance().getDataAsAMap("ContactTest")));
     }
 
-    @And("the contact information should match with the contact information on table of Recycle bin page")
+    @Then("the contact information should match with the contact information on table of Recycle bin page")
     public void theContactInformationShouldMatchWithTheContactInformationOnTableOfRecycleBinPage() {
+        assertTrue(recycleBinPage.isContactInformationDisplayed(
+                (HashMap<String, String>) JsonAccount.getInstance().getDataAsAMap("ContactTest")));
     }
-
-    @And("I delete the created Contact on Contacts page")
-    public void iDeleteTheCreatedContactOnContactsPage() {
-
-    }
-
-    @And("the contact deleted date should match with the time of the deleted element")
-    public void theContactDeletedDateShouldMatchWithTheTimeOfTheDeletedElement() {
-    }
-
 }

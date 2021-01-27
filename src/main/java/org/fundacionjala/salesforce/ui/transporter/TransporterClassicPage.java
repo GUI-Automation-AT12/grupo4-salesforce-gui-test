@@ -7,8 +7,9 @@ public class TransporterClassicPage extends Transporter {
      * [JS] Constructor.
      */
     public TransporterClassicPage() {
-        setUrl("Reports", "00O/o");
+        setUrl("Reports", "o/00O/o");
         setUrl("Contacts", "003/o");
+        setUrl("Recycle Bin", "search/UndeletePage");
     }
 
     /**
