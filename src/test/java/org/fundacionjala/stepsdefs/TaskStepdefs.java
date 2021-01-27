@@ -9,8 +9,6 @@ import org.fundacionjala.salesforce.ui.pages.tasks.TaskPage;
 import org.fundacionjala.salesforce.ui.pages.tasks.TaskPageFactory;
 import org.fundacionjala.salesforce.ui.pages.tasks.details.TaskDetailsFactory;
 import org.fundacionjala.salesforce.ui.pages.tasks.details.TaskDetailsPage;
-import org.fundacionjala.salesforce.ui.transporter.TransporterPage;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.Map;
@@ -39,9 +37,9 @@ public class TaskStepdefs {
     @And("The task's information should match")
     public void theTaskSInformationShouldMatch() {
         TaskDetailsPage taskDetailsPage = TaskDetailsFactory.getTaskDetailsPage();
-        taskDetailsPage.validateTaskInformation(context.getTask());
         SoftAssert softAssertion= new SoftAssert();
-        Boolean flag = taskDetailsPage.getTextDueDate();
+        taskDetailsPage.validateTaskInformation(context.getTask());
+        softAssertion.assertTrue(taskDetailsPage.validateTaskInformation(context.getTask()));
         softAssertion.assertTrue(taskDetailsPage.getTextDueDate());
         softAssertion.assertTrue(taskDetailsPage.getTextRelatedTo());
         softAssertion.assertTrue(taskDetailsPage.getTextStatus());

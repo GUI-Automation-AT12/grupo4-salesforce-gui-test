@@ -15,6 +15,7 @@ public class Task {
     private String relatedValue;
     private String state;
     private String dueDate;
+    private String creationDate;
 
     /**
      *
@@ -86,6 +87,14 @@ public class Task {
      */
     public String getDueDate() {
         return dueDate;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 
     public void setDueDate(String dueDate) {

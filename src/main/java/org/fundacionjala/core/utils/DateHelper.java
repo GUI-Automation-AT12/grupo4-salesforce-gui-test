@@ -15,6 +15,8 @@ public class DateHelper {
     private static Date actualDate;
     private Map<String, String> dates;
     private static DateFormat calendarDay;
+    private static DateFormat day;
+    private static DateFormat hour;
     private Calendar calendar;
     private static final int DOS = -2;
 
@@ -25,6 +27,8 @@ public class DateHelper {
         actualDate = new Date();
         calendar =  Calendar.getInstance();
         calendarDay = new SimpleDateFormat("dd/MM/yyyy");
+        day = new SimpleDateFormat("dd/MM/yyyy");
+        hour = new SimpleDateFormat("HH:mm");
         dates = new HashMap();
         setMapDates();
     }
@@ -35,7 +39,7 @@ public class DateHelper {
      * @return date
      */
     public String getDate(final String date) {
-        return dates.get(date);
+        return removeZeros(dates.get(date));
     }
 
     /**
@@ -59,4 +63,24 @@ public class DateHelper {
         calendar.add(Calendar.DAY_OF_YEAR, days);
         dates.put(date, calendarDay.format(calendar.getTime()));
     }
+
+    public static String getActualDate() {
+        return removeZeros(day.format(actualDate)) +" "+ hour.format(actualDate);
+    }
+
+    private static String removeZeros(String date) {
+        String newDate="";
+        String [] dateSplit = date.split("/");
+        for (int i =0 ; i < dateSplit.length; i++)
+        {
+            newDate += dateSplit[i].replaceFirst("^0+(?!$)", "");
+            if(i < dateSplit.length-1)
+            {
+                newDate += "/";
+            }
+        }
+        return newDate;
+    }
+
+
 }

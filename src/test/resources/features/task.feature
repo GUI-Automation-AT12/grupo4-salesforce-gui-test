@@ -4,9 +4,8 @@
   Background:
     Given I log in Salesforce with valid User credentials
 
-    @createContact @deleteContact @setup
+    @createContact @deleteContact
     Scenario: I validate the task information
-      Given I created a valid campaign
       When I navigate to Contacts page
       And I search for the created contact
       And I create a task with the following data

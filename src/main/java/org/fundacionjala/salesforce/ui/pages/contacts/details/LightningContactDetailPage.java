@@ -2,6 +2,7 @@ package org.fundacionjala.salesforce.ui.pages.contacts.details;
 
 import org.fundacionjala.core.selenium.WebDriverHelper;
 import org.fundacionjala.core.selenium.WebDriverManager;
+import org.fundacionjala.core.utils.DateHelper;
 import org.fundacionjala.core.utils.JavascriptHelper;
 import org.fundacionjala.salesforce.entities.Task;
 import org.openqa.selenium.By;
@@ -70,6 +71,7 @@ public class LightningContactDetailPage extends ContactDetailsPage {
         relatedTo();
         JavascriptHelper.clickElement(driver.findElement(By.xpath(status)));
         JavascriptHelper.clickElement(driver.findElement(By.xpath(String.format(StatusList, task.getState()))));
+        task.setCreationDate(DateHelper.getActualDate());
         JavascriptHelper.clickElement(driver.findElement(By.xpath(saveTask)));
         selectCreatedTask(task);
     }

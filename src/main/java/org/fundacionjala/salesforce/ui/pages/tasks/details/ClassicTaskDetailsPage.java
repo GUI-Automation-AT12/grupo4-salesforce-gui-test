@@ -8,10 +8,10 @@ public class ClassicTaskDetailsPage extends TaskDetailsPage {
     public ClassicTaskDetailsPage() {
         task = new Task();
     }
-    
-    @Override
-    public void validateTaskInformation(final Task task) {
 
+    @Override
+    public Boolean validateTaskInformation(Task task) {
+        return false;
     }
 
     @Override
