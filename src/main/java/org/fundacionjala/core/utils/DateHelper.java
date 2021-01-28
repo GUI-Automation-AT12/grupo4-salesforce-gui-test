@@ -54,7 +54,7 @@ public class DateHelper {
     }
 
     /**
-     * add a new date in the map.
+     * [RH] add a new date in the map.
      * @param date
      * @param days
      */
@@ -64,23 +64,28 @@ public class DateHelper {
         dates.put(date, calendarDay.format(calendar.getTime()));
     }
 
+    /**
+     * [RH] This method returns the actual date.
+     * @return actual date.
+     */
     public static String getActualDate() {
-        return removeZeros(day.format(actualDate)) +" "+ hour.format(actualDate);
+        return removeZeros(day.format(actualDate)) + " " + hour.format(actualDate);
     }
 
-    private static String removeZeros(String date) {
-        String newDate="";
-        String [] dateSplit = date.split("/");
-        for (int i =0 ; i < dateSplit.length; i++)
-        {
+    /**
+     * [RH] Format date.
+     * @param date
+     * @return date format.
+     */
+    private static String removeZeros(final String date) {
+        String newDate = "";
+        String[] dateSplit = date.split("/");
+        for (int i = 0; i < dateSplit.length; i++) {
             newDate += dateSplit[i].replaceFirst("^0+(?!$)", "");
-            if(i < dateSplit.length-1)
-            {
+            if (i < dateSplit.length - 1) {
                 newDate += "/";
             }
         }
         return newDate;
     }
-
-
 }

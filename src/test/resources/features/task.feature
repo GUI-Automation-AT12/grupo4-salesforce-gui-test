@@ -1,6 +1,4 @@
-
-<<<<<<< HEAD
-=======
+Feature: Validate dates tasks
   Background:
     Given I log in Salesforce with valid User credentials
 
@@ -16,4 +14,4 @@
       |   Status                      |    In Progress              |
       Then The task should be displayed on Tasks page
       And The task's information should match
->>>>>>> 775deb3... soft asserts and steps conflicts solved
+

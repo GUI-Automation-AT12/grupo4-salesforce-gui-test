@@ -14,7 +14,7 @@ public class BasePage {
      */
     protected BasePage() {
         driver = WebDriverManager.getInstance().getWebDriver();
-        javascriptExecutor = (JavascriptExecutor)driver;
+        javascriptExecutor = (JavascriptExecutor) driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -32,7 +32,7 @@ public class BasePage {
      *
      * @return JavascriptExecutor
      */
-    public WebDriver getJavaScriptExecutor() {
+    public JavascriptExecutor getJavaScriptExecutor() {
         return javascriptExecutor;
     }
 }

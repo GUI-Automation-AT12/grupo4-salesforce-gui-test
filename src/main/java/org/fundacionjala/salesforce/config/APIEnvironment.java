@@ -124,8 +124,8 @@ public class APIEnvironment extends PropertiesFileReader {
     }
 
     /**
-     *
-     * @return
+     * This method returns the base url for API.
+     * @return BaseURLAPI.
      */
     public String getBaseUrlAPI() {
         return super.getProperty("baseUrlAPI");

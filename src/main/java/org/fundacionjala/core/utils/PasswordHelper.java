@@ -14,7 +14,7 @@ public class PasswordHelper {
     }
 
     /**
-     * This method encrypts a password.
+     * [RH] This method encrypts a password.
      * @param password
      * @return encrypted password.
      */
@@ -27,7 +27,7 @@ public class PasswordHelper {
     }
 
     /**
-     * This method decrypts a password.
+     * [RH] This method decrypts a password.
      * @param password
      * @return decrypted password.
      */

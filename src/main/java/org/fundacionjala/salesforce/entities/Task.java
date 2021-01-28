@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * [RH] Task entity class.
  */
-public class Task {
+public final class Task {
 
     private String subject;
     private String relatedWith;
@@ -89,15 +89,27 @@ public class Task {
         return dueDate;
     }
 
+    /**
+     * Creation date.
+     * @return creation date.
+     */
     public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    /**
+     * Sets creation date.
+     * @param creationDate
+     */
+    public void setCreationDate(final String creationDate) {
         this.creationDate = creationDate;
     }
 
-    public void setDueDate(String dueDate) {
+    /**
+     * sets Due date.
+     * @param dueDate
+     */
+    public void setDueDate(final String dueDate) {
         DateHelper date = new DateHelper();
         this.dueDate = date.getDate(dueDate);
     }

@@ -3,10 +3,10 @@ package org.fundacionjala.stepsdefs;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.fundacionjala.salesforce.context.Context;
+import org.fundacionjala.salesforce.ui.pages.contacts.ContactPageFactory;
+import org.fundacionjala.salesforce.ui.pages.contacts.ContactsPage;
 import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.ContactDetailsPage;
 import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.ContactDetailsPageFactory;
-import org.fundacionjala.salesforce.ui.pages.tasks.TaskPage;
-import org.fundacionjala.salesforce.ui.pages.tasks.TaskPageFactory;
 import org.fundacionjala.salesforce.ui.pages.tasks.details.TaskDetailsFactory;
 import org.fundacionjala.salesforce.ui.pages.tasks.details.TaskDetailsPage;
 import org.testng.asserts.SoftAssert;
@@ -16,13 +16,15 @@ import java.util.Map;
 public class TaskStepdefs {
     
     private Context context;
-
+    private ContactsPage contactsPage;
     public TaskStepdefs(final Context context) {
         this.context = context;
+        contactsPage = ContactPageFactory.getContactPage();
     }
 
     @And("I create a task with the following data")
     public void iCreateATaskWithTheFollowingData(Map<String, String> taskInformation) {
+        contactsPage.selectContact(context.getValueData("Id"));
         ContactDetailsPage contactDetails = ContactDetailsPageFactory.getContactDetailsPage();
         contactDetails.createTask(taskInformation);
         context.setTask(contactDetails.getTask());

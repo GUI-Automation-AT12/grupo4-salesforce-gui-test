@@ -34,8 +34,7 @@ public class ContactHook {
         Map<String, String> data = JsonContact.getInstance().getDataAsAMap("Contact");
         Response response = RequestManager.post("Contact", data.toString());
         context.getContact().setIdContact(response.jsonPath().get("id").toString());
-        this.context.saveData(response.asString());
-        response = RequestManager.get("contact/"+context.getValueData("id"));
+        response = RequestManager.get("contact/"+context.getContact().getIdContact());
         context.saveData(response.asString());
     }
 
