@@ -1,6 +1,8 @@
 package org.fundacionjala.stepsdefs;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 import org.fundacionjala.salesforce.config.APIEnvironment;
 import org.fundacionjala.salesforce.context.Context;
 import org.fundacionjala.salesforce.ui.pages.Init.InitialPage;
@@ -27,4 +29,10 @@ public class BackgroundStepdefs {
         homePage = loginPage.login(APIEnvironment.getInstance().getUsername(),
                 APIEnvironment.getInstance().getPassword());
     }
+
+    @When("^I navigate to (.*?) page$")
+    public void navigateToContactsPage(final String page) throws Exception {
+        TransporterPage.navigateToPage(page);
+    }
+
 }

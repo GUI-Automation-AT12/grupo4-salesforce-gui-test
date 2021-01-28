@@ -4,9 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fundacionjala.core.client.RequestManager;
-import org.fundacionjala.salesforce.entities.Account;
-import org.fundacionjala.salesforce.entities.Contact;
-import org.fundacionjala.salesforce.entities.Task;
+import org.fundacionjala.salesforce.entities.*;
 import org.fundacionjala.salesforce.utils.AuthenticationUtils;
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,6 +22,8 @@ public class Context {
     private ObjectMapper map;
     private List<Map> dataAsListMap;
     private Task task;
+    private Campaign campaign;
+    private Event event;
     /**
      * Constructor for the Context.
      */
@@ -31,6 +31,8 @@ public class Context {
         this.contact = new Contact();
         this.account = new Account();
         this.task = new Task();
+        this.campaign = new Campaign();
+        this.event = new Event();
         this.data = new HashMap<>();
         this.mapData = new HashMap<>();
         this.map = new ObjectMapper();
@@ -162,5 +164,38 @@ public class Context {
      */
     public Contact getContact() {
         return contact;
+    }
+
+
+    /**
+     *
+     * @return campaign
+     */
+    public Campaign getCampaign() {
+        return campaign;
+    }
+
+    /**
+     *
+     * @param newCampaign
+     */
+    public void setCampaign(Campaign newCampaign) {
+        this.campaign = newCampaign;
+    }
+
+    /**
+     *
+     * @return event
+     */
+    public Event getEvent() {
+        return event;
+    }
+
+    /**
+     *
+     * @param newEvent
+     */
+    public void setEvent(Event newEvent) {
+        this.event = newEvent;
     }
 }

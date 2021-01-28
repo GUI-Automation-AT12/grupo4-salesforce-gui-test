@@ -25,11 +25,6 @@ public class RecycleBinStepdefs {
         this.context = context;
     }
 
-    @When("^I navigate to (.*?) page$")
-    public void navigateToContactsPage(final String page) throws Exception {
-        TransporterPage.navigateToPage(page);
-    }
-
     @When("I search the Contact on Contacts page")
     public void searchTheTestContactOnContactsPage() throws IOException {
         contactsPage.searchContact(context.getContact().getFirstname());

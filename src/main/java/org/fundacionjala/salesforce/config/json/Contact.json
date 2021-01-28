@@ -13,5 +13,13 @@
     "Title": "President",
     "Email": "example@salesforce.com",
     "Phone":"55555555"
+  },
+  "CampaignTest": {
+    "Name":"Campaign Testing",
+    "Type": "Conference",
+    "Status": "Planned"
+  },
+  "EventTest": {
+    "Name":"Event Testing"
   }
 }
