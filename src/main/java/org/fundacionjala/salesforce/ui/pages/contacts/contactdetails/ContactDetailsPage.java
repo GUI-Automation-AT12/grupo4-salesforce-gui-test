@@ -2,12 +2,14 @@ package org.fundacionjala.salesforce.ui.pages.contacts.contactdetails;
 
 import org.fundacionjala.salesforce.entities.Task;
 import org.fundacionjala.salesforce.ui.pages.BasePage;
-
 import java.util.Map;
 
+/**
+ * [RH] ContactDetailsPage.
+ */
 public abstract class ContactDetailsPage extends BasePage {
 
-    private Task task;
+    protected Task task;
 
     /**
      *
@@ -39,4 +41,10 @@ public abstract class ContactDetailsPage extends BasePage {
      * Verifies if element is loaded.
      */
     public abstract void waitUntilPageIsLoaded();
+
+    /**
+     *
+     * @param task
+     */
+    public abstract void selectCreatedTask(Task task);
 }

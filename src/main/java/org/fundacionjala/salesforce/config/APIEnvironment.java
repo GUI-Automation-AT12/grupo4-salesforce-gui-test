@@ -122,4 +122,12 @@ public class APIEnvironment extends PropertiesFileReader {
     public String getTypeLayout() {
         return super.getProperty("typeLayout");
     }
+
+    /**
+     * This method returns the base url for API.
+     * @return BaseURLAPI.
+     */
+    public String getBaseUrlAPI() {
+        return super.getProperty("baseUrlAPI");
+    }
 }

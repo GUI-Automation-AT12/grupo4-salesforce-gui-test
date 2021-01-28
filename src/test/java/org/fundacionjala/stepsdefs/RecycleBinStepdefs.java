@@ -10,6 +10,11 @@ import org.fundacionjala.salesforce.ui.pages.contacts.ContactsPage;
 import org.fundacionjala.salesforce.ui.pages.recycle.RecycleBinPage;
 import org.fundacionjala.salesforce.ui.pages.recycle.RecycleBinPageFactory;
 import org.fundacionjala.salesforce.ui.transporter.TransporterPage;
+import org.fundacionjala.salesforce.ui.pages.home.HomePage;
+import org.fundacionjala.salesforce.ui.pages.login.LoginPage;
+import org.fundacionjala.salesforce.ui.transporter.Transporter;
+import org.fundacionjala.salesforce.ui.transporter.TransporterFactory;
+import org.fundacionjala.salesforce.utils.AuthenticationUtils;
 import java.io.IOException;
 import java.util.HashMap;
 import static org.testng.Assert.assertTrue;
@@ -23,11 +28,6 @@ public class RecycleBinStepdefs {
 
     public RecycleBinStepdefs(final Context context) {
         this.context = context;
-    }
-
-    @When("^I navigate to (.*?) page$")
-    public void navigateToContactsPage(final String page) throws Exception {
-        TransporterPage.navigateToPage(page);
     }
 
     @When("I search the Contact on Contacts page")

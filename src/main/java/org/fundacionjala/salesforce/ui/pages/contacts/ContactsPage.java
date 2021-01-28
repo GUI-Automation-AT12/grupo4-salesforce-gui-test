@@ -7,6 +7,9 @@ import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
 
+/**
+ * [RH] Abstract ContactPage.
+ */
 public abstract class ContactsPage extends BasePage {
 
     /**

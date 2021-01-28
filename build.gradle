@@ -30,6 +30,9 @@ dependencies {
     testImplementation group: 'io.qameta.allure', name: 'allure-cucumber6-jvm', version: '2.13.6'
     compile "org.apache.poi:poi:3.17"
     compile "org.apache.poi:poi-ooxml:3.17"
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.141.59'
+
 }
 
 checkstyle {
