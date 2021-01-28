@@ -2,8 +2,6 @@ package org.fundacionjala.salesforce.ui.transporter;
 
 import org.fundacionjala.core.selenium.WebDriverManager;
 import org.fundacionjala.salesforce.config.APIEnvironment;
-
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;

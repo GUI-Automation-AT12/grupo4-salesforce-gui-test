@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * [RH] LightningContactPage.
+ */
 public class LightningContactsPage extends ContactsPage {
 
     @FindBy(xpath = "//input[contains(@id, 'input')] [@name='Contact-search-input']")
@@ -34,13 +37,14 @@ public class LightningContactsPage extends ContactsPage {
     private static final By HEADERS_BY = By.cssSelector("table[data-aura-class='uiVirtualDataTable'] thead tr th");
     private String contactTitle = "//span[contains(text(),'%s')]";
     private String contactListed = "//tbody//a[contains(@href,'%s')]";
+    private static final int SLEEP = 2000;
 
     /**
      * Constructor.
      */
 
     public LightningContactsPage() {
-
+        WebDriverHelper.waitUntil(search);
     }
 
     /**
@@ -148,9 +152,10 @@ public class LightningContactsPage extends ContactsPage {
      */
     public void selectContact(final String id) {
         try {
-        WebElement contact = getDriver().findElement(By.xpath(String.format(contactListed, id)));
-        WebDriverHelper.waitUntil(contact);
-        WebDriverHelper.clickElement(contact);
+            WebElement contact = getDriver().findElement(By.xpath(String.format(contactListed, id)));
+            WebDriverHelper.waitUntil(contact);
+            Thread.sleep(SLEEP);
+            WebDriverHelper.clickElement(contact);
         } catch (Exception ex) {
             WebDriverHelper.clickElement(By.xpath(String.format(contactListed, id)));
         }

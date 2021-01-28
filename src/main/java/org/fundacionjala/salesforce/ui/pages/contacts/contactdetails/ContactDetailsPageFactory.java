@@ -2,11 +2,14 @@ package org.fundacionjala.salesforce.ui.pages.contacts.contactdetails;
 
 import org.fundacionjala.salesforce.config.APIEnvironment;
 import org.fundacionjala.salesforce.ui.pages.BasePage;
-
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * [RH].
+ */
 public class ContactDetailsPageFactory extends BasePage {
+
     /**
      * Constructor.
      */

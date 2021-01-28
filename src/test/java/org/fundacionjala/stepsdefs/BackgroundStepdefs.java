@@ -34,5 +34,4 @@ public class BackgroundStepdefs {
     public void navigateToContactsPage(final String page) throws Exception {
         TransporterPage.navigateToPage(page);
     }
-
 }

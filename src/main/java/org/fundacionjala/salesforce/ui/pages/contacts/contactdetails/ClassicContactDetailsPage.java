@@ -4,9 +4,11 @@ import org.fundacionjala.core.selenium.WebDriverHelper;
 import org.fundacionjala.salesforce.entities.Task;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.Map;
 
+/**
+ * [RH] ClassicContactDetailsPage.
+ */
 public class ClassicContactDetailsPage extends ContactDetailsPage {
 
     @FindBy(css = "input[name='del']")
@@ -63,6 +65,11 @@ public class ClassicContactDetailsPage extends ContactDetailsPage {
     @Override
     public void waitUntilPageIsLoaded() {
         WebDriverHelper.waitUntil(btnDelete);
+    }
+
+    @Override
+    public void selectCreatedTask(final Task task) {
+
     }
 
 }

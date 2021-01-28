@@ -9,9 +9,8 @@
   },
   "Contact": {
     "Firstname":"Jhon",
-    "Lastname": "Smith",
+    "Lastname": "Smith created By API",
     "Title": "President",
-    "Email": "example@salesforce.com",
     "Phone":"55555555"
   },
   "CampaignTest": {
