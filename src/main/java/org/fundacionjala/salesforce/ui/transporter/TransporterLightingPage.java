@@ -14,6 +14,7 @@ public class TransporterLightingPage extends Transporter {
         setUrl("Reports", "o/Report/home?queryScope=mru");
         setUrl("Calendar", "o/Event/home");
         setUrl("Recycle Bin", "o/DeleteEvent/list?filterName=");
+        setUrl("Products", "o/Product2/list?filterName=Recent");
     }
 
     /**

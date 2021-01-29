@@ -1,26 +1,26 @@
 package org.fundacionjala.salesforce.ui.pages.Calendar;
 
 import org.fundacionjala.core.selenium.WebDriverHelper;
+import org.fundacionjala.core.selenium.WebDriverManager;
+import org.fundacionjala.core.utils.JavascriptHelper;
+import org.fundacionjala.salesforce.entities.Event;
+import org.fundacionjala.salesforce.ui.pages.Calendar.details.ClassicEventDeatilPage;
+import org.fundacionjala.salesforce.ui.pages.Calendar.details.EventDetailPage;
 import org.fundacionjala.salesforce.ui.pages.Calendar.popup.ClassicCreateEventPopup;
 import org.fundacionjala.salesforce.ui.pages.Calendar.popup.CreateEventPopup;
-import org.fundacionjala.salesforce.ui.pages.Calendar.popup.LightningCreateEventPopup;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ClassicCalendarPage extends CalendarPage {
 
     @FindBy(css = "a[title='New Event']")
     private WebElement btnNewEvent;
 
-//    private String xpathLink  = "//tr//a[contains(text(),'%s')]";
-//
-//    private ClassicContactDetailsPage contactDetailsPage;
-//
-//    private static final String TD_XPATH = "//*[%1$s][text()='%2$s']";
-//    private static final String INI = "//table[@class='list']/tbody/tr[contains(@class,'dataRow')][";
-//    private static final String LAST = "]";
-//    private static final String LINK_CONTACT = "table.list tbody .dataCell a[href*='%s']";
-//    private static final By HEADERS_BY = By.xpath("//table[@class='list']/tbody/tr[@class='headerRow']/th");
+    private static final String LINK_EVENT  = "//li[@class='event']/span/a[text()='%s']";
+
     /**
      * Constructor.
      */
@@ -32,107 +32,33 @@ public class ClassicCalendarPage extends CalendarPage {
      * Opens CreateEventPopup
      */
     public CreateEventPopup openCreateEventPop() {
-        WebDriverHelper.clickElement(btnNewEvent);
+        WebDriverWait webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
+        webDriverWait.until(ExpectedConditions.visibilityOf(btnNewEvent));
+        JavascriptHelper.clickElement(btnNewEvent);
         return new ClassicCreateEventPopup();
     }
 
-//    /**
-//     * Searches a contact by id contact.
-//     * @param idContact
-//     * @return ClassicContactDetailsPage
-//     */
-//    private ClassicContactDetailsPage getContactDetailsPage(final String idContact) {
-//        WebElement element = findContactInTable(idContact);
-//        WebDriverHelper.waitUntil(element);
-//        WebDriverHelper.clickElement(element);
-//        return new ClassicContactDetailsPage();
-//    }
-//
-//    /**
-//     * @param contact
-//     */
-//    @Override
-//    public void searchContact(final String contact) {
-//
-//    }
-//
-//    /**
-//     * Deletes a contact.
-//     * @param idContact
-//     * @return
-//     */
-//    @Override
-//    public WebElement findContactInTable(final String idContact) {
-//        String id = idContact.substring(0, idContact.length() - NUMBER);
-//        WebElement element = WebDriverManager.getInstance().getWebDriver()
-//                .findElement(By.cssSelector(String.format(LINK_CONTACT, id)));
-//        return element;
-//    }
-//
-//    /**
-//     * Deletes Contact.
-//     * @param contact
-//     */
-//    @Override
-//    public void deleteContact(final String contact) {
-//        contactDetailsPage.clickBtnDelete();
-//    }
-//
-//    /**
-//     * Gets ContactDetailsAbstractPage.
-//     * @return ContactDetailsAbstractPage
-//     */
-//    @Override
-//    public ContactDetailsPage navigateToContactsDetailsPage(final String idContact) {
-//        WebElement element = findContactInTable(idContact);
-//        WebDriverHelper.waitUntil(element);
-//        WebDriverHelper.clickElement(element);
-//        return new ClassicContactDetailsPage();
-//    }
-//
-//    /**
-//     * Creates Locator.
-//     * @param contactInfo
-//     * @return rowXpathLocator
-//     */
-//    @Override
-//    public String createLocator(final HashMap<String, String> contactInfo) {
-//        contactInfo.put("Name", contactInfo.get("Lastname") + ", " + contactInfo.get("Firstname"));
-//        System.out.println(contactInfo);
-//        Map<String, String> map = compareMap(contactInfo);
-//        String rowXpathLocator = map.entrySet().stream().map(entry ->
-//            String.format(TD_XPATH, getHeaderPosition(entry.getKey().toString()), entry.getValue()))
-//            .collect(Collectors.joining(" and ", INI, LAST));
-//        System.out.println(rowXpathLocator);
-//        return rowXpathLocator;
-//    }
-//
-//    /**
-//     * Gets header position.
-//     * @param key
-//     * @return HeaderPosition
-//     */
-//    private String getHeaderPosition(final String key) {
-//        ArrayList<String> headerText = new ArrayList<>();
-//        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
-//            headerText.add(header.getText());
-//        }
-//        return String.valueOf(headerText.indexOf(key) + 1);
-//    }
-//
-//    /**
-//     * Compare Maps.
-//     * @param contactInfo
-//     * @return map
-//     */
-//    private Map<String, String> compareMap(final HashMap<String, String> contactInfo) {
-//        Map<String, String> map = new HashMap<>();
-//        System.out.println(getDriver().findElement(HEADERS_BY));
-//        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
-//            if (contactInfo.containsKey(header.getText())) {
-//                map.put(header.getText(), contactInfo.get(header.getText()));
-//            }
-//        }
-//        return map;
-//    }
+    /**
+     * @param event
+     * @return page
+     */
+    @Override
+    public EventDetailPage selectEvent(final Event event) {
+        String xpath = String.format(LINK_EVENT,event.getSubject());
+        WebElement element = getDriver().findElement(By.xpath(xpath));
+        JavascriptHelper.clickElement(element);
+        return new ClassicEventDeatilPage();
+    }
+
+    /**
+     * @param event
+     * @return boolean
+     */
+    @Override
+    public boolean isDataDisplayed(final Event event) {
+        WebDriverWait webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
+        webDriverWait.until(ExpectedConditions.visibilityOf(btnNewEvent));
+        String xpath = String.format(LINK_EVENT,event.getSubject());
+        return getDriver().findElement(By.xpath(xpath)).isDisplayed();
+    }
 }

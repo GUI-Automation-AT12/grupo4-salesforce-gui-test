@@ -21,7 +21,7 @@ public class EventHook {
     /**
      * AfterHook that deletes a created Campaign.
      */
-    @After(value = "@deleteEvent")
+    @After(value = "@deleteEvent", order = 5)
     public void deleteEvent() {
         RequestManager.delete("Event/" + context.getEvent().getIdEvent());
     }

@@ -21,7 +21,7 @@ public class CampaignHook {
     /**
      * Create a Campaign.
      */
-    @Before(value = "@createCampaign")
+    @Before(value = "@createCampaign", order = 3)
     public void createAccount() throws IOException {
         Map<String, String> data = JsonContact.getInstance().getDataAsAMap("CampaignTest");
         Response response = RequestManager.post("Campaign", data.toString());
@@ -33,7 +33,7 @@ public class CampaignHook {
     /**
      * AfterHook that deletes a created Campaign.
      */
-    @After(value = "@deleteCampaign")
+    @After(value = "@deleteCampaign", order = 6)
     public void deleteCampaign() {
         RequestManager.delete("Campaign/" + context.getCampaign().getIdCampaign());
     }

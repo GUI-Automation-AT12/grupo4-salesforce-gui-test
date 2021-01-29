@@ -2,6 +2,7 @@ package org.fundacionjala.salesforce.ui.pages.contacts;
 
 import org.fundacionjala.core.selenium.WebDriverHelper;
 import org.fundacionjala.core.selenium.WebDriverManager;
+import org.fundacionjala.core.utils.JavascriptHelper;
 import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.ContactDetailsPage;
 import org.fundacionjala.salesforce.ui.pages.contacts.contactdetails.LightningContactDetailPage;
 import org.openqa.selenium.By;
@@ -37,6 +38,7 @@ public class LightningContactsPage extends ContactsPage {
     private static final By HEADERS_BY = By.cssSelector("table[data-aura-class='uiVirtualDataTable'] thead tr th");
     private String contactTitle = "//span[contains(text(),'%s')]";
     private String contactListed = "//tbody//a[contains(@href,'%s')]";
+
     private static final int SLEEP = 2000;
 
     /**
@@ -96,8 +98,7 @@ public class LightningContactsPage extends ContactsPage {
     @Override
     public ContactDetailsPage navigateToContactsDetailsPage(final String idContact) {
         WebElement element = findContactInTable(idContact);
-        WebDriverHelper.waitUntil(element);
-        WebDriverHelper.clickElement(element);
+        JavascriptHelper.clickElement(element);
         return new LightningContactDetailPage();
     }
 

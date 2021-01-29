@@ -20,5 +20,8 @@
   },
   "EventTest": {
     "Name":"Event Testing"
+  },
+  "ProductTest": {
+    "Name":"Product A"
   }
 }

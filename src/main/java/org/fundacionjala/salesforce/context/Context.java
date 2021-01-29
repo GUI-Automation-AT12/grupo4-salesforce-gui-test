@@ -24,6 +24,7 @@ public class Context {
     private Task task;
     private Campaign campaign;
     private Event event;
+    private Product product;
     /**
      * Constructor for the Context.
      */
@@ -33,6 +34,7 @@ public class Context {
         this.task = new Task();
         this.campaign = new Campaign();
         this.event = new Event();
+        this.product = new Product();
         this.data = new HashMap<>();
         this.mapData = new HashMap<>();
         this.map = new ObjectMapper();
@@ -197,5 +199,21 @@ public class Context {
      */
     public void setEvent(Event newEvent) {
         this.event = newEvent;
+    }
+
+    /**
+     *
+     * @return product
+     */
+    public Product getProduct() {
+        return product;
+    }
+
+    /**
+     *
+     * @param product
+     */
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

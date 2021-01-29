@@ -1,6 +1,8 @@
 package org.fundacionjala.salesforce.ui.pages.Calendar.popup;
 
 import org.fundacionjala.core.selenium.WebDriverHelper;
+import org.fundacionjala.core.utils.DateHelper;
+import org.fundacionjala.core.utils.JavascriptHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -12,7 +14,7 @@ import java.util.Map;
 
 public class ClassicCreateEventPopup extends CreateEventPopup {
 
-    @FindBy(css = "div.isModal button[title='Save']")
+    @FindBy(id = "publishersharebutton")
     private WebElement btnSave;
 
     @FindBy(css = " input[data-fieldname='location']")
@@ -43,6 +45,7 @@ public class ClassicCreateEventPopup extends CreateEventPopup {
 
     @FindBy(css = "span.lookupInput input[title='Related To']")
     private WebElement nameEntity;
+    private DateHelper dateHelper = new DateHelper();
 
     /**
      * Constructor.
@@ -57,7 +60,12 @@ public class ClassicCreateEventPopup extends CreateEventPopup {
     public void createEvent(final Map<String, String> information) {
         HashMap<String, Runnable> strategyMap = composeStrategySetter(information);
         information.keySet().forEach(key -> strategyMap.get(key).run());
-        WebDriverHelper.clickElement(btnSave);
+        JavascriptHelper.clickElement(btnSave);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -71,9 +79,11 @@ public class ClassicCreateEventPopup extends CreateEventPopup {
         strategyMap.put("Subject", () -> setSubject(information.get("Subject")));
         strategyMap.put("StartDate", () -> setStartDate(information.get("StartDate")));
         strategyMap.put("StartTime", () -> setStartTime(information.get("StartTime")));
-        strategyMap.put("SelectUser", () -> setSelectUser(information.get("SelectUser")));
+        strategyMap.put("EndDate", () -> setEndDate(information.get("EndDate")));
+        strategyMap.put("EndTime", () -> setEndTime(information.get("EndTime")));
+        strategyMap.put("Select Name", () -> setSelectUser(information.get("Select Name")));
         strategyMap.put("Name", () -> setNameUser(information.get("Name")));
-        strategyMap.put("SelectEntity", () -> setSelectEntity(information.get("SelectEntity")));
+        strategyMap.put("Select RelatedTo", () -> setSelectEntity(information.get("Select RelatedTo")));
         strategyMap.put("RelatedTo", () -> setNameEntity(information.get("RelatedTo")));
         return strategyMap;
     }
@@ -115,7 +125,7 @@ public class ClassicCreateEventPopup extends CreateEventPopup {
      * @param newStartDate
      */
     public void setStartDate(final String newStartDate) {
-        WebDriverHelper.setElement(startDate, newStartDate);
+        WebDriverHelper.setElement(startDate, dateHelper.getDate(newStartDate));
     }
 
     /**
@@ -123,7 +133,7 @@ public class ClassicCreateEventPopup extends CreateEventPopup {
      * @param newStartTime
      */
     public void setStartTime(final String newStartTime) {
-        WebDriverHelper.setElement(startTime, newStartTime);
+        WebDriverHelper.setElement(startTime, dateHelper.getDate(newStartTime));
     }
 
     /**
@@ -131,7 +141,7 @@ public class ClassicCreateEventPopup extends CreateEventPopup {
      * @param newEndDate
      */
     public void setEndDate(final String newEndDate) {
-        WebDriverHelper.setElement(endDate, newEndDate);
+        WebDriverHelper.setElement(endDate, dateHelper.getDate(newEndDate));
 
     }
 
@@ -140,7 +150,7 @@ public class ClassicCreateEventPopup extends CreateEventPopup {
      * @param newEndTime
      */
     public void setEndTime(final String newEndTime) {
-        WebDriverHelper.setElement(endDate, newEndTime);
+        WebDriverHelper.setElement(endTime, dateHelper.getDate(newEndTime));
     }
 
     /**

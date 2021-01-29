@@ -51,6 +51,8 @@ public class DateHelper {
         setCalendar("TOMORROW", 1);
         setCalendar("2 DAYS AGO", DOS);
         setCalendar("2 DAYS FROM NOW", 2);
+        setCalendarTime("1 HOUR LATER", 1);
+        setCalendarTime("NOW", 0);
     }
 
     /**
@@ -87,5 +89,16 @@ public class DateHelper {
             }
         }
         return newDate;
+    }
+
+    /**
+     * [EBF] add a new date in the map.
+     * @param date
+     * @param hours
+     */
+    private void setCalendarTime(final String date, final int hours) {
+        calendar.setTime(actualDate);
+        calendar.add(Calendar.HOUR, hours);
+        dates.put(date, hour.format(calendar.getTime()));
     }
 }

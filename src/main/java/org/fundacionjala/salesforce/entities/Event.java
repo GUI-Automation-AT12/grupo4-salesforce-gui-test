@@ -1,5 +1,7 @@
 package org.fundacionjala.salesforce.entities;
 
+import org.fundacionjala.core.utils.DateHelper;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,8 +14,11 @@ public class Event {
     private String startTime;
     private String endDate;
     private String endTime;
+    private String selectName;
     private String nameUser;
-    private String nameApp;
+    private String SelectRelatedTo;
+    private String relatedTo;
+    private DateHelper dateHelper = new DateHelper();
 
     /**
      * Constructor.
@@ -82,7 +87,7 @@ public class Event {
      * @param newStartDate
      */
     public void setStartDate(final String newStartDate) {
-        this.startDate = newStartDate;
+        this.startDate = dateHelper.getDate(newStartDate);;
     }
 
     /**
@@ -98,7 +103,7 @@ public class Event {
      * @param newEndDate
      */
     public void setEndDate(final String newEndDate) {
-        this.endDate = newEndDate;
+        this.endDate = dateHelper.getDate(newEndDate);
     }
 
     /**
@@ -130,7 +135,7 @@ public class Event {
      * @param newStartTime
      */
     public void setStartTime(String newStartTime) {
-        this.startTime = newStartTime;
+        this.startTime = dateHelper.getDate(newStartTime);
     }
 
     /**
@@ -146,7 +151,7 @@ public class Event {
      * @param newEndTime
      */
     public void setEndTime(String newEndTime) {
-        this.endTime = newEndTime;
+        this.endTime = dateHelper.getDate(newEndTime);
     }
 
     /**
@@ -169,16 +174,48 @@ public class Event {
      *
      * @return nameTypeApp
      */
-    public String getNameApp() {
-        return nameApp;
+    public String getRelatedTo() {
+        return relatedTo;
     }
 
     /**
      *
      * @param newNameTypeApp
      */
-    public void setNameApp(String newNameTypeApp) {
-        this.nameApp = newNameTypeApp;
+    public void setRelatedTo(String newNameTypeApp) {
+        this.relatedTo = newNameTypeApp;
+    }
+
+    /**
+     *
+     * @return selectName
+     */
+    public String getSelectName() {
+        return selectName;
+    }
+
+    /**
+     *
+     * @param newSelectName
+     */
+    public void setSelectName(String newSelectName) {
+        this.selectName = newSelectName;
+    }
+
+    /**
+     *
+     * @return SelectRelatedTo
+     */
+    public String getSelectRelatedTo() {
+        return SelectRelatedTo;
+    }
+
+    /**
+     *
+     * @param newSelectRelatedTo
+     */
+    public void setSelectRelatedTo(String newSelectRelatedTo) {
+        SelectRelatedTo = newSelectRelatedTo;
     }
 
     /**
@@ -188,15 +225,16 @@ public class Event {
      */
     private HashMap<String, Runnable> composeStrategySetter(final Map<String, String> eventInformation) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
-        strategyMap.put("Name", () -> setName(eventInformation.get("Name")));
         strategyMap.put("Subject", () -> setSubject(eventInformation.get("Subject")));
         strategyMap.put("Location", () -> setLocation(eventInformation.get("Location")));
         strategyMap.put("StartDate", () -> setStartDate(eventInformation.get("StartDate")));
-        strategyMap.put("StartTime", () -> setStartDate(eventInformation.get("StartTime")));
+        strategyMap.put("StartTime", () -> setStartTime(eventInformation.get("StartTime")));
         strategyMap.put("EndDate", () -> setEndDate(eventInformation.get("EndDate")));
-        strategyMap.put("EndTime", () -> setEndDate(eventInformation.get("EndTime")));
-        strategyMap.put("NameUser", () -> setEndDate(eventInformation.get("NameUser")));
-        strategyMap.put("NameApp", () -> setEndDate(eventInformation.get("NameApp")));
+        strategyMap.put("EndTime", () -> setEndTime(eventInformation.get("EndTime")));
+        strategyMap.put("Select Name", () -> setSelectName(eventInformation.get("Select Name")));
+        strategyMap.put("Name", () -> setName(eventInformation.get("Name")));
+        strategyMap.put("Select RelatedTo", () -> setSelectRelatedTo(eventInformation.get("Select RelatedTo")));
+        strategyMap.put("RelatedTo", () -> setRelatedTo(eventInformation.get("RelatedTo")));
 
         return strategyMap;
     }

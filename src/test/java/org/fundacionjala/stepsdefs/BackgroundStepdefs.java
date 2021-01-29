@@ -2,6 +2,7 @@ package org.fundacionjala.stepsdefs;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.fundacionjala.salesforce.config.APIEnvironment;
 import org.fundacionjala.salesforce.context.Context;
@@ -9,6 +10,8 @@ import org.fundacionjala.salesforce.ui.pages.Init.InitialPage;
 import org.fundacionjala.salesforce.ui.pages.home.HomePage;
 import org.fundacionjala.salesforce.ui.pages.login.LoginPage;
 import org.fundacionjala.salesforce.ui.transporter.TransporterPage;
+
+import java.util.Map;
 
 public class BackgroundStepdefs {
     private InitialPage initialPage;
