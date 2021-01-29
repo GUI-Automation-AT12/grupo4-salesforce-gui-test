@@ -1,6 +1,7 @@
 package org.fundacionjala.stepsdefs;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.fundacionjala.salesforce.context.Context;
@@ -8,6 +9,7 @@ import org.fundacionjala.salesforce.ui.pages.opportunities.OpportunityFactory;
 import org.fundacionjala.salesforce.ui.pages.opportunities.OpportunityPage;
 import org.fundacionjala.salesforce.ui.pages.opportunities.details.OpportunityDetailsFactory;
 import org.fundacionjala.salesforce.ui.pages.opportunities.details.OpportunityDetailsPage;
+import org.fundacionjala.salesforce.utils.setup.SetupHelper;
 import org.junit.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -18,6 +20,12 @@ public class OpportunityStepdefs {
     private Context context;
     public OpportunityStepdefs(Context context) {
         this.context =  context;
+    }
+
+    @Given("I created a valid opportunity")
+    public void iCreatedAValidOpportunity() {
+        SetupHelper setupHelper = new SetupHelper();
+        setupHelper.setupOpportunities();
     }
 
     @And("I create an Opportunity with the following data")
