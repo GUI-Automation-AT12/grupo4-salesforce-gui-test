@@ -4,18 +4,10 @@ pipeline {
     triggers {
         pollSCM('H/5 * * * *')
     }
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                 sh "chmod +x gradlew"
-                sh './gradlew clean assemble'
-            }
-        }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh "chmod +x gradlew"
                 sh './gradlew test'
             }
         }
