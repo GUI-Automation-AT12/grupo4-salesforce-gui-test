@@ -54,7 +54,8 @@ public class RecycleBinStepdefs {
     }
 
     @When("I delete the contact on ContactDetails page")
-    public void iDeleteTheTestContactOnContactsPage() {
+    public void iDeleteTheTestContactOnContactsPage() throws InterruptedException {
+        Thread.sleep(2000);
         contactDetailsPage.deleteContact();
 
     }

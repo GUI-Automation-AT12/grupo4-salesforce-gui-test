@@ -1,3 +1,4 @@
+@Demo
 Feature: Search contacts
 
   Background:
