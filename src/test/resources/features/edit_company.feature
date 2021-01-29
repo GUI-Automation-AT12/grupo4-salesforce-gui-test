@@ -1,4 +1,4 @@
-@Demo
+@Company
 Feature: Edit Company
 
   Background:

@@ -1,3 +1,4 @@
+@Opportunities
 Feature: Create Opportunities
 
   @BeforeScenarioOutline
