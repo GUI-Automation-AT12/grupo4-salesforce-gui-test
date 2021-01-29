@@ -24,6 +24,5 @@ public class CommonHooks {
                 e.printStackTrace();
             }
         }
-        //WebDriverManager.getInstance().quit();
     }
 }
