@@ -1,10 +1,12 @@
 package org.fundacionjala.salesforce.ui.bar.sidebar;
 
 import org.fundacionjala.salesforce.config.APIEnvironment;
-import org.fundacionjala.salesforce.entities.Company;
+import org.fundacionjala.salesforce.ui.ComponentFactory;
+import org.fundacionjala.salesforce.ui.pages.BasePage;
+import org.fundacionjala.salesforce.ui.pages.company.companyinformation.CompanyInformation;
 
 
-public abstract class SideBar {
+public abstract class SideBar extends BasePage {
 
     private static SideBar sideBar;
 
@@ -14,7 +16,7 @@ public abstract class SideBar {
     public static SideBar getInstance() {
         if (sideBar == null) {
             try {
-                sideBar = SideBarFactory.getSideBar(APIEnvironment.getInstance().getTypeLayout());
+                sideBar = ComponentFactory.getSideBar(APIEnvironment.getInstance().getTypeLayout());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -25,5 +27,6 @@ public abstract class SideBar {
     /**
      * @return CompanyPage.
      */
-    public abstract Company goToCompanyInformation();
+    public abstract CompanyInformation goToCompanyInformation() throws Exception;
 }
+

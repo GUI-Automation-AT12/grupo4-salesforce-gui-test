@@ -2,6 +2,8 @@ package org.fundacionjala.salesforce.config;
 
 import org.fundacionjala.core.config.PropertiesFileReader;
 
+import static org.fundacionjala.salesforce.entities.constants.LayoutConstants.LIGHTNING;
+
 public class APIEnvironment extends PropertiesFileReader {
     private static final String PATH_FILE = "salesforce.properties";
     private static APIEnvironment apiEnvironment = new APIEnvironment();
@@ -101,7 +103,7 @@ public class APIEnvironment extends PropertiesFileReader {
      * @return base url.
      */
     public String getBaseTypeLayout() {
-        if (getTypeLayout().equals("lightning")) {
+        if (getTypeLayout().equals(LIGHTNING)) {
             return getBaseUrlLighting();
         }
         return getBaseUrlClassic();

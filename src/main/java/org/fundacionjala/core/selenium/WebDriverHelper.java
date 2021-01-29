@@ -4,13 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * [RH] Web driver helper class.
  */
 public final class WebDriverHelper {
-
     /**
      *
      */
@@ -81,5 +81,26 @@ public final class WebDriverHelper {
     public static void waitUntilIsVisible(final WebElement element) {
         WebDriverWait webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+
+    /**
+     * [JS]Method to Select an item from a selectBox by value.
+     * @param webElement
+     * @param value
+     */
+    public static void selectItemByValue(final WebElement webElement, final String value) {
+        Select select = new Select(webElement);
+        select.selectByVisibleText(value);
+    }
+    /**
+     * [Js] Change to the Iframe.
+     * @param webElement of the an iframe
+     */
+
+    public static void frameToBeAvailableAndSwitchToIt(final WebElement webElement) {
+        WebDriverManager.getInstance().getWebDriver().switchTo().defaultContent();
+        WebDriverManager.getInstance().getWebDriverWait()
+                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(webElement));
     }
 }

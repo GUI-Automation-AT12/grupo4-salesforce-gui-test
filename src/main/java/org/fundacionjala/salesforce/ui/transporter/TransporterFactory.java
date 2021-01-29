@@ -3,6 +3,9 @@ package org.fundacionjala.salesforce.ui.transporter;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.fundacionjala.salesforce.entities.constants.LayoutConstants.CLASSIC;
+import static org.fundacionjala.salesforce.entities.constants.LayoutConstants.LIGHTNING;
+
 public final class TransporterFactory {
     private static Map<String, Transporter> transporters = new HashMap<>();
 
@@ -11,8 +14,8 @@ public final class TransporterFactory {
      */
     private TransporterFactory() { }
     static {
-        transporters.put("lightning", new TransporterLightingPage());
-        transporters.put("classic", new TransporterClassicPage());
+        transporters.put(LIGHTNING, new TransporterLightingPage());
+        transporters.put(CLASSIC, new TransporterClassicPage());
     }
 
     /**
