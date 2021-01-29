@@ -1,4 +1,4 @@
-@RecycleBin
+@Demo
 Feature: recycle bin
 
   Background:
