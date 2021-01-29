@@ -16,7 +16,7 @@ public class ContactStepdefs {
     }
 
     @And("I search for the created contact")
-    public void searchForTheCreatedContact() throws IOException, InterruptedException {
+    public void searchForTheCreatedContact() {
         ContactsPage contactsPage = ContactPageFactory.getContactPage();
         contactsPage.searchContact(context.getValueData("FirstName") + " " + context.getValueData("LastName"));
        // contactsPage.selectContact(context.getValueData("Id"));
