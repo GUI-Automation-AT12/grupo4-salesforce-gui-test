@@ -7,6 +7,7 @@ import org.fundacionjala.core.client.RequestManager;
 import org.fundacionjala.salesforce.entities.Account;
 import org.fundacionjala.salesforce.entities.Company;
 import org.fundacionjala.salesforce.entities.Contact;
+import org.fundacionjala.salesforce.entities.Opportunity;
 import org.fundacionjala.salesforce.entities.Task;
 import org.fundacionjala.salesforce.utils.AuthenticationUtils;
 import java.io.IOException;
@@ -19,18 +20,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collection;
 
-
 public class Context {
     private Contact contact;
     private ArrayList<Company> company;
     private Account account;
+    private Opportunity opportunity;
     private Map<String, String> data;
     private Map<String, Map<String, String>> mapData;
     private ObjectMapper map;
     private List<Map> dataAsListMap;
     private Task task;
-
-
 
     private Set<String> editedFieldsCompany;
     /**
@@ -41,6 +40,7 @@ public class Context {
         this.editedFieldsCompany = new HashSet<String>();
         this.company = new ArrayList<Company>();
         this.account = new Account();
+        this.opportunity = new Opportunity();
         this.task = new Task();
         this.data = new HashMap<>();
         this.mapData = new HashMap<>();
@@ -153,18 +153,19 @@ public class Context {
 
     /**
      *
-     * @param newContact
-     */
-    public void setContact(final Contact newContact) {
-        this.contact = newContact;
-    }
-
-    /**
-     *
      * @param newAccount
      */
     public void setAccount(final Account newAccount) {
         this.account = newAccount;
+    }
+
+
+    /**
+     *
+     * @param newContact
+     */
+    public void setContact(final Contact newContact) {
+        this.contact = newContact;
     }
 
     /**
@@ -175,6 +176,21 @@ public class Context {
         return contact;
     }
 
+    /**
+     *
+     * @param newOpportunity
+     */
+    public void setOpportunity(final Opportunity newOpportunity) {
+        this.opportunity = newOpportunity;
+    }
+
+    /**
+     *
+     * @return contact
+     */
+    public Opportunity getOpportunity() {
+        return opportunity;
+    }
 
 
     /**
