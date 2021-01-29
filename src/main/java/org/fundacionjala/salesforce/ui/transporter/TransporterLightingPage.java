@@ -9,6 +9,7 @@ public class TransporterLightingPage extends Transporter {
      */
     public TransporterLightingPage() {
         setUrl("CompanyProfile", "setup/CompanyProfileInfo/home");
+        setUrl("Setup", "setup/SetupOneHome/home");
         setUrl("Contacts", "o/Contact/list?filterName=Recent");
         setUrl("Tasks", "o/Task/home");
         setUrl("Reports", "o/Report/home?queryScope=mru");

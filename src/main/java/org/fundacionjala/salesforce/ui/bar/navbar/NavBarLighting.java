@@ -2,8 +2,9 @@ package org.fundacionjala.salesforce.ui.bar.navbar;
 
 import org.fundacionjala.core.selenium.WebDriverHelper;
 import org.fundacionjala.salesforce.config.APIEnvironment;
+import org.fundacionjala.salesforce.ui.ComponentFactory;
 import org.fundacionjala.salesforce.ui.bar.sidebar.SideBar;
-import org.fundacionjala.salesforce.ui.bar.sidebar.SideBarFactory;
+import org.fundacionjala.salesforce.ui.transporter.TransporterPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,9 +28,8 @@ public class NavBarLighting extends NavBar {
      * @return the sidebar.
      */
     @Override
-    public SideBar goToConfigurations() {
-        clickDropDownAccount();
-        clickConfigurationLink();
-        return SideBarFactory.getSideBar(APIEnvironment.getInstance().getTypeLayout());
+    public SideBar goToConfigurations() throws Exception {
+        TransporterPage.navigateToPage("Setup");
+        return ComponentFactory.getSideBar(APIEnvironment.getInstance().getTypeLayout());
     }
 }

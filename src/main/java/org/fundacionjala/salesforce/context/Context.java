@@ -5,30 +5,41 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fundacionjala.core.client.RequestManager;
 import org.fundacionjala.salesforce.entities.Account;
+import org.fundacionjala.salesforce.entities.Company;
 import org.fundacionjala.salesforce.entities.Contact;
 import org.fundacionjala.salesforce.entities.Task;
 import org.fundacionjala.salesforce.utils.AuthenticationUtils;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
 import java.util.Set;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collection;
 
+
 public class Context {
     private Contact contact;
+    private ArrayList<Company> company;
     private Account account;
     private Map<String, String> data;
     private Map<String, Map<String, String>> mapData;
     private ObjectMapper map;
     private List<Map> dataAsListMap;
     private Task task;
+
+
+
+    private Set<String> editedFieldsCompany;
     /**
      * Constructor for the Context.
      */
     public Context() {
         this.contact = new Contact();
+        this.editedFieldsCompany = new HashSet<String>();
+        this.company = new ArrayList<Company>();
         this.account = new Account();
         this.task = new Task();
         this.data = new HashMap<>();
@@ -157,10 +168,37 @@ public class Context {
     }
 
     /**
-    *
+     *
      * @return contact
      */
     public Contact getContact() {
         return contact;
     }
+
+
+
+    /**
+     *
+     * @return contact
+     */
+    public ArrayList<Company> getCompany() {
+        return company;
+    }
+
+    /**
+     *
+     * @return Set keys.
+     */
+    public Set<String> getEditedFieldsCompany() {
+        return editedFieldsCompany;
+    }
+
+    /**
+     *
+     * @param editedFieldsCompany
+     */
+    public void setEditedFieldsCompany(final Set<String> editedFieldsCompany) {
+        this.editedFieldsCompany = editedFieldsCompany;
+    }
+
 }
