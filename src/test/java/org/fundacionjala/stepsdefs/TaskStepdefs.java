@@ -48,4 +48,5 @@ public class TaskStepdefs {
         softAssertion.assertTrue(taskDetailsPage.getTextSubject());
         softAssertion.assertAll();
     }
+
 }

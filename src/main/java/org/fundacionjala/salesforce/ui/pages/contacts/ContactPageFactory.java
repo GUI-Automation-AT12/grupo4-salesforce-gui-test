@@ -6,6 +6,9 @@ import org.fundacionjala.salesforce.ui.pages.BasePage;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * [RH].
+ */
 public class ContactPageFactory extends BasePage {
 
     private static Map<String, ContactsPage> contactMap = new HashMap<>();
