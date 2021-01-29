@@ -46,7 +46,6 @@ public class LightningContactsPage extends ContactsPage {
      */
 
     public LightningContactsPage() {
-        WebDriverHelper.waitUntil(search);
     }
 
     /**

@@ -24,7 +24,7 @@ public class SetupHelper {
     private SetupReader setupReader;
     private static Map<String, String> elementName = new HashMap<>();
     static {
-        elementName.put(CONTACT_ENDPOINT, "LastName, firstName");
+        elementName.put(CONTACT_ENDPOINT, "LastName,firstName");
         elementName.put(CAMPAIGN_ENDPOINT, "Name");
         elementName.put(OPPORTUNITY_ENDPOINT, "Name");
     }

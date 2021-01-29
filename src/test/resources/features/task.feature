@@ -1,4 +1,4 @@
-@Task
+@Demo
 Feature: Validate dates tasks
   Background:
     Given I log in Salesforce with valid User credentials

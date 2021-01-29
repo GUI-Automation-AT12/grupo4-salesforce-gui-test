@@ -4,19 +4,30 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fundacionjala.core.client.RequestManager;
-import org.fundacionjala.salesforce.entities.*;
+import org.fundacionjala.salesforce.entities.Account;
+import org.fundacionjala.salesforce.entities.Campaign;
+import org.fundacionjala.salesforce.entities.Event;
+import org.fundacionjala.salesforce.entities.Product;
+import org.fundacionjala.salesforce.entities.Company;
+import org.fundacionjala.salesforce.entities.Contact;
+import org.fundacionjala.salesforce.entities.Opportunity;
+import org.fundacionjala.salesforce.entities.Task;
 import org.fundacionjala.salesforce.utils.AuthenticationUtils;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
 import java.util.Set;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collection;
 
 public class Context {
     private Contact contact;
+    private ArrayList<Company> company;
     private Account account;
+    private Opportunity opportunity;
     private Map<String, String> data;
     private Map<String, Map<String, String>> mapData;
     private ObjectMapper map;
@@ -25,12 +36,16 @@ public class Context {
     private Campaign campaign;
     private Event event;
     private Product product;
+    private Set<String> editedFieldsCompany;
     /**
      * Constructor for the Context.
      */
     public Context() {
         this.contact = new Contact();
+        this.editedFieldsCompany = new HashSet<String>();
+        this.company = new ArrayList<Company>();
         this.account = new Account();
+        this.opportunity = new Opportunity();
         this.task = new Task();
         this.campaign = new Campaign();
         this.event = new Event();
@@ -146,6 +161,15 @@ public class Context {
 
     /**
      *
+     * @param newAccount
+     */
+    public void setAccount(final Account newAccount) {
+        this.account = newAccount;
+    }
+
+
+    /**
+     *
      * @param newContact
      */
     public void setContact(final Contact newContact) {
@@ -154,20 +178,36 @@ public class Context {
 
     /**
      *
-     * @param newAccount
-     */
-    public void setAccount(final Account newAccount) {
-        this.account = newAccount;
-    }
-
-    /**
-    *
      * @return contact
      */
     public Contact getContact() {
         return contact;
     }
 
+    /**
+     *
+     * @param newOpportunity
+     */
+    public void setOpportunity(final Opportunity newOpportunity) {
+        this.opportunity = newOpportunity;
+    }
+
+    /**
+     *
+     * @return contact
+     */
+    public Opportunity getOpportunity() {
+        return opportunity;
+    }
+
+
+    /**
+     *
+     * @return contact
+     */
+    public ArrayList<Company> getCompany() {
+        return company;
+    }
 
     /**
      *
@@ -203,6 +243,14 @@ public class Context {
 
     /**
      *
+     * @return Set keys.
+     */
+    public Set<String> getEditedFieldsCompany() {
+        return editedFieldsCompany;
+    }
+
+    /**
+     *
      * @return product
      */
     public Product getProduct() {
@@ -215,5 +263,12 @@ public class Context {
      */
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    /**
+     * @param editedFieldsCompany
+     */
+    public void setEditedFieldsCompany(final Set<String> editedFieldsCompany) {
+        this.editedFieldsCompany = editedFieldsCompany;
     }
 }

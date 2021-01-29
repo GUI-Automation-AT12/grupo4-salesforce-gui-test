@@ -9,12 +9,14 @@ public class TransporterLightingPage extends Transporter {
      */
     public TransporterLightingPage() {
         setUrl("CompanyProfile", "setup/CompanyProfileInfo/home");
+        setUrl("Setup", "setup/SetupOneHome/home");
         setUrl("Contacts", "o/Contact/list?filterName=Recent");
         setUrl("Tasks", "o/Task/home");
         setUrl("Reports", "o/Report/home?queryScope=mru");
         setUrl("Calendar", "o/Event/home");
         setUrl("Recycle Bin", "o/DeleteEvent/list?filterName=");
         setUrl("Products", "o/Product2/list?filterName=Recent");
+        setUrl("Opportunity", "o/Opportunity/list?filterName=Recent");
     }
 
     /**

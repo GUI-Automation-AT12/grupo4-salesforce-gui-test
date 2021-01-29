@@ -16,7 +16,7 @@ public class ExcelReaderTest {
         SetupReader setupReader =  new SetupReader();
         List<JSONObject> contactList = setupReader.getConvertedContactSheet();
        System.out.println(contactList.toString());
-       String expected ="[{\"firstName\":\"JhordanAPI-Contact \",\"LastName\":\"SotoAPI-Contact\"}," +
+       String expected ="[{\"firstName\":\"JhordanAPI-Contact\",\"LastName\":\"SotoAPI-Contact\"}," +
                " {\"firstName\":\"RodrigoAPI-Contact\",\"LastName\":\"HuancaAPI-Contact\"}," +
                " {\"firstName\":\"ElyAPI-Contact\",\"LastName\":\"BravoAPI-Contact\"}]";
         Assert.assertEquals(contactList.toString(), expected);

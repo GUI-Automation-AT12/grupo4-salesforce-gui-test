@@ -12,6 +12,7 @@ public class TransporterClassicPage extends Transporter {
         setUrl("Recycle Bin", "search/UndeletePage");
         setUrl("Calendar", "home/home.jsp");
         setUrl("Products", "01t/o");
+        setUrl("Opportunity", "006/o");
     }
 
     /**

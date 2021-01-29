@@ -2,9 +2,11 @@ package org.fundacionjala.salesforce.ui.bar.navbar;
 
 
 import org.fundacionjala.salesforce.config.APIEnvironment;
+import org.fundacionjala.salesforce.ui.ComponentFactory;
 import org.fundacionjala.salesforce.ui.bar.sidebar.SideBar;
+import org.fundacionjala.salesforce.ui.pages.BasePage;
 
-public abstract class NavBar {
+public abstract class NavBar extends BasePage {
 
     private static NavBar navBar;
 
@@ -15,7 +17,7 @@ public abstract class NavBar {
     public static NavBar getInstance() {
         if (navBar == null) {
             try {
-                navBar = NavBarFactory.getNavBar(APIEnvironment.getInstance().getTypeLayout());
+                navBar = ComponentFactory.getNavBar(APIEnvironment.getInstance().getTypeLayout());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -27,5 +29,5 @@ public abstract class NavBar {
      *
      * @return the sidebar.
      */
-    public abstract SideBar goToConfigurations();
+    public abstract SideBar goToConfigurations() throws Exception;
 }

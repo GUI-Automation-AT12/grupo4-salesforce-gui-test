@@ -2,11 +2,10 @@ package org.fundacionjala.salesforce.ui.bar.navbar;
 
 import org.fundacionjala.core.selenium.WebDriverHelper;
 import org.fundacionjala.salesforce.config.APIEnvironment;
+import org.fundacionjala.salesforce.ui.ComponentFactory;
 import org.fundacionjala.salesforce.ui.bar.sidebar.SideBar;
-import org.fundacionjala.salesforce.ui.bar.sidebar.SideBarFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 public class NavBarClassic extends NavBar {
 
     @FindBy(id = "setupLink")
@@ -24,7 +23,7 @@ public class NavBarClassic extends NavBar {
     @Override
     public SideBar goToConfigurations() {
         clickConfigurationLink();
-        return SideBarFactory.getSideBar(APIEnvironment.getInstance().getTypeLayout());
+        return ComponentFactory.getSideBar(APIEnvironment.getInstance().getTypeLayout());
 
     }
 }

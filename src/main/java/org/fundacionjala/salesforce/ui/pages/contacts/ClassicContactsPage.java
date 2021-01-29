@@ -32,6 +32,8 @@ public class ClassicContactsPage extends ContactsPage {
     private static final By HEADERS_BY = By.xpath("//table[@class='list']/tbody/tr[@class='headerRow']/th");
     private static final String LINK = "//table/tbody//tr//td//th//a[text()=' %S']";
     private ClassicContactDetailsPage contactDetailsPage;
+    private String xpathLink  = "//tr//a[contains(text(),'%s')]";
+    private String linkContact = "//table/tbody//tr//td//th//a[text()=' %S']";
     private String nameContact;
 
     /**
@@ -127,7 +129,6 @@ public class ClassicContactsPage extends ContactsPage {
     public String createLocator(final HashMap<String, String> contactInfo) {
         contactInfo.put("Name", contactInfo.get("Firstname") + " " + contactInfo.get("Lastname"));
         Map<String, String> map = compareMap(contactInfo);
-
         String rowXpathLocator = INI;
         for(Map.Entry entry : map.entrySet()) {
             if(!INI.equals(rowXpathLocator)) {
@@ -141,6 +142,8 @@ public class ClassicContactsPage extends ContactsPage {
         }
         return rowXpathLocator + LAST;
     }
+
+
 
     /**
      * Gets header position.
