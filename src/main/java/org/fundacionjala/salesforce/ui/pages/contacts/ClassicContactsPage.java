@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ClassicContactsPage extends ContactsPage {
 
@@ -32,8 +31,8 @@ public class ClassicContactsPage extends ContactsPage {
     private static final String LINK_CONTACT = "table.list tbody .dataCell a[href*='%s']";
     private static final By HEADERS_BY = By.xpath("//table[@class='list']/tbody/tr[@class='headerRow']/th");
     private static final String LINK = "//table/tbody//tr//td//th//a[text()=' %S']";
-    private String xpathLink  = "//tr//a[contains(text(),'%s')]";
     private ClassicContactDetailsPage contactDetailsPage;
+    private String xpathLink  = "//tr//a[contains(text(),'%s')]";
     private String linkContact = "//table/tbody//tr//td//th//a[text()=' %S']";
     private String nameContact;
 
@@ -115,7 +114,7 @@ public class ClassicContactsPage extends ContactsPage {
      * @param contact
      */
     public void findContact(final String contact) {
-        String text = changeInitials(String.format(linkContact, contact).toLowerCase());
+        String text = changeInitials(String.format(LINK, contact).toLowerCase());
         WebElement element = getDriver().findElement(By.xpath(changeInitials(text.replaceAll("=' ", "='"))));
         WebDriverHelper.waitUntil(element);
         WebDriverHelper.clickElement(element);
@@ -166,7 +165,6 @@ public class ClassicContactsPage extends ContactsPage {
      */
     private Map<String, String> compareMap(final HashMap<String, String> contactInfo) {
         Map<String, String> map = new HashMap<>();
-        System.out.println(getDriver().findElement(HEADERS_BY));
         for (WebElement header : getDriver().findElements(HEADERS_BY)) {
             if (contactInfo.containsKey(header.getText())) {
                 map.put(header.getText(), contactInfo.get(header.getText()));

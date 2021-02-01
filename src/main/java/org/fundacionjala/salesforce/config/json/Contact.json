@@ -12,5 +12,16 @@
     "Lastname": "Smith Created By Api",
     "Title": "President",
     "Phone":"55555555"
+  },
+  "CampaignTest": {
+    "Name":"Campaign Testing",
+    "Type": "Conference",
+    "Status": "Planned"
+  },
+  "EventTest": {
+    "Name":"Event Testing"
+  },
+  "ProductTest": {
+    "Name":"Product A"
   }
 }

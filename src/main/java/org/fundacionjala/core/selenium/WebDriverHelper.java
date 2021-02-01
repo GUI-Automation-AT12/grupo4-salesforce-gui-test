@@ -83,6 +83,14 @@ public final class WebDriverHelper {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    /**
+     * Gets value of WebElement.
+     * @param webElement
+     * @return value of WebElement
+     */
+    public static String getValue(final WebElement webElement) {
+        return webElement.getAttribute("value");
+    }
 
     /**
      * [JS]Method to Select an item from a selectBox by value.

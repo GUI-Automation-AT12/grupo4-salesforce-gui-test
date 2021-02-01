@@ -25,7 +25,7 @@ public class AccountHook {
     /**
      * Create an account.
      */
-    @Before(value = "@createAccount")
+    @Before(value = "@createAccount", order = 1)
     public void createAccount() throws IOException {
         Map<String, String> data = JsonAccount.getInstance().getDataAsAMap("AccountTest");
         Response response = RequestManager.post("Account", data.toString());
@@ -57,7 +57,7 @@ public class AccountHook {
     /**
      * AfterHook that deletes a created Account.
      */
-    @After(value = "@deleteAccount")
+    @After(value = "@deleteAccount", order = 9)
     public void deleteAccount() {
         RequestManager.delete("Account/" + context.getAccount().getIdAccount());
     }

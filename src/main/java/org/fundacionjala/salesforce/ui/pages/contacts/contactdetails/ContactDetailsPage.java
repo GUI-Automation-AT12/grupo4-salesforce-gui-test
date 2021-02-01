@@ -2,6 +2,9 @@ package org.fundacionjala.salesforce.ui.pages.contacts.contactdetails;
 
 import org.fundacionjala.salesforce.entities.Task;
 import org.fundacionjala.salesforce.ui.pages.BasePage;
+import org.openqa.selenium.By;
+
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -47,4 +50,20 @@ public abstract class ContactDetailsPage extends BasePage {
      * @param task
      */
     public abstract void selectCreatedTask(Task task);
+
+    /**
+     * Verify if Information is displayed in the table.
+     * @param information
+     * @return if element
+     */
+    public boolean isInformationDisplayed(final HashMap<String, String> information) {
+        return getDriver().findElement(By.xpath(createLocator(information))).isDisplayed();
+    }
+
+    /**
+     *
+     * @param contactInfo
+     * @return locator
+     */
+    public abstract String createLocator(HashMap<String, String> contactInfo);
 }

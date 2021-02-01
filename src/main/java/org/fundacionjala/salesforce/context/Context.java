@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fundacionjala.core.client.RequestManager;
 import org.fundacionjala.salesforce.entities.Account;
+import org.fundacionjala.salesforce.entities.Campaign;
+import org.fundacionjala.salesforce.entities.Event;
+import org.fundacionjala.salesforce.entities.Product;
 import org.fundacionjala.salesforce.entities.Company;
 import org.fundacionjala.salesforce.entities.Contact;
 import org.fundacionjala.salesforce.entities.Opportunity;
@@ -30,7 +33,9 @@ public class Context {
     private ObjectMapper map;
     private List<Map> dataAsListMap;
     private Task task;
-
+    private Campaign campaign;
+    private Event event;
+    private Product product;
     private Set<String> editedFieldsCompany;
     /**
      * Constructor for the Context.
@@ -42,6 +47,9 @@ public class Context {
         this.account = new Account();
         this.opportunity = new Opportunity();
         this.task = new Task();
+        this.campaign = new Campaign();
+        this.event = new Event();
+        this.product = new Product();
         this.data = new HashMap<>();
         this.mapData = new HashMap<>();
         this.map = new ObjectMapper();
@@ -203,6 +211,38 @@ public class Context {
 
     /**
      *
+     * @return campaign
+     */
+    public Campaign getCampaign() {
+        return campaign;
+    }
+
+    /**
+     *
+     * @param newCampaign
+     */
+    public void setCampaign(Campaign newCampaign) {
+        this.campaign = newCampaign;
+    }
+
+    /**
+     *
+     * @return event
+     */
+    public Event getEvent() {
+        return event;
+    }
+
+    /**
+     *
+     * @param newEvent
+     */
+    public void setEvent(Event newEvent) {
+        this.event = newEvent;
+    }
+
+    /**
+     *
      * @return Set keys.
      */
     public Set<String> getEditedFieldsCompany() {
@@ -211,10 +251,24 @@ public class Context {
 
     /**
      *
+     * @return product
+     */
+    public Product getProduct() {
+        return product;
+    }
+
+    /**
+     *
+     * @param product
+     */
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    /**
      * @param editedFieldsCompany
      */
     public void setEditedFieldsCompany(final Set<String> editedFieldsCompany) {
         this.editedFieldsCompany = editedFieldsCompany;
     }
-
 }

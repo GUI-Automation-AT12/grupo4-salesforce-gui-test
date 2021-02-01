@@ -7,7 +7,11 @@ import org.fundacionjala.salesforce.entities.Task;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * [RH] LightningContactDetailsPage.
@@ -48,6 +52,15 @@ public class LightningContactDetailPage extends ContactDetailsPage {
     private String saveTask = "//div[contains(@class,'activeState')]//button[contains(@class,'slds-button--brand')]";
     private String createdTask = "//a[@title='%s']";
 
+    private static final String TD_XPATH = "*[%1$s]//*[text()='%2$s']";
+    private static final String INI = "//tbody/tr[";
+    private static final String LAST = "]";
+    private static final String LINK_CONTACT = "//tbody//a[contains(@data-aura-class, 'Output')][@data-recordid='%s']";
+    private static final By HEADERS_BY = By.cssSelector("table[data-aura-class='uiVirtualDataTable'] thead tr th");
+    private String contactTitle = "//span[contains(text(),'%s')]";
+    private String contactListed = "//tbody//a[contains(@href,'%s')]";
+    private String linkEvent = "//a[contains(@class,'subjectLink')][text()='%s']";
+
     /**
      * Constructor.
      */
@@ -60,7 +73,12 @@ public class LightningContactDetailPage extends ContactDetailsPage {
      * Click in button Menu.
      */
     public void clickButtonMenu() {
-        WebDriverHelper.clickElement(btnMenu);
+        try {
+            WebDriverHelper.waitUntil(btnMenu);
+            WebDriverHelper.clickElement(btnMenu);
+        } catch (Exception ex) {
+            WebDriverHelper.clickElement(btnMenu);
+        }
     }
 
     /**
@@ -145,5 +163,49 @@ public class LightningContactDetailPage extends ContactDetailsPage {
     @Override
     public void waitUntilPageIsLoaded() {
         WebDriverHelper.waitUntilIsVisible(btnMenu);
+    }
+
+    /**
+     * @param contactInfo
+     * @return locator
+     */
+    @Override
+    public String createLocator(final HashMap<String, String> contactInfo) {
+        return String.format(linkEvent, contactInfo.get("Subject"));
+//        contactInfo.put("Name", contactInfo.get("Firstname") + " " + contactInfo.get("Lastname"));
+//        Map<String, String> map = compareMap(contactInfo);
+//        String rowXpathLocator = map.entrySet().stream().map(entry ->
+//                String.format(TD_XPATH, getHeaderPosition(entry.getKey().toString()), entry.getValue()))
+//                .collect(Collectors.joining(" and ", INI, LAST));
+//        return rowXpathLocator;
+    }
+
+    /**
+     * Gets header position.
+     * @param key
+     * @return HeaderPosition
+     */
+    private String getHeaderPosition(final String key) {
+        ArrayList<String> headerText = new ArrayList<>();
+        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
+            headerText.add(header.getAttribute("aria-label"));
+        }
+        return String.valueOf(headerText.indexOf(key) + 1);
+    }
+
+    /**
+     * Compare Maps.
+     * @param contactInfo
+     * @return map
+     */
+    private Map<String, String> compareMap(final HashMap<String, String> contactInfo) {
+        Map<String, String> map = new HashMap<>();
+        System.out.println(getDriver().findElements(HEADERS_BY));
+        for (WebElement header : getDriver().findElements(HEADERS_BY)) {
+            if (contactInfo.containsKey(header.getAttribute("aria-label"))) {
+                map.put(header.getAttribute("aria-label"), contactInfo.get(header.getAttribute("aria-label")));
+            }
+        }
+        return map;
     }
 }

@@ -19,7 +19,7 @@ public class ContactHook {
     /**
      * BeforeHook that Creates a contact.
      */
-    @Before(value = "@createContactRelatedToAccount")
+    @Before(value = "@createContactRelatedToAccount", order = 1)
     public void createContactRelatedAccount() throws IOException {
         Map<String, String> data = JsonContact.getInstance().getDataAsAMap("ContactTest");
         data.put("AccountId",context.getAccount().getIdAccount());
@@ -29,11 +29,12 @@ public class ContactHook {
         context.saveData(response.asString());
     }
 
-    @Before(value = "@createContact")
+    @Before(value = "@createContact", order = 2)
     public void createContact() throws IOException {
         Map<String, String> data = JsonContact.getInstance().getDataAsAMap("Contact");
         Response response = RequestManager.post("Contact", data.toString());
         context.getContact().setIdContact(response.jsonPath().get("id").toString());
+        context.getContact().processInformation(data);
         response = RequestManager.get("contact/"+context.getContact().getIdContact());
         context.saveData(response.asString());
     }
@@ -45,7 +46,7 @@ public class ContactHook {
     /**
      * AfterHook that deletes a created contact.
      */
-    @After(value = "@deleteContact")
+    @After(value = "@deleteContact", order = 8)
     public void deleteContact() {
         RequestManager.delete("Contact/" + context.getContact().getIdContact());
     }
