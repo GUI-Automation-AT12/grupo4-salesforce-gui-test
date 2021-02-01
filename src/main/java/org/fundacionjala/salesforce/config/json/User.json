@@ -1,0 +1,50 @@
+[
+  {
+    "email": "rodrigo051599@gmail.com",
+    "Password": "Y29udHJvbDEyMw==",
+    "UserName": "rodrigo@jala.com",
+    "Name": "Rodrigo",
+    "Lastname": "Huanca",
+    "Alias": "Valid",
+    "Nickname": "User16059017533481335215",
+    "Enterprise": "Jala-fundation",
+    "UserLicence": "Salesforce",
+    "Profile": "Administrador del sistema"
+  },
+  {
+    "email": "",
+    "Password": "",
+    "UserName": "",
+    "Name": "",
+    "Lastname": "",
+    "Alias": "",
+    "Nickname": "",
+    "Enterprise": "",
+    "UserLicence": "Salesforce",
+    "Profile": "Sólo lectura"
+  },
+  {
+    "email": "",
+    "Password": "",
+    "UserName": "",
+    "Name": "",
+    "Lastname": "",
+    "Alias": "",
+    "Nickname": "",
+    "Enterprise": "",
+    "UserLicence": "Salesforce",
+    "Profile": "Minimum Access - Salesforce"
+  },
+  {
+    "email": "",
+    "Password": "",
+    "UserName": "",
+    "Name": "",
+    "Lastname": "",
+    "Alias": "",
+    "Nickname": "",
+    "Enterprise": "",
+    "UserLicence": "Salesforce",
+    "Profile": "Usuario estándar"
+  }
+]

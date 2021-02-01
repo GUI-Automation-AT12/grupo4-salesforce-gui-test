@@ -1,0 +1,27 @@
+{
+  "ContactTest": {
+    "Firstname":"Juan",
+    "Lastname": "Smith",
+    "Title": "President",
+    "Email": "sample@salesforce.com",
+    "Phone":"44444444",
+    "AccountId":""
+  },
+  "Contact": {
+    "Firstname":"Jhon",
+    "Lastname": "Smith Created By Api",
+    "Title": "President",
+    "Phone":"55555555"
+  },
+  "CampaignTest": {
+    "Name":"Campaign Testing",
+    "Type": "Conference",
+    "Status": "Planned"
+  },
+  "EventTest": {
+    "Name":"Event Testing"
+  },
+  "ProductTest": {
+    "Name":"Product A"
+  }
+}

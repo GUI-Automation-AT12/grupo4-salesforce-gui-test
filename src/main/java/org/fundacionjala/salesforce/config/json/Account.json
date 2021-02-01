@@ -1,0 +1,18 @@
+{
+  "AccountTest": {
+    "Name": "SampleAccount1",
+    "Phone": "1234567890",
+    "Website": "www.salesforce.com",
+    "NumberOfEmployees": "100",
+    "Industry": "Banking",
+    "Site": "Bolivia"
+  },
+  "Account": {
+    "Name": "SampleAccount1",
+    "Phone": "1234567890",
+    "Website": "www.salesforce.com",
+    "NumberOfEmployees": "100",
+    "Industry": "Banking",
+    "Site": "Bolivia"
+  }
+}

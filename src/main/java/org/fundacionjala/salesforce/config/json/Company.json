@@ -1,0 +1,18 @@
+{
+  "CompanyTest": {
+    "Organization Name": "Jhordans",
+    "Primary Contact": "Contact123",
+    "Alias": "DataToRestore",
+    "Division": "Division",
+    "Phone": "77777777",
+    "Fax": "000",
+    "Street": "Av 123456",
+    "City": "Cbba",
+    "State/Province": "Cbba",
+    "Zip/PostalCode": "0000",
+    "Country": "BO",
+    "Default Locale": "English (Ghana)",
+    "Default Language": "Spanish",
+    "Default Time Zone": "(GMT+14:00) Line Islands Time (Pacific/Kiritimati)",
+  }
+}

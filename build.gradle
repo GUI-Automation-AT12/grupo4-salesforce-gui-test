@@ -1,0 +1,104 @@
+plugins {
+    id 'java'
+}
+
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'jacoco'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.8.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+    compile group: 'org.json', name: 'json', version: '20180813'
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
+    implementation 'com.google.guava:guava:29.0-jre'
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '4.3.2'
+    implementation group: 'io.rest-assured', name: 'json-schema-validator', version: '4.3.2'
+    testImplementation group: 'io.cucumber', name: 'cucumber-java', version: '6.9.0'
+    testImplementation group: 'io.cucumber', name: 'cucumber-testng', version: '6.9.0'
+    testImplementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '6.9.0'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.6.0'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.3.0'
+    testImplementation group: 'io.qameta.allure', name: 'allure-cucumber6-jvm', version: '2.13.6'
+    compile "org.apache.poi:poi:3.17"
+    compile "org.apache.poi:poi-ooxml:3.17"
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.141.59'
+
+}
+
+checkstyle {
+    toolVersion = '8.37'
+    configFile = file("${rootProject.rootDir}/config/checkstyle/checkstyle.xml")
+}
+
+pmd {
+    toolVersion = '6.0.0'
+}
+
+tasks.withType(Pmd) {
+    ruleSets = ["java-basic", "java-braces", "java-unnecessary", "java-unusedcode", "java-strictexception"]
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport
+
+test {
+    useTestNG()
+    exclude 'org/fundacionjala/runner/**'
+    include 'org/fundacionjala/salesforce/unit/tests/**'
+    testLogging {
+        events 'PASSED', 'STARTED', 'FAILED', 'SKIPPED'
+    }
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task executeBDDTests(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm']
+        jvmArgs = ['-Dcucumber.plugin=rerun:build/target/rerun.txt']
+        jvmArgs = ['-Dcucumber.filter.tags=' + filterTags]
+        jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
+        jvmArgs = ['-Dbrowser=' + testBrowser]
+    }
+    testLogging.showStandardStreams = true
+    scanForTestClasses = false
+}
+
+task reExecuteBDDTests(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm']
+        jvmArgs = ['-Dcucumber.plugin=rerun:build/target/rerun.txt']
+        jvmArgs = ['-Dcucumber.features=@build/target/rerun.txt']
+        jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
+    }
+    testLogging.showStandardStreams = true
+    scanForTestClasses = false
+}
