@@ -9,7 +9,7 @@ import org.fundacionjala.salesforce.ui.pages.opportunities.OpportunityFactory;
 import org.fundacionjala.salesforce.ui.pages.opportunities.OpportunityPage;
 import org.fundacionjala.salesforce.ui.pages.opportunities.details.OpportunityDetailsFactory;
 import org.fundacionjala.salesforce.ui.pages.opportunities.details.OpportunityDetailsPage;
-import org.fundacionjala.salesforce.utils.setup.SetupHelper;
+import org.fundacionjala.salesforce.utils.setup.MainSetup;
 import org.junit.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -24,7 +24,7 @@ public class OpportunityStepdefs {
 
     @Given("I created a valid opportunity")
     public void iCreatedAValidOpportunity() {
-        SetupHelper setupHelper = new SetupHelper();
+        MainSetup setupHelper = new MainSetup();
         setupHelper.setupOpportunities();
     }
 

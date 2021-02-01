@@ -15,24 +15,24 @@ import java.util.Map;
 /**
  * [RH] Setup helper class.
  */
-public class SetupHelper {
+public class MainSetup {
 
-    private static final String CONTACT_ENDPOINT = "Contact";
-    private static final String CAMPAIGN_ENDPOINT = "Campaign";
-    private static final String OPPORTUNITY_ENDPOINT = "Opportunity";
-    private static final String CASE_ENDPOINT = "Case";
+    private static final String CONTACT_SHEET = "Contact";
+    private static final String CAMPAIGN_SHEET = "Campaign";
+    private static final String OPPORTUNITY_SHEET = "Opportunity";
+    private static final String CASE_SHEET = "Cases";
     private SetupReader setupReader;
     private static Map<String, String> elementName = new HashMap<>();
     static {
-        elementName.put(CONTACT_ENDPOINT, "LastName,firstName");
-        elementName.put(CAMPAIGN_ENDPOINT, "Name");
-        elementName.put(OPPORTUNITY_ENDPOINT, "Name");
+        elementName.put(CONTACT_SHEET, "LastName,firstName");
+        elementName.put(CAMPAIGN_SHEET, "Name");
+        elementName.put(OPPORTUNITY_SHEET, "Name");
     }
 
     /**
      * Constructor.
      */
-    public SetupHelper() {
+    public MainSetup() {
         RequestManager.setRequestSpec(AuthenticationUtils.getLoggedReqSpec());
         setupReader = new SetupReader();
     }
@@ -41,28 +41,28 @@ public class SetupHelper {
      * [RH] Setup contacts.
      */
     public void setupContacts() {
-        sendRequests(CONTACT_ENDPOINT, setupReader.getConvertedContactSheet());
+        sendRequests(CONTACT_SHEET, setupReader.getConvertedContactSheet());
     }
 
     /**
      * [RH] Setup campaigns.
      */
     public void setupCampaigns() {
-        sendRequests(CAMPAIGN_ENDPOINT, setupReader.getConvertedCampaignSheet());
+        sendRequests(CAMPAIGN_SHEET, setupReader.getConvertedCampaignSheet());
     }
 
     /**
      * [RH] Setup opportunities.
      */
     public void setupOpportunities() {
-        sendRequests(OPPORTUNITY_ENDPOINT, setupReader.getConvertedOpportunitySheet());
+        sendRequests(OPPORTUNITY_SHEET, setupReader.getConvertedOpportunitySheet());
     }
 
     /**
      * [RH] Setup cases.
      */
     public void setupCases() {
-        sendRequests(CASE_ENDPOINT, setupReader.getConvertedCaseSheet());
+        sendRequests(CASE_SHEET, setupReader.getConvertedCaseSheet());
     }
 
     /**
@@ -78,11 +78,11 @@ public class SetupHelper {
             Map<String, String> data = context.getData();
             List<JSONObject> list = jsonList;
             for (JSONObject json : jsonList) {
-                String[] array = elementName.get(endpoint).split(",");
+                String[] search = elementName.get(endpoint).split(",");
                 String name = "";
-                for (int i = 0; i < array.length; i++) {
-                    name += json.getString(array[i]);
-                    if (i < array.length - 1) {
+                for (int i = 0; i < search.length; i++) {
+                    name += json.getString(search[i]);
+                    if (i < search.length - 1) {
                         name += ", ";
                     }
                 }

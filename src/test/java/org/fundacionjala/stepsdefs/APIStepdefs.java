@@ -2,7 +2,7 @@ package org.fundacionjala.stepsdefs;
 
 import io.cucumber.java.en.Given;
 import org.fundacionjala.salesforce.context.Context;
-import org.fundacionjala.salesforce.utils.setup.SetupHelper;
+import org.fundacionjala.salesforce.utils.setup.MainSetup;
 
 public class APIStepdefs {
 
@@ -14,7 +14,7 @@ public class APIStepdefs {
 
     @Given("I created a valid campaign")
     public void iCreatedAValidCampaign() {
-        SetupHelper setupHelper =  new SetupHelper();
+        MainSetup setupHelper =  new MainSetup();
         setupHelper.setupCampaigns();
     }
 
